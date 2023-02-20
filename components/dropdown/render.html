@@ -79,6 +79,10 @@
 			show(el);
 		});
 
+		instance.default = function() {
+			return '';
+		};
+
 		instance.on('reset', function() {
 			instance.set('touched', false);
 			instance.set('modified', false);
@@ -89,8 +93,11 @@
 			if (kind === 'nobind')
 				return;
 
-			if (type === 'value')
+			if (type === 'value') {
+				instance.set('value', value);
+				element.find(cls2 + '_value').text(value);
 				checkplaceholder();
+			}
 
 		});
 
