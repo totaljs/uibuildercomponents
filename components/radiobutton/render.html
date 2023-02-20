@@ -18,7 +18,7 @@
 
 <body>
 	{{ foreach m in value }}
-		<figure data-id="{{ if m.id }}{{ m.id }}{{ else }}{{ m.name }}{{ fi }}" {{ if $index === 0 }}class="UI_checked"{{ fi }}><span><i class="ti ti-check"></i></span><div>{{ m.name }}</div></figure>
+		<figure data-id="{{ if m.id }}{{ m.id }}{{ else }}{{ m.name }}{{ fi }}"><span><i class="ti ti-check"></i></span><div>{{ m.name }}</div></figure>
 	{{ end }}
 </body>
 
@@ -32,21 +32,23 @@
 	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
-
 		instance.state.bind = true;
 
-		var defaultval = '';
+		var defaultval = null;
 
 		var render = function(response) {
 			var template = instance.maketemplate();
 			var icon = config.icon ? '<i class="{0}"></i>'.format(config.icon) : '';
 			var label = '<label>{1}<span>{0}:</span></label>'.format(config.name, icon);
 
-			if (config.required)
-				element.find('figure').aclass('UI_checked');
-
 			element.html(label + template({ value: response }));
-		};
+
+			select(defaultval);
+		}
+
+		var select = function(value) {
+			element.find('figure[data-id="' + value + '"]').aclass('UI_checked');
+		}
 
 		element.on('click', '> figure', function() {
 
@@ -59,7 +61,7 @@
 			element.find('.UI_checked').rclass('UI_checked');
 			el.tclass('UI_checked');
 
-			instance.set('value', id);
+			instance.set('value', id, 'nobind');
 			instance.set('modified', true);
 			setTimeout(() => instance.set('touched', true), 200);
 		});
@@ -72,7 +74,7 @@
 		};
 
 		instance.default = function() {
-			return config.default || defaultval;
+			return defaultval;
 		};
 
 		instance.on('reset', function() {
@@ -86,21 +88,27 @@
 
 			switch (type) {
 				case 'value':
-
+					loaddata();
 					break;
 			}
 		});
 
-		instance.on('ready', function() {
-
+		var loaddata = function() {
 			instance.datasource(config.datasource, function(response) {
-				render(response);
-				defaultval = response[0].id ? response[0].id : response[0].name;
+				var index = config.default - 1 || 0;
+
+				if (index > response.length)
+					index = 0
+
+				defaultval = response[index].id ? response[index].id : response[index].name;
 				instance.set('value', defaultval, 'nobind');
+				render(response);
 			});
+		}
 
+		instance.on('ready', function() {
+			loaddata();
 			instance.check();
-
 		});
 
 	};
