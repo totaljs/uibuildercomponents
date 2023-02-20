@@ -60,6 +60,7 @@ FUNC.parse = function(filename, response) {
 };
 
 var path = F.path.join(process.cwd(), '/components/');
+var components = [];
 
 Fs.readdir(path, function(err, dir) {
 
@@ -83,6 +84,8 @@ Fs.readdir(path, function(err, dir) {
 				var html = F.Fs.readFileSync(F.Path.join(dircomponent, file)).toString('utf8');
 				var data = FUNC.parse(item, html);
 
+				components.push(data);
+
 				p = F.Path.join(cdn, item + '-v' + (data.version || 1));
 
 				try {
@@ -96,5 +99,11 @@ Fs.readdir(path, function(err, dir) {
 
 		}, next);
 
-	}, () => console.log('Done.'));
+	}, function() {
+
+		F.Fs.writeFile(F.Path.join(cdn, 'db.json'), JSON.stringify(components, null, '\t'), function() {
+			console.log('Done.');
+			process.exit(0);
+		});
+	});
 });
