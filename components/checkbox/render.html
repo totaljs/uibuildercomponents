@@ -1,0 +1,82 @@
+<style>
+	.CLASS label { font-size: 12px; margin-bottom: 3px; display: block; outline: 0; }
+	.CLASS label i { margin-right: 5px; }
+	.CLASS_checkbox * { cursor: pointer; }
+	.CLASS_checkbox span { width: 20px; height: 20px; line-height: 19px; font-size: 11px; margin: 0 7px 0 0; text-align: center; float: left; border: 1px solid #d0d0d0; border-radius: var(--radius); background: #fff; }
+	.CLASS_checkbox label { line-height: 22px; }
+	.CLASS_checkbox span i { display: none; font-weight: bold; }
+	.CLASS.UI_checked span { display: inline-block; background-color: var(--color); border-color: var(--color); }
+	.CLASS.UI_checked span i { display: inline-block; color: #fff; }
+
+	/* STATES */
+	.CLASS.UI_touched.UI_invalid span { border-color: red; color: red; }
+	.CLASS.UI_required label { font-weight: bold; }
+	.CLASS.UI_disabled * { cursor: not-allowed; }
+	.CLASS.UI_disabled .CLASS_checkbox { color: #a0a0a0; }
+	.CLASS.UI_disabled .CLASS_checkbox span {  background-color: #f0f0f0; border-color: #e0e0e0; color: #b0b0b0; }
+</style>
+
+<script>
+
+	exports.id = 'checkbox';
+	exports.name = 'Checkbox';
+	exports.group = 'Controls';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-check-square';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls) {
+		instance.state.bind = true;
+
+		var cls2 = '.' + cls;
+		var html = '<div class="{0}_checkbox"><span><i class="ti ti-check"></i></span><label>{1}</label></div>'.format(cls, config.name);
+
+		element.html(html);
+		element.tclass('UI_required', config.required == true);
+
+		element.find(cls2 + '_checkbox').on('click', function() {
+
+			if (instance.state.disabled)
+				return;
+
+			var val = !instance.get();
+			instance.set('value', val, 'nobind');
+			instance.set('modified', true);
+
+			setTimeout(function() {
+				element.tclass('UI_checked', val);
+				instance.set('touched', true);
+			}, 200)
+
+		});
+
+		instance.validate = function() {
+			var value = instance.state.value;
+			return config.required ? !!value : true;
+		};
+
+		instance.default = function() {
+			return false;
+		};
+
+		instance.on('reset', function() {
+			instance.set('touched', false);
+			instance.set('modified', false);
+		});
+
+		instance.on('set', function(type, value, kind) {
+
+			if (kind === 'nobind')
+				return;
+
+			if (type === 'value')
+				element.tclass('UI_checked', !!value);
+
+		});
+
+		instance.on('ready', function() {
+			instance.check();
+		});
+
+	};
+</script>

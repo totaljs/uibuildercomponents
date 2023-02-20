@@ -1,0 +1,36 @@
+<style>
+	.CLASS .UI_components { min-height: 40px; }
+	.CLASS > .button { border: 0; background: #E0E0E0; color: #777; padding: 10px 5px; width: 100%; font-size: 15px; font-weight: bold; border-radius: var(--radius); }
+</style>
+
+<readme>
+The form collects only components with defined paths.
+</readme>
+
+<script>
+
+	exports.id = 'form';
+	exports.name = 'Form';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-database-alt';
+	exports.config = { border: false, button: 'SUBMIT', checkvisible: true, autoreset: true, icon: '' };
+	exports.inputs = [{ id: 'load', name: 'Load data', note: '' }, { id: 'reset', name: 'Reset', note: 'Reset form' }, { id: 'clear', name: 'Clear', note: 'Clear form' }];
+	exports.outputs = [{ id: 'submit', name: 'Submit', note: 'Process data' }];
+	exports.render = '/components/form/render.html';
+	exports.settings = '/components/form/settings.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		element.append('<div class="UI_label"><i class="{icon}"></i><span>{0}</span></div><div class="UI_components UI_border m" data-index="0"></div><button class="button" disabled></button>'.format(config.name.encode()).args(instance.component));
+
+		instance.on('configure', function() {
+			element.find('> .button').tclass('hidden', !config.button).text(config.button);
+			element.find('> .UI_label span').text(config.name);
+		});
+
+		instance.emit('configure');
+	};
+
+</script>

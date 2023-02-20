@@ -1,0 +1,21 @@
+<script>
+
+	exports.id = 'readvalue';
+	exports.name = 'Read value';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-eye';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		instance.state.notify = true;
+
+		instance.on('notify', function(value) {
+			if (config.read)
+				value = instance.read(value, config.read);
+			instance.set('value', value);
+		});
+
+	};
+</script>

@@ -1,0 +1,69 @@
+<style>
+	.CLASS_cards { border: 1px solid #E0E0E0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); background-color: #FFF; margin-bottom: var(--margin); }
+	.CLASS_cards_image { background-color: #F0F0F0; text-align: center; }
+	.CLASS_cards_title { font-size: 16px; color: #000; font-weight: bold; padding: 2px 15px; }
+	.CLASS_cards_summary { font-size: 14px; color: #888; padding: 2px 15px; }
+	.CLASS_cards_label { font-size: 12px; color: #999; padding: 2px 15px; }
+	.CLASS_cards_hr hr { margin: 0; }
+	.CLASS_cards_empty { height: 10px; }
+</style>
+
+<body>
+	{{ foreach m in value }}
+		{{ if m.type === 'image' }}
+		<div class="CLASS_cards_image">
+			<img src="{{ m.value }}" alt="" class="img-responsive" border="0" />
+		</div>
+		{{ else if m.type === 'title' }}
+		<div class="CLASS_cards_title">{{ m.value }}</div>
+		{{ else if m.type === 'summary' }}
+		<div class="CLASS_cards_summary">{{ m.value }}</div>
+		{{ else if m.type === 'label' }}
+		<div class="CLASS_cards_label">{{ m.value }}</div>
+		{{ else if m.type === 'price' }}
+		<div class="CLASS_cards_price">{{ m.value }}</div>
+		{{ else if m.type === 'hr' }}
+		<div class="CLASS_cards_hr"><hr /></div>
+		{{ else if m.type === 'empty' }}
+		<div class="CLASS_cards_empty"></div>
+		{{ else if m.type === 'keyvalue' }}
+		<div class="CLASS_cards_keyvalue">
+			<span>{{ m.name }}</span>
+			<div>{{ m.value }}</div>
+		</div>
+		{{ fi }}
+	{{ end }}
+</body>
+
+<script>
+
+	exports.id = 'cards';
+	exports.name = 'Cards';
+	exports.group = 'List';
+	exports.icon = 'ti ti-menu';
+	exports.author = 'Total.js';
+	exports.version = '1';
+	exports.make = function(instance, config, element, cls) {
+
+		var tmp = instance.maketemplate(instance.component.html)({ value: config.items });
+		var template = instance.maketemplate(tmp);
+
+		var render = function(value) {
+			var builder = [];
+			builder.push('<div class="grid-{0}">'.format(config.count));
+			for (var item of value)
+				builder.push('<div class="{0}_cards">'.format(cls) + template({ value: item }) + '</div>');
+			builder.push('</div>');
+			element.html(builder.join(''));
+		};
+
+		instance.on('value', function(value) {
+			if (value && value instanceof Array)
+				render(value);
+			else
+				element.empty();
+		});
+
+	};
+
+</script>

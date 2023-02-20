@@ -1,0 +1,31 @@
+<script>
+
+	exports.id = 'captureoutput';
+	exports.name = 'Capture output';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-share-alt';
+	exports.config = { output: '', write: '', read: '' };
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		if (!config.output)
+			return;
+
+		instance.app.on('output', function(meta) {
+
+			var tmp = CLONE(meta.data);
+
+			if (config.read)
+				tmp = instance.read(value, config.read);
+
+			if (config.write)
+				tmp = instance.write({}, config.write, tmp);
+
+			instance.set('value', tmp);
+		});
+
+	};
+
+</script>

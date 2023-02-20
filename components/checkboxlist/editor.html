@@ -1,0 +1,53 @@
+<style>
+	.CLASS label { font-size: 12px; margin-bottom: 5px; display: block; }
+	.CLASS label i { margin-right: 5px; }
+	.CLASS.UI_required label { font-weight: bold; }
+	.CLASS.UI_required label:before { content: '*'; color: red; margin-right: 5px; }
+</style>
+
+<script>
+
+	exports.id = 'checkboxlist';
+	exports.name = 'Checkboxlist';
+	exports.group = 'Controls';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-list';
+	exports.config = { required: false };
+	exports.settings = '/components/checkboxlist/settings.html';
+	exports.render = '/components/checkboxlist/render.html';
+	exports.follow = true;
+	exports.version = '1';
+
+	// Editor implementation
+	exports.make = function(instance, config, element, cls) {
+
+		var options = { name: instance.component.id, count: 3 };
+
+		var label = '';
+		var html = FUNC.placeholder(options);
+
+		instance.on('configure', function() {
+			label = instance.maketemplate('<label>{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span class="editable">{{ name }}:</span></label>');
+
+			element.html(label(config) + html);
+			element.tclass('UI_required', config.required == true);
+		});
+
+		instance.emit('configure');
+
+	};
+
+</script>
+
+<readme>
+__Checkboxlist data-source needs to contain__:
+
+```js
+[
+	{ name: 'Ruby', id: 1 },
+	{ name: 'PHP', id: 2 },
+	{ name: 'node.js', id: 3 },
+	{ name: 'Python', id: 4 }
+]
+```
+</readme>

@@ -1,0 +1,26 @@
+<style>
+	.CLASS .components { min-height: 40px; }
+</style>
+
+<script>
+
+	exports.id = 'datasource';
+	exports.name = 'Data source';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-database-alt';
+	exports.config = { border: true, url: '' };
+	exports.render = '/components/datasource/render.html';
+	exports.settings = '/components/datasource/settings.html';
+	exports.inputs = [{ id: 'load', name: 'Load data', note: '' }];
+	exports.follow = true;
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		element.append('<div class="UI_label"><i class="{icon}"></i><span>{0}</span></div><div class="UI_components UI_border m" data-index="0"></div>'.format(config.name.encode()).args(instance.component));
+		instance.on('configure', function() {
+			element.find('> .UI_label span').text(config.name);
+		});
+	};
+
+</script>

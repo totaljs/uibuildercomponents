@@ -1,0 +1,24 @@
+<style>
+	.CLASS { position: relative; }
+	.CLASS-image { min-height: 500px; }
+</style>
+
+<script>
+
+	exports.id = 'fbfloorplan';
+	exports.group = 'Flowboard';
+	exports.name = 'Floor plan';
+	exports.icon = 'ti ti-object-group';
+	exports.author = 'Total.js';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		var cls = instance.component.cls;
+		var cls2 = '.' + cls;
+		element.append('<div class="{0}-image UI_components" data-index="0"></div>'.format(cls));
+		var bg = element.find(cls2 + '-image');
+		var url = config.url;
+		bg.css({ background: 'url({0}) no-repeat 0 0'.format(url), 'min-height': config.height, 'min-width': config.width });
+	};
+
+</script>

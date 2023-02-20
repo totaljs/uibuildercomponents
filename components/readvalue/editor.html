@@ -1,0 +1,31 @@
+<script>
+
+	exports.id = 'readvalue';
+	exports.name = 'Read value';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-eye';
+	exports.version = '1';
+	exports.config = { read: '' };
+	exports.render = '/components/readvalue/render.html';
+	exports.settings = '/components/readvalue/settings.html';
+	exports.follow = true;
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		element.aclass('UI_special m').html('<i class="{0}"></i><label>{name}</label><div class="monospace">{read}</div>'.format(instance.component.icon).args(config, 'escape'));
+
+		instance.on('configure', function() {
+			element.find('label').text(config.name);
+			element.find('div').text(config.read);
+		});
+
+	};
+
+</script>
+
+<readme>
+Read value component reads a value according to the path and sets it according to the component's path.
+</readme>
+

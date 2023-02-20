@@ -1,0 +1,44 @@
+<style>
+	.CLASS label { font-size: 12px; margin-bottom: 5px; display: block; }
+	.CLASS label i { margin-right: 5px; }
+	.CLASS_progressbar { display: flex; align-items: center; justify-content: flex-end; }
+	.CLASS_root { width: 100%; position: relative; border-radius: 12px; height: 4px; }
+	.CLASS_rail { position: absolute; top: 50%; transform: translateY(-50%); height: inherit; display: block; opacity: 0.4; width: 100%; background-color: #e0e0e0; border-radius: inherit; }
+	.CLASS_bar { height: 6px; border: 1px solid #e0e0e0; width: 50%; opacity: 1; position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: #e0e0e0; border-radius: inherit; }
+	.CLASS_value { margin-left: 7px; color: #a0a0a0; font-size: 12px; }
+</style>
+
+<script>
+
+	exports.id = 'progressbar';
+	exports.name = 'Progress bar';
+	exports.group = 'Controls';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-sliders-h';
+	exports.config = { showvalue: false, value: 50 };
+	exports.settings = '/components/progressbar/settings.html';
+	exports.render = '/components/progressbar/render.html';
+	exports.version = '1';
+	exports.follow = true;
+
+	exports.make = function(instance, config, element, cls) {
+
+		var cls2 = '.' + cls;
+		var label = instance.maketemplate('<label>{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span class="editable">{{ name }}:</span></label>');
+		var html = '<div class="{0}_progressbar"><div class="{0}_root"><div class="{0}_rail"></div><span class="{0}_bar"></span></div><span class="{0}_value hidden">50%</span></div>'.format(cls);
+
+		instance.on('configure', function() {
+			element.html(label(config) + html);
+			element.tclass('UI_required', config.required);
+			config.showvalue && element.find(cls2 + '_value').rclass('hidden');
+		});
+
+		instance.emit('configure');
+
+	};
+
+</script>
+
+<readme>
+Progress bar is used to visualize the progression of an extended operation.
+</readme>

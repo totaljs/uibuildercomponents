@@ -1,0 +1,13 @@
+<script>
+	exports.id = 'hiddencontainer';
+	exports.group = 'Layouts';
+	exports.name = 'Hidden container';
+	exports.icon = 'ti ti-eye-slash';
+	exports.author = 'Total.js';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		element.aclass('hidden');
+		element.append('<div class="UI_components" data-index="0"></div><div class="UI_components" data-index="1"></div>');
+	};
+</script>

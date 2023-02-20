@@ -1,0 +1,29 @@
+<style>
+	.CLASS_container { background-color: #FFF; }
+	.CLASS_bg > .CLASS_container { background-color: #F8F8F8; }
+	.CLASS_padding > .CLASS_container { padding: var(--gap); }
+	.CLASS_border > .CLASS_container { border: 1px solid #e0e0e0; }
+	.CLASS_radius > .CLASS_container { border-radius: var(--radius); }
+	.CLASS_shadow > .CLASS_container { box-shadow: 0 2px 10px rgb(0 0 0 / 10%); }
+</style>
+
+<script>
+
+	exports.id = 'stylebox';
+	exports.name = 'Style box';
+	exports.group = 'Content';
+	exports.icon = 'ti ti-pencil-paintbrush';
+	exports.author = 'Total.js';
+	exports.version = '1';
+	exports.make = function(instance, config, element, cls) {
+		var builder = [];
+		config.background && builder.push(cls + '_bg');
+		config.padding && builder.push(cls + '_padding');
+		config.border && builder.push(cls + '_border');
+		config.radius && builder.push(cls + '_radius');
+		config.shadow && builder.push(cls + '_shadow');
+		builder.length && element.aclass(builder.join(' '));
+		element.html('<div class="{0}_container grid-1"><div class="UI_components" data-index="0"></div></div>'.format(cls));
+	};
+
+</script>

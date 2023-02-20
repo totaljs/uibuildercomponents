@@ -1,0 +1,26 @@
+<style>
+	.CLASS { background-color: rgba(0,0,0,0.02); }
+</style>
+<script>
+
+	exports.id = 'gap';
+	exports.group = 'Content';
+	exports.name = 'Gap';
+	exports.icon = 'ti ti-enter';
+	exports.author = 'Total.js';
+	exports.config = { height: 25 };
+	exports.render = '/components/gap/render.html';
+	exports.settings = '/components/gap/settings.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		var resize = function() {
+			element.css('height', config.height);
+		};
+
+		instance.on('configure', resize);
+		resize();
+	};
+
+</script>

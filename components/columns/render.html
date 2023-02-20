@@ -1,0 +1,23 @@
+<style>
+	.CLASS_bg > .UI_components { background-color: #F8F8F8; padding: var(--gap); }
+	.CLASS_rounded > .UI_components { border-radius: var(--radius); }
+</style>
+
+<script>
+
+	exports.id = 'columns';
+	exports.name = 'Columns';
+	exports.group = 'Layouts';
+	exports.icon = 'ti ti-columns';
+	exports.author = 'Total.js';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls) {
+		element.aclass('grid-' + config.count + (config.countmd ? (' grid-md-' + config.countmd) : '') + (config.countsm ? (' grid-sm-' + config.countsm) : '') + (config.countxs ? (' grid-xs-' + config.countxs) : '') + (config.background ? (' ' + cls + '_bg') : '') + (config.rounded ? (' ' + cls + '_rounded') : ''));
+		var builder = [];
+		for (var i = 0; i < config.count; i++)
+			builder.push('<div class="UI_components" data-index="{0}"></div>'.format(i));
+		element.html(builder.join(''));
+	};
+
+</script>

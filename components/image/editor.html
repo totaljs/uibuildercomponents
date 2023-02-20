@@ -1,0 +1,39 @@
+<script>
+
+	exports.id = 'image';
+	exports.group = 'Content';
+	exports.name = 'Image';
+	exports.icon = 'ti ti-image';
+	exports.author = 'Total.js';
+	exports.config = { url: '', rounded: true };
+	exports.render = '/components/image/render.html';
+	exports.settings = '/components/image/settings.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		var options = { name: instance.component.id, count: 1}
+		element.append('<img class="img-responsive" alt="" style="cursor:pointer" />');
+
+		var img = element.find('img');
+		img.attr('src', config.url || FUNC.makeimage(800, 300, '#F0F0F0'));
+
+		img.on('click', function() {
+			var opt = {};
+			opt.type = 'image/*';
+			opt.multiple = false;
+			FUNC.upload(opt, function(response) {
+				config.url = response.url;
+				img.attr('src', response.url);
+			});
+		});
+
+		instance.on('configure', function() {
+			img.tclass('img-rounded', config.rounded);
+		});
+
+		instance.emit('configure');
+
+	};
+
+</script>

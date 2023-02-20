@@ -1,0 +1,38 @@
+<style>
+	.CLASS p { padding: 0; margin: 0; }
+	.CLASS .text-right { text-align: right; }
+	.CLASS .text-center { text-align: center; }
+	.CLASS .text-justify { text-align: justify; }
+</style>
+
+<script>
+
+	exports.id = 'paragraph';
+	exports.group = 'Content';
+	exports.name = 'Paragraph';
+	exports.icon = 'ti ti-align-left';
+	exports.author = 'Total.js';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		element.html('<p class="text-{align}" style="font-size:{size}px;color:{color}">{html}</p>'.args(config));
+
+		var datatemplate = config.html.indexOf('{{') === -1 ? null : instance.maketemplate(config.html);
+		var el = element.find('p');
+
+		if (datatemplate) {
+			var model = {};
+			model.value = null;
+			el.html(datatemplate(model));
+			instance.on('set', function(type, value, kind) {
+				if (type === 'value') {
+					model.value = value;
+					el.html(datatemplate(model));
+				}
+			});
+		}
+
+	};
+
+</script>

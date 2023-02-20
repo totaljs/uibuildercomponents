@@ -1,0 +1,107 @@
+<style>
+	.CLASS > .UI_components { padding: 20px; border: 1px solid #E0E0E0; }
+</style>
+
+<script>
+
+	exports.id = 'viewer';
+	exports.name = 'Show components';
+	exports.group = 'Controls';
+	exports.icon = 'ti ti-eye';
+	exports.author = 'Total.js';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		var cfg = [];
+		var path = 'uibuildercom_' + instance.id;
+
+		if (typeof(config.height) === 'string' && config.height === 'parent')
+			config.height += '1';
+
+		cfg.push('height:' + (config.height || 'parent1'));
+
+		if (config.margin)
+			cfg.push('margin:' + config.margin);
+
+		if (config.parent)
+			cfg.push('parent:' + config.parent);
+
+		if (config.minheight)
+			cfg.push('minheight:' + config.minheight);
+
+		if (!config.border)
+			cfg.push('noborder:1');
+
+		if (config.autoselect)
+			cfg.push('autoselect:1');
+
+		if (!config.numbering)
+			cfg.push('numbering:false');
+
+		if (config.action)
+			cfg.push('dblclick:' + pathdblclick);
+
+		cfg.push('checkbox:' + (config.checkbox ? 1 : 0));
+
+		var columns = [];
+
+		if (config.columns) {
+			for (var i = 0; i < config.columns.length; i++) {
+				var col = config.columns[i];
+				var tmp = {};
+
+				tmp.text = col.name;
+
+				if (!tmp.text)
+					tmp.text = DEF.empty;
+
+				tmp.name = col.path.replace('?.', '');
+				tmp.hide = col.hidden;
+
+				if (col.type)
+					tmp.type = col.type;
+
+				if (!col.format && col.type === 'date')
+					col.format = '[date]';
+
+				if (col.filter === false)
+					tmp.filter = false;
+
+				if (col.sort === false)
+					tmp.sort = false;
+
+				if (col.format)
+					tmp.format = col.format;
+
+				if (col.align)
+					tmp.align = col.align;
+
+				if (col.title)
+					tmp.title = col.title;
+
+				if (col.width)
+					tmp.width = col.width;
+
+				if (col.template)
+					tmp.template = col.template;
+
+				if (col.colorize)
+					tmp.colorize = true;
+
+				columns.push(tmp);
+			}
+		}
+
+		// DataGrid
+		element.html(('<ui-component name="datagrid" path="{0}" config="{1};click:{3};highlight:1"><scr' + 'ipt type="text/html">{2}</scr' + 'ipt></ui-component>').format(path, cfg.join(';'), JSON.stringify(columns), self.path));
+
+		instance.on('ready', function() {
+			instance.datasource(config.datasource, function(response) {
+				SET(path, response);
+			});
+		});
+
+	};
+
+</script>

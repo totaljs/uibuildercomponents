@@ -1,0 +1,38 @@
+<script>
+
+	exports.id = 'datagps';
+	exports.name = 'GPS';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-earth';
+	exports.config = { watcher: false };
+	exports.render = '/components/datagps/render.html';
+	exports.settings = '/components/datagps/settings.html';
+	exports.follow = true;
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		element.aclass('UI_special m').html('<i class="{0}"></i><label>{name}</label>'.format(instance.component.icon).args(config, 'escape'));
+		instance.on('configure', function() {
+			element.find('label').text(config.name);
+		});
+	};
+
+</script>
+
+<readme>
+This component can retrieve GPS position.
+
+__Output__:
+
+```js
+{
+	lat: Number,
+	lng: Number,
+	speed: Number,
+	altitude: Number,
+	accuracy: Number,
+	pos: String
+}
+```
+</readme>

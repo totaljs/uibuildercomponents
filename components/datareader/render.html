@@ -1,0 +1,39 @@
+<script>
+
+	exports.id = 'datareader';
+	exports.name = 'Data reader';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-globe';
+	exports.version = '1';
+	exports.make = function(instance, config, element) {
+
+		var interval = null;
+
+		var load = function(data) {
+			if (config.read)
+				data = instance.read(data, config.read);
+			instance.set('value', data);
+		};
+
+		var request = function() {
+
+			var url = config.url;
+
+			if (url) {
+				url = instance.urlify(url);
+				AJAX((url.indexOf(' ') === -1 ? 'GET ' : '') + url, ERROR(load));
+			}
+
+			if (config.interval)
+				interval = setTimeout(request, config.interval * 1000);
+
+		};
+
+		instance.on('destroy', function() {
+			interval && clearTimeout(interval);
+		});
+
+		instance.on('ready', request);
+	};
+</script>

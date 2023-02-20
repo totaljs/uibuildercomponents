@@ -1,0 +1,52 @@
+<style>
+	.CLASS > div { line-height: 22px; height: 60px; }
+	.CLASS > div:first-child { float: left; width: 4px; height: 60px; background-color: #e0e0e0; margin-right: var(--gap); }
+	.CLASS_key { color: gray; padding-top: 9px; font-size: 12px; }
+	.CLASS_value { font-weight: bold; font-size: 16px; }
+</style>
+
+<script>
+
+	exports.id = 'infocard';
+	exports.name = 'Info card';
+	exports.group = 'Content';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-address-card';
+	exports.config = { key: 'Enter key', value: 'Enter value' };
+	exports.settings = '/components/infocard/settings.html';
+	exports.render = '/components/infocard/render.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls) {
+
+		var cls2 = '.' + cls;
+		var html = instance.maketemplate('<div style="background-color:{{ color }}"></div><div><div class="CLASS_key hellip" data-name="key">{{ key }}</div><div class="CLASS_value hellip" data-name="value">{{ value }}</div></div>');
+
+		var render = function() {
+			element.html(html(config));
+		};
+
+		render();
+
+		element.on('dblclick','' + cls2 + '_value, ' + cls2 + '_key', function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+
+			var el = $(this);
+			var type = el.attrd('name');
+			var opt = {};
+
+			instance.edit(el, opt, function(response) {
+				if (response.change)
+					config[type] = response.html;
+			});
+
+		});
+
+		instance.on('configure', function() {
+			render();
+		});
+
+	};
+
+</script>

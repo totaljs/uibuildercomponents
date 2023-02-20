@@ -1,0 +1,25 @@
+<script>
+
+	exports.id = 'sendtoinput';
+	exports.name = 'Send to input';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-compress';
+	exports.config = { input: '', write: '', read: '' };
+	exports.render = '/components/sendtoinput/render.html';
+	exports.settings = '/components/sendtoinput/settings.html';
+	exports.version = '1';
+	exports.gap = true;
+
+	exports.make = function(instance, config, element) {
+		element.aclass('UI_special').html('<i class="{icon}"></i><label>{0}</label>'.format(config.name.encode()).args(instance.component));
+		instance.on('configure', function() {
+			element.find('label').text(config.name);
+		});
+	};
+
+</script>
+
+<readme>
+This component can send data to an input.
+</readme>

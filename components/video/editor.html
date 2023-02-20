@@ -1,0 +1,20 @@
+<script>
+
+	exports.id = 'video';
+	exports.group = 'Content';
+	exports.name = 'Video';
+	exports.icon = 'ti ti-photo-video';
+	exports.author = 'Total.js';
+	exports.config = { url: '' };
+	exports.render = '/components/video/render.html';
+	exports.settings = '/components/video/settings.html';
+	exports.gap = true;
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		element.append('<img class="img-responsive img-rounded" alt="" style="cursor:pointer" />');
+		var img = element.find('img');
+		img.attr('src', FUNC.makeimage(800, 400, '#F0F0F0', '#000000', 'Video'));
+	}
+
+</script>

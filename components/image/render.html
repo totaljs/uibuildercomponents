@@ -1,0 +1,13 @@
+<script>
+	exports.id = 'image';
+	exports.group = 'Content';
+	exports.name = 'Image';
+	exports.icon = 'ti ti-image';
+	exports.author = 'Total.js';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		element.html('<img src="{0}" class="img-responsive{1}" alt="" />'.format(config.url, config.rounded ? ' img-rounded' : ''));
+	};
+
+</script>

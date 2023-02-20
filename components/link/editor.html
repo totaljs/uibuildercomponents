@@ -1,0 +1,28 @@
+<script>
+
+	exports.id = 'link';
+	exports.name = 'Link';
+	exports.group = 'Special';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-rocket';
+	exports.config = { url: '', input: '', resetcss: true };
+	exports.render = '/components/link/render.html';
+	exports.settings = '/components/link/settings.html';
+	exports.version = '1';
+	exports.gap = true;
+
+	exports.make = function(instance, config, element) {
+		element.aclass('UI_special').html('<i class="{0}"></i><label></label><div></div>'.format(instance.component.icon));
+		instance.on('configure', function() {
+			element.find('label').text(config.name);
+			var name = DEF.cl.apps.findValue('id', config.url, 'name', '');
+			element.find('div').text(name || config.url);
+		});
+		instance.emit('configure');
+	};
+
+</script>
+
+<readme>
+The component can load another app.
+</readme>

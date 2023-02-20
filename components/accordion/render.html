@@ -1,0 +1,92 @@
+<style>
+	.CLASS_settings .fields { border: 1px solid #E0E0E0; border-radius: var(--radius); }
+	.CLASS_settings .ui-listform-item .item { padding: 7px 10px; }
+	.CLASS_settings .ui-listform-form { border-radius: 0; border: 0; border-bottom: 1px solid #e0e0e0; }
+	.CLASS_settings .ui-listform-form-container { padding: 0; }
+	.CLASS_settings .listing .item { line-height: 34px; font-size: 12px; background-color: #F8F8F8; border-radius: var(--radius); margin-bottom: 2px; padding: 0 10px; cursor: pointer; }
+	.CLASS_settings .listing .item:hover { background-color: #E8E8E8; }
+
+	.CLASS_accordion { background-color: #fff; overflow: hidden; }
+	.CLASS_root:last-child .CLASS_header { border-bottom: 0; }
+	.CLASS_root:last-child .CLASS_content { border-bottom: 0; }
+	.CLASS .CLASS_header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 15px; border-bottom: 1px solid #e0e0e0; }
+	.CLASS .CLASS_content { display: none; border-bottom: 1px solid #e0e0e0; }
+	.CLASS .CLASS_content.CLASS_pad { padding: 15px; }
+	.CLASS .CLASS_meta { display: flex; align-items: center; width: 100%; }
+	.CLASS_selected .CLASS_content { display: block; }
+	.CLASS_selected .CLASS_header { border-bottom: 0; }
+	.CLASS_selected .CLASS_icon i:before { content: '\e911'; }
+
+	.CLASS_bg .CLASS_accordion { background-color: #F8F8F8 !important; }
+	.CLASS_border .CLASS_accordion { border: 1px solid #e0e0e0; }
+	.CLASS_radius .CLASS_accordion { border-radius: var(--radius); }
+	.CLASS_shadow .CLASS_accordion { box-shadow: 0 2px 10px rgb(0 0 0 / 10%); }
+</style>
+
+<body>
+	<div class="CLASS_accordion">
+		{{ foreach m in value }}
+			<div class="CLASS_root" data-id="{{ m.id }}">
+				<div class="CLASS_header">
+					<div class="CLASS_meta">
+						<div class="b hellip">{{ m.name }}</div>
+					</div>
+					<div class="CLASS_icon">
+						<i class="ti ti-angle-down"></i>
+					</div>
+				</div>
+				<div class="CLASS_content {{ if m.padding }}CLASS_pad{{ fi }}">
+					<div class="UI_components" data-index="{{ $index }}"></div>
+				</div>
+			</div>
+		{{ end }}
+	</div>
+</body>
+
+<script>
+
+	exports.id = 'accordion';
+	exports.name = 'Accordion';
+	exports.group = 'Content';
+	exports.icon = 'ti ti-layer-plus';
+	exports.author = 'Total.js';
+	exports.version = '1';
+	exports.version = '1';
+	exports.make = function(instance, config, element, cls) {
+		var cls2 = '.' + cls;
+
+		var render = function() {
+			var template = instance.maketemplate(instance.component.html);
+			var output = template({ value: config.items });
+			element.html(output);
+		};
+
+		element.on('click', '' + cls2 + '_header', function() {
+			var el = $(this);
+			var parent = el.parent();
+			var is = parent.hasClass(cls + '_selected');
+			var sections = element.find(cls2 + '_content');
+
+			if (!is) {
+				for (var section of sections) {
+					section = $(section);
+					section.parent().rclass(cls + '_selected');
+				}
+				parent.aclass(cls + '_selected');
+			} else
+				parent.rclass(cls + '_selected');
+		});
+
+		element.tclass(cls + '_bg', config.bg);
+		element.tclass(cls + '_shadow', config.shadow);
+		element.tclass(cls + '_border', config.border);
+		element.tclass(cls + '_radius', config.radius);
+		render();
+	};
+
+</script>
+
+<readme>
+
+</readme>
+

@@ -1,0 +1,35 @@
+<script>
+
+	exports.id = 'counter';
+	exports.group = 'Logical';
+	exports.name = 'Counter';
+	exports.icon = 'ti ti-calculator';
+	exports.author = 'Total.js';
+	exports.render = '/components/counter/render.html';
+	exports.config = { value: '', note: 'Custom note' };
+	exports.follow = true;
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		element.aclass('UI_special m').html('<i class="{0}"></i><label>{name}</label><div>{note}</div>'.format(instance.component.icon).args(config, 'escape'));
+
+		element.on('dblclick', 'div', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			var el = $(this);
+			var opt = {};
+			opt.icons = false;
+			opt.format = false;
+			instance.edit(el, opt, function(response) {
+				config.note = response.html;
+			});
+		});
+
+		instance.on('configure', function() {
+			element.find('label').text(config.name);
+		});
+
+	};
+
+</script>

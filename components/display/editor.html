@@ -1,0 +1,36 @@
+<script>
+	exports.id = 'display';
+	exports.group = 'Layouts';
+	exports.name = 'Display';
+	exports.icon = 'ti ti-desktop';
+	exports.author = 'Total.js';
+	exports.render = '/components/display/render.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		var prev = '';
+
+		element.append('<div class="UI_label"><i class="{icon}"></i><span>{0}</span></div><div class="UI_border UI_components" data-index="0"></div>'.format(config.name.encode()).args(instance.component));
+
+		instance.on('configure', function() {
+			element.find('> .UI_label span').text(config.name);
+		});
+
+		var resize = function() {
+			var w = WIDTH(element);
+			prev && element.rclass(prev);
+			prev = 'd-' + w;
+			element.aclass(prev);
+		};
+
+		instance.on('resize', resize);
+		resize();
+
+	};
+
+</script>
+
+<readme>
+	This component sets display sizes according to the current element width. It can affect, for example, the Columns component.
+</readme>
