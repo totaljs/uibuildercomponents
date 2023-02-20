@@ -9,7 +9,6 @@
 	.CLASS figure.UI_checked span { background-color: var(--color); border-color: var(--color); }
 	.CLASS figure.UI_checked span i { display: inline-block; color: #fff; }
 
-	/* STATES */
 	.CLASS.UI_touched.UI_invalid figure span, .CLASS.UI_touched.UI_invalid figure div { border-color: red; color: red; }
 	.CLASS.UI_required label { font-weight: bold; }
 	.CLASS.UI_required label:before { content: '*'; color: red; margin-right: 5px; }
@@ -60,7 +59,7 @@
 			else
 				index !== -1 && arr.splice(index, 1);
 
-			instance.set('value', arr);
+			instance.set('value', arr, 'nobind');
 			instance.set('modified', true);
 			setTimeout(() => instance.set('touched', true), 200);
 		});
@@ -73,7 +72,7 @@
 		};
 
 		instance.default = function() {
-			return false;
+			loaddata();
 		};
 
 		instance.on('reset', function() {
@@ -87,19 +86,20 @@
 
 			switch (type) {
 				case 'value':
-					// console.log(value);
+					loaddata();
 					break;
 			}
 		});
 
-		instance.on('ready', function() {
-
-			instance.datasource(config.datasourceid, function(response) {
+		var loaddata = function() {
+			instance.datasource(config.datasource, function(response) {
 				render(response);
 			});
+		}
 
+		instance.on('ready', function() {
+			loaddata();
 			instance.check();
-
 		});
 
 	};
