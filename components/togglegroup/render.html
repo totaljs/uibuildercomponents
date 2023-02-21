@@ -102,13 +102,17 @@
 
 		var loaddata = function() {
 			instance.datasource(config.datasource, function(response) {
-				var index = config.default - 1 || 0;
 
-				if (index > response.length)
-					index = 0
+				if (config.default !== 0) {
+					var index = config.default - 1 || 0;
 
-				defaultval = response[index].id ? response[index].id : response[index].name;
-				instance.set('value', defaultval, 'nobind');
+					if (index > response.length)
+						index = 0
+
+					defaultval = response[index].id ? response[index].id : response[index].name;
+					instance.set('value', defaultval, 'nobind');
+				}
+				
 				render(response);
 			});
 		}
