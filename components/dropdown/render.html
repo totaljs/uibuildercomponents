@@ -47,11 +47,11 @@
 		element.html(label + html(config) + help + error);
 		element.tclass('UI_required', config.required == true);
 
-		var placeholder = element.find('.' + cls + '_placeholder');
+		var placeholder = element.find(cls2 + '_placeholder');
 		var isplaceholder = false;
 
 		var checkplaceholder = function() {
-			var hide = instance.state.value;
+			var hide = !!instance.state.value;
 			if (hide !== isplaceholder) {
 				isplaceholder = hide;
 				placeholder.tclass('hidden', hide);
