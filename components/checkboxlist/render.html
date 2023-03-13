@@ -41,7 +41,7 @@
 		var render = function(response) {
 			var template = instance.maketemplate();
 			var icon = config.icon ? '<i class="{0}"></i>'.format(config.icon) : '';
-			var label = '<label>{1}<span>{0}:</span></label>'.format(config.name, icon);
+			var label = !config.nolabel ? '<label>{1}<span>{0}:</span></label>'.format(config.name, icon) : '';
 
 			element.html(label + template({ value: response }));
 		};

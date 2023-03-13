@@ -30,6 +30,7 @@
 
 			element.html(label(config) + html);
 			element.tclass('UI_required', config.required == true);
+			config.nolabel && element.find('label').aclass('hidden');
 		});
 
 		instance.emit('configure');
@@ -43,10 +44,10 @@ __Checkboxlist data-source needs to contain__:
 
 ```js
 [
-	{ name: 'Ruby', id: 1 },
-	{ name: 'PHP', id: 2 },
-	{ name: 'node.js', id: 3 },
-	{ name: 'Python', id: 4 }
+	{  id: 1, name: 'Ruby' },
+	{  id: 2, name: 'PHP' },
+	{  id: 3, name: 'node.js' },
+	{  id: 4, name: 'Python', }
 ]
 ```
 </readme>
