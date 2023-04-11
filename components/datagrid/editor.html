@@ -15,13 +15,23 @@
 	exports.group = 'List';
 	exports.icon = 'ti ti-table-alt';
 	exports.author = 'Total.js';
-	exports.config = { datasource: '', border: true, icon: 'ti ti-totaljs', columns: [], margin: 0, height: '500', minheight: 300, numbering: true, checkbox: false, autoselect: false };
+	exports.config = { datasource: '', border: true, icon: 'ti ti-totaljs', columns: [], margin: 0, height: '500', minheight: 300, numbering: true, checkbox: false, autoselect: false, dynamic: false };
 	exports.render = '/components/datagrid/render.html';
 	exports.settings = '/components/datagrid/settings.html';
 	exports.version = '1';
+	exports.outputs = [{ id: 'row', name: 'On row' }, { id: 'button', name: 'On button' }];
 
 	exports.make = function(instance, config, element) {
 		element.html('<div class="UI_special"><i class="{icon}"></i><label>{name}</label><div>{0}</div></div>'.format(config.type).args(instance.component));
+
+		instance.on('configure', function() {
+			var builder = [];
+			for (var m of config.columns)
+				builder.push('<div><i class="ti ti-bull mr5"></i>{0}</div>'.format(m.name));
+			element.find('.UI_special > div').html(builder.join(''));
+		});
+
+		instance.emit('configure');
 	};
 
 </script>
