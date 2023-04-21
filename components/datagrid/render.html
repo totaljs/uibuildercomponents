@@ -10,6 +10,7 @@
 	exports.icon = 'ti ti-table-alt';
 	exports.author = 'Total.js';
 	exports.version = '1';
+	exports.inputs = [{ id: 'rows', name: 'Rows' }];
 	exports.outputs = [{ id: 'row', name: 'On row' }, { id: 'button', name: 'On button' }];
 
 	exports.make = function(instance, config, element) {
@@ -124,13 +125,19 @@
 		// DataGrid
 		element.html(('<ui-component name="datagrid" path="{0}" config="{1};click:{3};checkbox:0;highlight:1"><scr' + 'ipt type="text/html">{2}</scr' + 'ipt></ui-component>').format(path, cfg.join(';'), JSON.stringify(columns), pathclick));
 
-		instance.on('ready', function() {
-			if (!isdynamic) {
+		if (!isdynamic) {
+
+			config.datasource && instance.on('ready', function() {
 				instance.datasource(config.datasource, function(response) {
 					SET(path, response);
 				});
-			}
-		});
+			});
+
+			instance.input('rows', function(value) {
+				SET(path, value);
+			});
+
+		}
 
 		instance.on('destroy', function() {
 			delete W[path];

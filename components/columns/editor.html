@@ -1,5 +1,5 @@
 <style>
-	.CLASS > .containers { min-height: 50px; }
+	.CLASS > .containers { min-height: 50px; display: grid; grid-gap: var(--gap); }
 	.CLASS_bg > .containers > .UI_components { background-color: #F8F8F8; padding: var(--gap); }
 	.CLASS_rounded > .containers > .UI_components { border-radius: var(--radius); }
 	.CLASS_border > .containers > .UI_components { border-top: 1px solid #e0e0e0; border-radius: 0; }
@@ -13,7 +13,7 @@
 	exports.group = 'Layouts';
 	exports.icon = 'ti ti-columns';
 	exports.author = 'Total.js';
-	exports.config = { count: 3, countmd: 0, countsm: 0, countxs: 0, background: true, rounded: true };
+	exports.config = { count: 3, countmd: 0, countsm: 0, countxs: 0, background: true, rounded: true, hidden: false, fractions: '1fr 1fr 1fr' };
 	exports.render = '/components/columns/render.html';
 	exports.settings = '/components/columns/settings.html';
 	exports.version = '1';
@@ -22,7 +22,7 @@
 		var container;
 
 		var resize = function() {
-			container.rclass2('grid').aclass('grid-' + config.count);
+			container.css('grid-template-columns', config.fractions);
 			config.countmd && container.aclass('grid-md-' + config.countmd);
 			config.countsm && container.aclass('grid-sm-' + config.countsm);
 			config.countxs && container.aclass('grid-xs-' + config.countxs);

@@ -2,6 +2,7 @@
 
 	<div class="m">
 		<ui-component name="input" path="?.datasource" config="dirsource:#datasource;dirraw:1;innerlabel:1;placeholder:Choose data source">Data source</ui-component>
+		<div class="help"><span class="exec link" data-exec="?/clear"><i class="ti ti-clean"></i>Clear source</span></div>
 	</div>
 
 	<div class="grid-3">
@@ -86,3 +87,11 @@
 
 	</div>
 </div>
+
+<script>
+	PLUGIN(function(exports) {
+		exports.clear = function() {
+			exports.nul('datasource');
+		};
+	});
+</script>

@@ -1,0 +1,61 @@
+<style>
+	.CLASS_header { height: 60px; border-bottom: 1px solid #E0E0E0; padding: 0 20px; display: flex; align-items: center; }
+	.CLASS_header label { line-height: 59px; font-weight: bold; }
+	.CLASS_components { padding: 20px; }
+	.CLASS_header .toolbar { margin-left: auto; }
+	.CLASS_header .CLASS_backbtn { margin-right: 20px; border: 0; border-radius: var(--radius); width: 30px; height: 30px; }
+</style>
+
+<body>
+	<div class="CLASS_header">
+		{{ if backnav }}
+			<button class="CLASS_backbtn"><i class="ti ti-angle-left"></i></button>
+		{{ fi }}
+		<label>{{ name }}</label>
+		<div class="toolbar">
+			{{ foreach m in value }}
+				<button data-id="{{ m.id }}"><i class="{{ m.icon }} mr5" style="color:{{ m.color }}"></i>{{ m.name }}</button>
+			{{ end }}
+		</div>
+	</div>
+	<ui-component name="viewbox" config="parent:window;margin:120;scrollbarshadow:1;visibleX:0;visibleY:1" class="invisible">
+		<div class="CLASS_components UI_components" data-index="0"></div>
+	</ui-component>
+</body>
+
+<script>
+	exports.name = 'applayout';
+	exports.group = 'Layouts';
+	exports.name = 'App Layout';
+	exports.icon = 'ti ti-window';
+	exports.author = 'Total.js';
+	exports.version = '1';
+	exports.outputs = [{ id: 'button', name: 'On button' }];
+	exports.make = function(instance, config, element, cls) {
+
+		var cls2 = '.' + cls;
+
+		var render = function() {
+			var template = instance.maketemplate(instance.component.html);
+			var output = template({ value: config.buttons, name: config.name.encode(), backnav: config.backnav ? true : false });
+			element.html(output);
+		};
+
+		element.on('click', '.toolbar > button', function(e) {
+			var el = $(this);
+			var id = el.attrd('id');
+			var obj = {};
+			obj.BUTTON = id;
+			instance.output('button', obj);
+		});
+
+		element.on('click', '.CLASS_backbtn', function(e) {
+			var el = $(this);
+			var arr = instance.app.breadcrumb;
+			arr[0].navigate(arr.slice(-2, -1)[0]);
+		});
+
+		render();
+	};
+
+</script>

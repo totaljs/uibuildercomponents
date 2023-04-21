@@ -19,16 +19,18 @@
 	exports.render = '/components/datagrid/render.html';
 	exports.settings = '/components/datagrid/settings.html';
 	exports.version = '1';
+	exports.inputs = [{ id: 'rows', name: 'Rows' }];
 	exports.outputs = [{ id: 'row', name: 'On row' }, { id: 'button', name: 'On button' }];
 
 	exports.make = function(instance, config, element) {
-		element.html('<div class="UI_special"><i class="{icon}"></i><label>{name}</label><div>{0}</div></div>'.format(config.type).args(instance.component));
+		element.html('<div class="UI_special"><i class="ti ti-table"></i><label>{name}</label><div>{0}</div></div>'.format(config.type).args(instance.name));
 
 		instance.on('configure', function() {
 			var builder = [];
 			for (var m of config.columns)
-				builder.push('<div><i class="ti ti-bull mr5"></i>{0}</div>'.format(m.name));
+				builder.push('<div><i class="ti ti-bull mr5"></i>{0} <span class="badge badge-silver badge-small monospace">{1}</span></div>'.format(m.name, m.type || 'string'));
 			element.find('.UI_special > div').html(builder.join(''));
+			element.find('label').text(config.name);
 		});
 
 		instance.emit('configure');

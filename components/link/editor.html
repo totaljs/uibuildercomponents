@@ -16,7 +16,7 @@
 		instance.on('configure', function() {
 			element.find('label').text(config.name);
 			var name = DEF.cl.apps.findValue('id', config.url, 'name', '');
-			element.find('div').text(name || config.url);
+			element.find('div').html(name || config.url);
 		});
 		instance.emit('configure');
 	};

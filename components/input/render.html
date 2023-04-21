@@ -1,12 +1,14 @@
 <script>
 
-	exports.id = 'captureinput';
-	exports.name = 'Capture input';
+	exports.id = 'input';
+	exports.name = 'Input';
 	exports.group = 'Data';
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-expand';
-	exports.version = '1';
 	exports.inputs = [{ id: 'load', name: 'Load data' }];
+	exports.version = '1';
+	exports.follow = true;
+	exports.gap = true;
 
 	exports.make = function(instance, config, element) {
 		instance.input('load', function(value) {

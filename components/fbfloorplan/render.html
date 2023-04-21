@@ -1,7 +1,13 @@
 <style>
-	.CLASS { position: relative; }
-	.CLASS-image { min-height: 500px; }
+	.CLASS_content { position: relative; }
+	.CLASS_image { min-height: 500px; }
 </style>
+
+<body>
+	<ui-component name="viewbox" config="parent:window;scrollbarshadow:1;visibleX:1;visibleY:1" class="invisible">
+		<div class="CLASS_content"></div>
+	</ui-component>
+</body>
 
 <script>
 
@@ -15,8 +21,9 @@
 	exports.make = function(instance, config, element) {
 		var cls = instance.component.cls;
 		var cls2 = '.' + cls;
-		element.append('<div class="{0}-image UI_components" data-index="0"></div>'.format(cls));
-		var bg = element.find(cls2 + '-image');
+		element.html(instance.component.html);
+		element.find('{0}_content'.format(cls2)).append('<div class="{0}_image UI_components" data-index="0"></div>'.format(cls));
+		var bg = element.find(cls2 + '_image');
 		var url = config.url;
 		bg.css({ background: 'url({0}) no-repeat 0 0'.format(url), 'min-height': config.height, 'min-width': config.width });
 	};

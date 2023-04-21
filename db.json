@@ -1,0 +1,678 @@
+[
+	{
+		"id": "accordion",
+		"group": "Content",
+		"name": "Accordion",
+		"author": "Total.js",
+		"icon": "ti ti-layer-plus",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/accordion-v1/editor.html",
+		"readme": "The Accordion is a vertically collapsible content panel which is displaying panels, one or multiple at a time within the available space."
+	},
+	{
+		"id": "applayout",
+		"group": "Layouts",
+		"name": "App Layout",
+		"author": "Total.js",
+		"icon": "ti ti-window",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/applayout-v1/editor.html"
+	},
+	{
+		"id": "barchart",
+		"group": "Charts",
+		"name": "Bar chart",
+		"author": "Total.js",
+		"icon": "ti ti-chart-bar",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/barchart-v1/editor.html",
+		"readme": "__Barchart data-source needs to contain__:\n\n```js\n[\n\t{\n\t\tname: 'name', // name of the serie\n\t\tdata: [{ x: 'DATE', y: 'value' }, { x: 'DATE', y: 'value' }, ...], // series\n\t\tdecimals: 2, // optional, number of decimal places\n\t\tunit: '°C' // optional\n\t}\n]\n```"
+	},
+	{
+		"id": "button",
+		"group": "Controls",
+		"name": "Button",
+		"author": "Total.js",
+		"icon": "ti ti-pointer",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/button-v1/editor.html"
+	},
+	{
+		"id": "calendar",
+		"group": "Controls",
+		"name": "Calendar",
+		"author": "Total.js",
+		"icon": "ti ti-calendar",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/calendar-v1/editor.html",
+		"readme": "The Calendar is a component which provides the multi-view representation to display and select a date. Also, provide options to navigate in different levels of views like month, year, decade."
+	},
+	{
+		"id": "callout",
+		"group": "Content",
+		"name": "Callout",
+		"author": "Total.js",
+		"icon": "ti ti-info-circle",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/callout-v1/editor.html"
+	},
+	{
+		"id": "captureoutput",
+		"group": "Data",
+		"name": "Capture output",
+		"author": "Total.js",
+		"icon": "ti ti-share-alt",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/captureoutput-v1/editor.html",
+		"readme": "This component can capture data from an output."
+	},
+	{
+		"id": "cards",
+		"group": "List",
+		"name": "Cards",
+		"author": "Total.js",
+		"icon": "ti ti-menu",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/cards-v1/editor.html"
+	},
+	{
+		"id": "checkbox",
+		"group": "Controls",
+		"name": "Checkbox",
+		"author": "Total.js",
+		"icon": "ti ti-check-square",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/checkbox-v1/editor.html",
+		"readme": "The component that switches between two states: `true`/`false`"
+	},
+	{
+		"id": "checkboxlist",
+		"group": "Controls",
+		"name": "Checkboxlist",
+		"author": "Total.js",
+		"icon": "ti ti-list",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/checkboxlist-v1/editor.html",
+		"readme": "__Checkboxlist data-source needs to contain__:\n\n```js\n[\n\t{  id: 1, name: 'Ruby' },\n\t{  id: 2, name: 'PHP' },\n\t{  id: 3, name: 'node.js' },\n\t{  id: 4, name: 'Python', }\n]\n```"
+	},
+	{
+		"id": "color",
+		"group": "Controls",
+		"name": "Color",
+		"author": "Total.js",
+		"icon": "ti ti-palette",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/color-v1/editor.html",
+		"readme": "The component allows selecting a color from the offered list."
+	},
+	{
+		"id": "columnchart",
+		"group": "Charts",
+		"name": "Column chart",
+		"author": "Total.js",
+		"icon": "ti ti-chart-bar",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/columnchart-v1/editor.html",
+		"readme": "__Columnchart data-source needs to contain__:\n\n```js\n[\n\t{\n\t\tname: 'name', // name of the serie\n\t\tdata: [{ x: 'DATE', y: 'value' }, { x: 'DATE', y: 'value' }, ...], // series\n\t\tdecimals: 2, // optional, number of decimal places\n\t\tunit: '°C' // optional\n\t}\n]\n```"
+	},
+	{
+		"id": "columns",
+		"group": "Layouts",
+		"name": "Columns",
+		"author": "Total.js",
+		"icon": "ti ti-columns",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/columns-v1/editor.html"
+	},
+	{
+		"id": "comment",
+		"group": "Content",
+		"name": "Comment",
+		"author": "Total.js",
+		"icon": "ti ti-comment",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/comment-v1/editor.html"
+	},
+	{
+		"id": "container",
+		"group": "Layouts",
+		"name": "Container",
+		"author": "Total.js",
+		"icon": "ti ti-window",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/container-v1/editor.html"
+	},
+	{
+		"id": "counter",
+		"group": "Logical",
+		"name": "Counter",
+		"author": "Total.js",
+		"icon": "ti ti-calculator",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/counter-v1/editor.html"
+	},
+	{
+		"id": "datagenerator",
+		"group": "Data",
+		"name": "Data generator",
+		"author": "Total.js",
+		"icon": "ti ti-database",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/datagenerator-v1/editor.html",
+		"readme": "Data generator creates data defined in the configuration."
+	},
+	{
+		"id": "datareader",
+		"group": "Data",
+		"name": "Data reader",
+		"author": "Total.js",
+		"icon": "ti ti-globe",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/datareader-v1/editor.html",
+		"readme": "Data reader reads data from the URL address and stores them in memory. Other components can read this data."
+	},
+	{
+		"id": "datasource",
+		"group": "Data",
+		"name": "Data source",
+		"author": "Total.js",
+		"icon": "ti ti-database-alt",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/datasource-v1/editor.html"
+	},
+	{
+		"id": "datatransformer",
+		"group": "Data",
+		"name": "Data transformer",
+		"author": "Total.js",
+		"icon": "ti ti-robot",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/datatransformer-v1/editor.html",
+		"readme": "The data transform component can transform incoming data."
+	},
+	{
+		"id": "datagrid",
+		"group": "List",
+		"name": "Datagrid",
+		"author": "Total.js",
+		"icon": "ti ti-table-alt",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/datagrid-v1/editor.html"
+	},
+	{
+		"id": "display",
+		"group": "Layouts",
+		"name": "Display",
+		"author": "Total.js",
+		"icon": "ti ti-desktop",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/display-v1/editor.html",
+		"readme": "This component sets display sizes according to the current element width. It can affect, for example, the Columns component."
+	},
+	{
+		"id": "donutchart",
+		"group": "Charts",
+		"name": "Donut chart",
+		"author": "Total.js",
+		"icon": "ti ti-chart-pie",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/donutchart-v1/editor.html",
+		"readme": "__Donutchart data-source needs to contain__:\n\n```js\n[\n\t{\n\t\tdata: 44,\n\t\tname: 'Apple',\n\t\tunit: '',\n\t\tdecimals: 1\n\t},\n\t{\n\t\tdata: 55,\n\t\tname: 'Mango',\n\t\tunit: '',\n\t\tdecimals: 1\n\t}\n```"
+	},
+	{
+		"id": "dropdown",
+		"group": "Controls",
+		"name": "Dropdown",
+		"author": "Total.js",
+		"icon": "ti ti-angle-down",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/dropdown-v1/editor.html",
+		"readme": "__Dropdown data-source needs to contain__:\n\n```js\n[\n\t{ id: 1, name: 'Nothing' },\n\t{ id: 2, name: 'jComponent' },\n\t{ id: 3, name: 'Angular.js' },\n\t{ id: 4, name: 'React' }\n]\n```"
+	},
+	{
+		"id": "enable",
+		"group": "Logical",
+		"name": "Enable editing",
+		"author": "Total.js",
+		"icon": "ti ti-config",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/enable-v1/editor.html"
+	},
+	{
+		"id": "fileuploader",
+		"group": "Files",
+		"name": "File uploader",
+		"author": "Total.js",
+		"icon": "ti ti-upload",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/fileuploader-v1/editor.html",
+		"readme": "The component allows users to upload files to a specific endpoint. A response will be binded to the path set in the configuration."
+	},
+	{
+		"id": "fbfloorplan",
+		"group": "Flowboard",
+		"name": "Floor plan",
+		"author": "Total.js",
+		"icon": "ti ti-object-group",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/fbfloorplan-v1/editor.html",
+		"readme": "The component can be used as a background / floor plan for dynamic markers."
+	},
+	{
+		"id": "flowinput",
+		"group": "Flow",
+		"name": "Flow Input",
+		"author": "Total.js",
+		"icon": "ti ti-object-group",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/flowinput-v1/editor.html",
+		"readme": "The component will resend input to other inputs."
+	},
+	{
+		"id": "flowoutput",
+		"group": "Flow",
+		"name": "Flow Output",
+		"author": "Total.js",
+		"icon": "ti ti-object-group",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/flowoutput-v1/editor.html",
+		"readme": "The component will capture output from other outputs and send data to the Flow."
+	},
+	{
+		"id": "form",
+		"group": "Data",
+		"name": "Form",
+		"author": "Total.js",
+		"icon": "ti ti-database-alt",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/form-v1/editor.html",
+		"readme": "The form collects only components with defined paths."
+	},
+	{
+		"id": "gap",
+		"group": "Content",
+		"name": "Gap",
+		"author": "Total.js",
+		"icon": "ti ti-enter",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/gap-v1/editor.html"
+	},
+	{
+		"id": "datagps",
+		"group": "Data",
+		"name": "GPS",
+		"author": "Total.js",
+		"icon": "ti ti-earth",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/datagps-v1/editor.html",
+		"readme": "This component can retrieve GPS position.\n\n__Output__:\n\n```js\n{\n\tlat: Number,\n\tlng: Number,\n\tspeed: Number,\n\taltitude: Number,\n\taccuracy: Number,\n\tpos: String\n}\n```"
+	},
+	{
+		"id": "headline",
+		"group": "Content",
+		"name": "Headline",
+		"author": "Total.js",
+		"icon": "ti ti-heading",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/headline-v1/editor.html"
+	},
+	{
+		"id": "hiddencontainer",
+		"group": "Layouts",
+		"name": "Hidden container",
+		"author": "Total.js",
+		"icon": "ti ti-eye-slash",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/hiddencontainer-v1/editor.html",
+		"readme": "This container will always be hidden in the render and it's targeted for data operations."
+	},
+	{
+		"id": "hr",
+		"group": "Content",
+		"name": "Horizontal rule",
+		"author": "Total.js",
+		"icon": "ti ti-minus",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/hr-v1/editor.html"
+	},
+	{
+		"id": "icon",
+		"group": "Controls",
+		"name": "Icon",
+		"author": "Total.js",
+		"icon": "ti ti-icons",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/icon-v1/editor.html",
+		"readme": "The component obtaining a list of Total.js icons and search field."
+	},
+	{
+		"id": "image",
+		"group": "Content",
+		"name": "Image",
+		"author": "Total.js",
+		"icon": "ti ti-image",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/image-v1/editor.html"
+	},
+	{
+		"id": "infocard",
+		"group": "Content",
+		"name": "Info card",
+		"author": "Total.js",
+		"icon": "ti ti-address-card",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/infocard-v1/editor.html"
+	},
+	{
+		"id": "input",
+		"group": "Data",
+		"name": "Input",
+		"author": "Total.js",
+		"icon": "ti ti-expand",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/input-v1/editor.html",
+		"readme": "The component processes input data and sets it according to a defined path."
+	},
+	{
+		"id": "lastvalue",
+		"group": "Dashboard",
+		"name": "Last value",
+		"author": "Total.js",
+		"icon": "ti ti-stopwatch",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/lastvalue-v1/editor.html"
+	},
+	{
+		"id": "linechart",
+		"group": "Charts",
+		"name": "Line chart",
+		"author": "Total.js",
+		"icon": "ti ti-chart-line",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/linechart-v1/editor.html",
+		"readme": "__Linechart data-source needs to contain__:\n\n```js\n[\n\t{\n\t\tname: 'name', // name of the serie\n\t\tdata: [{ x: 'DATE', y: 'value' }, { x: 'DATE', y: 'value' }, ...], // series\n\t\tdecimals: 2, // optional, number of decimal places\n\t\tunit: '°C' // optional\n\t}\n]\n```"
+	},
+	{
+		"id": "link",
+		"group": "Special",
+		"name": "Link",
+		"author": "Total.js",
+		"icon": "ti ti-rocket",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/link-v1/editor.html",
+		"readme": "The component can load another app."
+	},
+	{
+		"id": "listview",
+		"group": "List",
+		"name": "Listview",
+		"author": "Total.js",
+		"icon": "ti ti-list-alt",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/listview-v1/editor.html",
+		"readme": "__Listview data-source needs to contain__:\n\n```js\n[\n\t{ name: 'Ruby' },\n\t{ name: 'PHP' },\n\t{ name: 'Total.js', description: 'Lorem ipsum' // optional },\n\t{ name: 'Python' }\n]\n```"
+	},
+	{
+		"id": "map",
+		"group": "Controls",
+		"name": "Map",
+		"author": "Total.js",
+		"icon": "ti ti-map-pin",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/map-v1/editor.html"
+	},
+	{
+		"id": "fbmarker",
+		"group": "Flowboard",
+		"name": "Marker",
+		"author": "Total.js",
+		"icon": "ti ti-pin-alt",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/fbmarker-v1/editor.html"
+	},
+	{
+		"id": "panel",
+		"group": "Content",
+		"name": "Panel",
+		"author": "Total.js",
+		"icon": "ti ti-grid",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/panel-v1/editor.html",
+		"readme": "The component is suitable to making a better design."
+	},
+	{
+		"id": "paragraph",
+		"group": "Content",
+		"name": "Paragraph",
+		"author": "Total.js",
+		"icon": "ti ti-align-left",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/paragraph-v1/editor.html"
+	},
+	{
+		"id": "part",
+		"group": "Parts",
+		"name": "Part",
+		"author": "Total.js",
+		"icon": "ti ti-object-group",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/part-v1/editor.html",
+		"readme": "The form collects only components with defined paths."
+	},
+	{
+		"id": "partcontainer",
+		"group": "Parts",
+		"name": "Part container",
+		"author": "Total.js",
+		"icon": "ti ti-window",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/partcontainer-v1/editor.html",
+		"readme": "The form collects only components with defined paths."
+	},
+	{
+		"id": "piechart",
+		"group": "Charts",
+		"name": "Pie chart",
+		"author": "Total.js",
+		"icon": "ti ti-chart-pie",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/piechart-v1/editor.html",
+		"readme": "__Piechart data-source needs to contain__:\n\n```js\n[\n\t{\n\t\tdata: 44,\n\t\tname: 'Apple',\n\t\tunit: '',\n\t\tdecimals: 1\n\t},\n\t{\n\t\tdata: 55,\n\t\tname: 'Mango',\n\t\tunit: '',\n\t\tdecimals: 1\n\t}\n]\n```"
+	},
+	{
+		"id": "sound",
+		"group": "Logical",
+		"name": "Play sound",
+		"author": "Total.js",
+		"icon": "ti ti-volume",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/sound-v1/editor.html"
+	},
+	{
+		"id": "progressbar",
+		"group": "Controls",
+		"name": "Progress bar",
+		"author": "Total.js",
+		"icon": "ti ti-sliders-h",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/progressbar-v1/editor.html",
+		"readme": "Progress bar is used to visualize the progression of an extended operation."
+	},
+	{
+		"id": "radiobutton",
+		"group": "Controls",
+		"name": "Radio button",
+		"author": "Total.js",
+		"icon": "ti ti-dot-circle",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/radiobutton-v1/editor.html",
+		"readme": "__Radio button__ data-source needs to contain:\n\n```js\n[\n\t{ id: 1, name: 'Ruby', },\n\t{ id: 2, name: 'PHP', },\n\t{ id: 3, name: 'Node' },\n\t{ id: 4, name: 'Python' }\n]\n```"
+	},
+	{
+		"id": "rating",
+		"group": "Content",
+		"name": "Rating",
+		"author": "Total.js",
+		"icon": "ti ti-star",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/rating-v1/editor.html",
+		"readme": "The component lets a user provide a star rating or view other people's ratings on a numeric scale for any service provided."
+	},
+	{
+		"id": "readvalue",
+		"group": "Data",
+		"name": "Read value",
+		"author": "Total.js",
+		"icon": "ti ti-eye",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/readvalue-v1/editor.html",
+		"readme": "Read value component reads a value according to the path and sets it according to the component's path."
+	},
+	{
+		"id": "redirect",
+		"group": "Data",
+		"name": "Redirect",
+		"author": "Total.js",
+		"icon": "ti ti-external",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/redirect-v1/editor.html",
+		"readme": "The component can redirect page by datasource. Datasource is required and needs to contain: \n\n```js\n[\n\t{ id: 1, url: 'https://www.totaljs.com/' },\n\t{ id: 2, url: 'https://www.totaljs.com/' },\n\t{ id: 3, url: 'https://www.totaljs.com/' }\n]\n```"
+	},
+	{
+		"id": "restreader",
+		"group": "Data",
+		"name": "REST Reader",
+		"author": "Total.js",
+		"icon": "ti ti-globe",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/restreader-v1/editor.html",
+		"readme": "This component reads data from a REST service and sets them according to the specified path."
+	},
+	{
+		"id": "richtext",
+		"group": "Controls",
+		"name": "Rich text editor",
+		"author": "Total.js",
+		"icon": "ti ti-underline",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/richtext-v1/editor.html",
+		"readme": ""
+	},
+	{
+		"id": "sendtoinput",
+		"group": "Data",
+		"name": "Send to input",
+		"author": "Total.js",
+		"icon": "ti ti-compress",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/sendtoinput-v1/editor.html",
+		"readme": "This component can send data to an input."
+	},
+	{
+		"id": "show",
+		"group": "Logical",
+		"name": "Show components",
+		"author": "Total.js",
+		"icon": "ti ti-eye",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/show-v1/editor.html"
+	},
+	{
+		"id": "slider",
+		"group": "Controls",
+		"name": "Slider",
+		"author": "Total.js",
+		"icon": "ti ti-sliders-h",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/slider-v1/editor.html",
+		"readme": "Component allows to select a single value, but highlights with a range selection from the min value to the current handle value."
+	},
+	{
+		"id": "stylebox",
+		"group": "Content",
+		"name": "Style box",
+		"author": "Total.js",
+		"icon": "ti ti-pencil-paintbrush",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/stylebox-v1/editor.html"
+	},
+	{
+		"id": "tabs",
+		"group": "Content",
+		"name": "Tabs",
+		"author": "Total.js",
+		"icon": "ti ti-layer-group",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/tabs-v1/editor.html",
+		"readme": "The component is a content panel to show multiple contents in specific space one at a time."
+	},
+	{
+		"id": "textarea",
+		"group": "Controls",
+		"name": "Textarea",
+		"author": "Total.js",
+		"icon": "ti ti-font",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/textarea-v1/editor.html",
+		"readme": "The Multiline Textbox is used to edit or display multiple lines of text. You can allow resiging the height of an element."
+	},
+	{
+		"id": "textbox",
+		"group": "Controls",
+		"name": "Textbox",
+		"author": "Total.js",
+		"icon": "ti ti-font",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/textbox-v1/editor.html",
+		"readme": "A Textbox is an input element that allows to get input from the user. It allows the user either to edit or display the input values.\n__Types__:\n\t- `string`\n\t- `number`\n\t- `date`\n\t- `datetime`\n\t- `email`\n\t- `ZIP`\n\t- `phone number`\n\t- `password`"
+	},
+	{
+		"id": "json",
+		"group": "Debugging",
+		"name": "To JSON",
+		"author": "Total.js",
+		"icon": "ti ti-qrcode",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/json-v1/editor.html",
+		"readme": "This component prints data in JSON format."
+	},
+	{
+		"id": "togglebutton",
+		"group": "Controls",
+		"name": "Toggle button",
+		"author": "Total.js",
+		"icon": "ti ti-config",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/togglebutton-v1/editor.html",
+		"readme": "Button that switches between two states: `true`/`false`"
+	},
+	{
+		"id": "togglegroup",
+		"group": "Controls",
+		"name": "Toggle group",
+		"author": "Total.js",
+		"icon": "ti ti-config",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/togglegroup-v1/editor.html",
+		"readme": "__Toggle group__ data-source needs to contain:\n\n```js\n[\n\t{ id: 1, name: 'Ruby', icon: 'ti ti-totaljs' // optional },\n\t{ id: 2, name: 'PHP', },\n\t{ id: 3, name: 'Node' },\n\t{ id: 4, name: 'Python' }\n]\n```"
+	},
+	{
+		"id": "toolbar",
+		"group": "Controls",
+		"name": "Toolbar",
+		"author": "Total.js",
+		"icon": "ti ti-wrench",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/toolbar-v1/editor.html",
+		"readme": "Series of buttons on a single line with headline."
+	},
+	{
+		"id": "video",
+		"group": "Content",
+		"name": "Video",
+		"author": "Total.js",
+		"icon": "ti ti-photo-video",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/video-v1/editor.html"
+	}
+]

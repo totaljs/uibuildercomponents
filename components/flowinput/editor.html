@@ -1,0 +1,31 @@
+<script>
+
+	exports.id = 'flowinput';
+	exports.name = 'Flow Input';
+	exports.group = 'Flow';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-object-group';
+	exports.config = { name: 'Input name', target: [] };
+	exports.render = '/components/flowinput/render.html';
+	exports.settings = '/components/flowinput/settings.html';
+	exports.inputs = [{ id: 'input', name: 'Input' }];
+	exports.version = '1';
+	exports.gap = true;
+
+	exports.make = function(instance, config, element) {
+		element.html('<i class="ti ti-dot-circle"></i><b>Input</b>: <span>{name}</span>'.args(config, 'escape'));
+		instance.on('configure', function() {
+			element.find('span').text(config.name);
+		});
+	};
+
+</script>
+
+<style>
+	.CLASS { background-color: #E73323; color: #FFF; font-size: 12px; padding: 5px; border-radius: var(--radius); }
+	.CLASS i { margin-right: 5px; }
+</style>
+
+<readme>
+The component will resend input to other inputs.
+</readme>

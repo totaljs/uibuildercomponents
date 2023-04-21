@@ -50,7 +50,8 @@
 		};
 
 		instance.on('ready', function() {
-			AJAX('GET ' + config.url, function(response) {
+			var url = config.url;
+			url && AJAX('GET ' + config.url, function(response) {
 				if (response.id) {
 					response.id = 'part' + GUID(5);
 					instance.app.build(container, response, function(response) {

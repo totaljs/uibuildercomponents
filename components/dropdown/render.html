@@ -61,15 +61,14 @@
 		var show = function(el) {
 			var opt = {};
 			opt.element = el;
-			opt.items = items;
+			opt.items = function(search, next) {
+				instance.clfind(config.datasource, search, next);
+			};
 			opt.offsetY = 18;
 			opt.callback = function(val) {
 				instance.set('modified', true);
-				instance.set('value', val.id);
-				element.find(cls2 + '_value').text(val.name);
-				checkplaceholder();
+				instance.set('value', val ? val.id : null);
 			};
-
 			SETTER('directory/show', opt);
 		};
 
@@ -88,26 +87,32 @@
 			instance.set('modified', false);
 		});
 
-		instance.on('set', function(type, value, kind) {
+		var bindvalue = function(value) {
+			var el = element.find(cls2 + '_value');
+			if (value) {
+				instance.clread(config.datasource, value, function(response) {
+					el.text(response ? response.name : DEF.empty);
+					if (!response)
+						instance.set('value', null);
+					checkplaceholder();
+					instance.check();
+				});
+			} else {
+				el.text(DEF.empty);
+				checkplaceholder();
+				instance.check();
+			}
+		};
 
+		instance.on('set', function(type, value, kind) {
 			if (kind === 'nobind')
 				return;
-
-			if (type === 'value') {
-				instance.set('value', value);
-				element.find(cls2 + '_value').text(value);
-				checkplaceholder();
-			}
-
+			if (type === 'value')
+				bindvalue(value);
 		});
 
 		instance.on('ready', function() {
-
-			instance.datasource(config.datasource, function(response) {
-				items = response;
-			});
-
-			instance.check();
+			instance.state.value && bindvalue(instance.state.value);
 		});
 
 	};

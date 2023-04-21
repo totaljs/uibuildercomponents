@@ -6,6 +6,8 @@
 	.CLASS_cards_label { font-size: 12px; color: #999; padding: 2px 15px; }
 	.CLASS_cards_hr hr { margin: 0; }
 	.CLASS_cards_empty { height: 10px; }
+	.CLASS_cards_header { display: flex; justify-content: flex-end; padding: 4px; }
+	.CLASS_cards_header button { border: 0; background-color: transparent; font-size: 14px; color: gray; cursor: pointer; }
 </style>
 
 <body>
@@ -36,26 +38,56 @@
 </body>
 
 <script>
-
 	exports.id = 'cards';
 	exports.name = 'Cards';
 	exports.group = 'List';
 	exports.icon = 'ti ti-menu';
 	exports.author = 'Total.js';
 	exports.version = '1';
+	exports.outputs = [{ id: 'card', name: 'On card' }, { id: 'button', name: 'On button' }];
 	exports.make = function(instance, config, element, cls) {
-
+		var cls2 = '.' + cls;
 		var tmp = instance.maketemplate(instance.component.html)({ value: config.items });
 		var template = instance.maketemplate(tmp);
 
 		var render = function(value) {
 			var builder = [];
+			var header = '';
 			builder.push('<div class="grid-{0}">'.format(config.count));
+
+			if (config.buttons && config.buttons.length)
+				header = '<div class="{0}_cards_header"><button class="{0}_cards_menu"><i class="ti ti-ellipsis-h"></i></button></div>'.format(cls);
+
 			for (var item of value)
-				builder.push('<div class="{0}_cards">'.format(cls) + template({ value: item }) + '</div>');
+				builder.push('<div class="{0}_cards" data-id="{1}">'.format(cls, item.id) + header + template({ value: item }) + '</div>');
 			builder.push('</div>');
 			element.html(builder.join(''));
 		};
+
+		element.on('click', '.' + cls + '_cards', function() {
+			var el = $(this);
+			var id = el.attrd('id');
+			var card = instance.state.value.findItem('id', id);
+			instance.output('card', card);
+		});
+
+		element.on('click', cls2 + '_cards_menu', function(e) {
+			e.stopPropagation();
+			var el = $(this);
+			var opt = {};
+			var parent = el.closest(cls2 + '_cards');
+			var parentid = parent.attrd('id');
+			var card = instance.state.value.findItem('id', parentid);
+
+			opt.items = config.buttons;
+			opt.align = 'right';
+			opt.element = el;
+			opt.callback = function(selected) {
+				card.BUTTON = selected.id;
+				instance.output('button', card);
+			};
+			SETTER('menu/show', opt);
+		});
 
 		instance.on('value', function(value) {
 			if (value && value instanceof Array)
