@@ -14,6 +14,7 @@
 	exports.version = '1';
 	exports.inputs = [{ id: 'load', name: 'Load data', note: '' }, { id: 'reset', name: 'Reset', note: 'Reset form' }, { id: 'clear', name: 'Clear', note: 'Clear form' }];
 	exports.outputs = [{ id: 'submit', name: 'Submit', note: 'Process data' }];
+	exports.scope = true;
 
 	exports.make = function(instance, config, element, cls) {
 
