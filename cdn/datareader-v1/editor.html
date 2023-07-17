@@ -1,0 +1,33 @@
+<script>
+
+	exports.id = 'datareader';
+	exports.name = 'Data reader';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-globe';
+	exports.version = '1';
+	exports.config = { name: 'Name', url: '', interval: 0, read: '' };
+	exports.render = 'https://cdn.componentator.com/uibuilder/datareader-v1/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/datareader-v1/settings.html';
+	exports.follow = true;
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		element.aclass('UI_special m').html('<i class="{icon}"></i><label>{name}<span></span></label><div><i class="ti ti-long-arrow-right mr5"></i><span class="monospace">---</span></div>'.args(instance.component));
+
+		instance.on('configure', function() {
+			element.find('label span').text(config.name);
+			element.find('div span').text(config.url || DEF.empty);
+		});
+
+		instance.emit('configure');
+
+	};
+
+</script>
+
+<readme>
+Data reader reads data from the URL address and stores them in memory. Other components can read this data.
+</readme>
+

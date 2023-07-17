@@ -1,0 +1,34 @@
+<script>
+
+	exports.id = 'dataview';
+	exports.name = 'Data view';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-database';
+	exports.version = '1';
+	exports.config = { name: 'Name', interval: 0, id: '', read: '' };
+	exports.render = 'https://cdn.componentator.com/uibuilder/dataview-v1/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/dataview-v1/settings.html';
+	exports.follow = true;
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		element.aclass('UI_special m').html('<i class="{0}"></i><label>{1}<span></span></label><div><i class="ti ti-arrow-right mr5"></i><span>---</span></div>'.format(instance.component.icon, instance.component.name));
+
+		instance.on('configure', function() {
+			var item = DEF.cl.views.findItem('id', config.id);
+			element.find('label span').text(config.name);
+			element.find('div span').text(item ? item.name : DEF.empty);
+		});
+
+		instance.emit('configure');
+
+	};
+
+</script>
+
+<readme>
+Data view reads data from predefined data views and stores them in memory. Other components can read this data.
+</readme>
+

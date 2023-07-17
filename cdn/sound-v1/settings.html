@@ -1,0 +1,33 @@
+<div class="padding">
+
+	<div class="grid-4">
+		<div class="m">
+			<ui-component name="input" path="?.type" config="dirsource:Beep,Alert,Success,Confirm,Fail,Badge,Notification,Done,Drum,Message;required:1">Play</ui-component>
+			<div class="help"><span class="link exec" data-exec="?/play"><i class="ti ti-play-alt mr5"></i>Play</span></div>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.volume" config="type:number;min:0;max:100">Volume</ui-component>
+			<div class="help">Must be defined in the percentage %</div>
+		</div>
+	</div>
+
+	<hr class="nmt" />
+
+	<ui-component name="input" path="?.condition" config="dirsource:positive|When the value is positive,string|Must contain exact text,number|Must contain exact number,expression|Custom JavaScript expression;required:1" class="m">Condition</ui-component>
+
+	<ui-bind path="?.condition" config="show:value!=='positive'" class="block hidden">
+		<ui-component name="input" path="?.value" config="innerlabel:1;required:1;placeholder:Enter a value">Value</ui-component>
+		<ui-bind path="?.condition" config="show:value==='expression'" class="help block hidden">The condition must contain JavaScript code and it should return positive or negative value. The value is represented in the <code>value</code> variable.<hr />Example: <code>value !== &#39;Total.js&#39;</code></ui-bind>
+	</ui-bind>
+
+</div>
+
+<script>
+	PLUGIN(function(exports) {
+
+		exports.play = function() {
+			SETTER('sounds/play', exports.model.type.toLowerCase());
+		};
+
+	});
+</script>

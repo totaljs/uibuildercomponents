@@ -1,0 +1,34 @@
+<style>
+	.CLASS { background-color: #fff; }
+</style>
+
+<script>
+
+	exports.id = 'richtext';
+	exports.name = 'Rich text editor';
+	exports.group = 'Controls';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-underline';
+	exports.config = { apikey: 'testapikey' };
+	exports.settings = 'https://cdn.componentator.com/uibuilder/richtext-v1/settings.html';
+	exports.render = 'https://cdn.componentator.com/uibuilder/richtext-v1/render.html';
+	exports.version = '1';
+	exports.follow = true;
+
+	exports.make = function(instance, config, element, cls) {
+		var options = { name: instance.component.id };
+		var html = FUNC.placeholder(options);
+
+		instance.on('configure', function() {
+			element.html(html);
+		});
+
+		instance.emit('configure');
+
+	};
+
+</script>
+
+<readme>
+
+</readme>

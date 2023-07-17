@@ -1,0 +1,150 @@
+<style>
+	.CLASS > .UI_components { padding: 20px; border: 1px solid #E0E0E0; }
+</style>
+
+<script>
+
+	exports.id = 'datagrid';
+	exports.name = 'Datagrid';
+	exports.group = 'List';
+	exports.icon = 'ti ti-table-alt';
+	exports.author = 'Total.js';
+	exports.version = '1';
+	exports.inputs = [{ id: 'rows', name: 'Rows' }];
+	exports.outputs = [{ id: 'row', name: 'On row' }, { id: 'button', name: 'On button' }];
+
+	exports.make = function(instance, config, element) {
+
+		var cfg = [];
+		var path = 'uibuildercom_' + instance.id;
+		var pathfn = path + '_exec';
+		var pathclick = path + '_click';
+		var isdynamic = config.dynamic && config.datasource && config.datasource.charAt(0) === '#' ? true : false;
+
+		if (typeof(config.height) === 'string' && config.height === 'parent')
+			config.height += '1';
+
+		cfg.push('height:' + (config.height || 'parent1'));
+
+		if (config.margin)
+			cfg.push('margin:' + config.margin);
+
+		if (config.parent)
+			cfg.push('parent:' + config.parent);
+
+		if (config.minheight)
+			cfg.push('minheight:' + config.minheight);
+
+		if (!config.border)
+			cfg.push('noborder:1');
+
+		if (config.autoselect)
+			cfg.push('autoselect:1');
+
+		if (config.dynamic)
+			cfg.push('exec:' + pathfn);
+
+		if (!config.numbering)
+			cfg.push('numbering:false');
+
+		if (config.action)
+			cfg.push('dblclick:' + pathdblclick);
+
+		cfg.push('checkbox:' + (config.checkbox ? 1 : 0));
+
+		W[pathclick] = function(row) {
+			if (row)
+				instance.output('row', row);
+		};
+
+		if (isdynamic) {
+			W[pathfn] = function(type, filter, sort, page) {
+				if (!filter)
+					filter = {};
+				filter.sort = sort;
+				filter.page = page;
+				instance.view(config.datasource, filter, function(response) {
+					if (!response)
+						response = { page: 1, pages: 0, items: [], count: 0 };
+					else if (response instanceof Array)
+						response = { page: 1, pages: 1, items: response, count: response.length };
+					SET(path, response);
+				});
+			};
+		}
+
+		var columns = [];
+
+		if (config.columns) {
+			for (var i = 0; i < config.columns.length; i++) {
+				var col = config.columns[i];
+				var tmp = {};
+
+				tmp.text = col.name;
+
+				if (!tmp.text)
+					tmp.text = DEF.empty;
+
+				tmp.name = col.path.replace('?.', '');
+				tmp.hide = col.hidden;
+
+				if (col.type)
+					tmp.type = col.type;
+
+				if (!col.format && col.type === 'date')
+					col.format = '[date]';
+
+				if (col.filter === false)
+					tmp.filter = false;
+
+				if (col.sort === false)
+					tmp.sort = false;
+
+				if (col.format)
+					tmp.format = col.format;
+
+				if (col.align)
+					tmp.align = col.align;
+
+				if (col.title)
+					tmp.title = col.title;
+
+				if (col.width)
+					tmp.width = col.width;
+
+				if (col.template)
+					tmp.template = col.template;
+
+				if (col.colorize)
+					tmp.colorize = true;
+
+				columns.push(tmp);
+			}
+		}
+
+		// DataGrid
+		element.html(('<ui-component name="datagrid" path="{0}" config="{1};click:{3};checkbox:0;highlight:1"><scr' + 'ipt type="text/html">{2}</scr' + 'ipt></ui-component>').format(path, cfg.join(';'), JSON.stringify(columns), pathclick));
+
+		if (!isdynamic) {
+
+			config.datasource && instance.on('ready', function() {
+				instance.datasource(config.datasource, function(response) {
+					SET(path, response);
+				});
+			});
+
+			instance.input('rows', function(value) {
+				SET(path, value);
+			});
+
+		}
+
+		instance.on('destroy', function() {
+			delete W[path];
+			delete W[pathclick];
+			delete W[pathfn];
+		});
+
+	};
+
+</script>

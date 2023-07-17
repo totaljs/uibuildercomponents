@@ -1,0 +1,45 @@
+<div class="padding">
+
+	<div class="grid-3">
+		<div class="m">
+			<ui-component name="input" path="?.type" config="dirsource:string|String,number|Number,date|Date,datetime|Date time,email|Email,zip|ZIP,phone|Phone number,password|Password;innerlabel:1;required:1">Type</ui-component>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.default" config="innerlabel:1;placeholder:Enter a default value">Default value</ui-component>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.error" config="innerlabel:1;placeholder:A custom error message">Error message</ui-component>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.help" config="innerlabel:1;placeholder:Enter a value">Help message</ui-component>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.placeholder" config="innerlabel:1;placeholder:Enter a value">Placeholder</ui-component>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.icon" config="innerlabel:1;type:icon;placeholder:Choose icon">Icon</ui-component>
+		</div>
+		<ui-bind path="?.type" config="show:value==='number'" class="m block">
+			<ui-component name="input" path="?.decimals" config="innerlabel:1;type:number2;placeholder:Enter number of decimals">Number of decimals</ui-component>
+		</ui-bind>
+
+		<ui-bind path="?.type" config="show:value==='string'" class="m block">
+			<ui-component name="input" path="?.maxlength" config="innerlabel:1;type:number2;placeholder:A maximum length">Max. length</ui-component>
+		</ui-bind>
+
+		<ui-bind path="?.type" config="show:value==='number'" class="m block">
+			<ui-component name="input" path="?.min" config="innerlabel:1;type:number2;placeholder:A minimum value">Min. value</ui-component>
+		</ui-bind>
+
+		<ui-bind path="?.type" config="show:value==='number'" class="m block">
+			<ui-component name="input" path="?.max" config="innerlabel:1;type:number2;placeholder:A maximum value">Max. value</ui-component>
+		</ui-bind>
+
+	</div>
+
+	<hr style="margin-top:10px" />
+	<ui-component name="input" path="?.required" config="type:checkbox" class="b">Required</ui-component>
+	<ui-component name="input" path="?.bold" config="type:checkbox">Use bold font</ui-component>
+	<ui-component name="input" path="?.monospace" config="type:checkbox">Use monospace font</ui-component>
+
+</div>

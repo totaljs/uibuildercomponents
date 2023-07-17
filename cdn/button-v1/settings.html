@@ -1,0 +1,32 @@
+<div class="padding">
+
+	<div class="m">
+		<ui-component name="input" path="?.input" config="dirsource:#inputs;dirraw:1;innerlabel:1;placeholder:Choose input">Input</ui-component>
+	</div>
+
+	<div class="row">
+
+		<div class="col-sm-3 m">
+			<ui-component name="input" path="?.type" config="dirsource:primary|Primary,secondary|Secondary,outline|Outline;innerlabel:0;placeholder:Choose button type">Type</ui-component>
+		</div>
+
+		<div class="col-sm-3 m">
+			<ui-component name="input" path="?.size" config="dirsource:lg|Large,md|Medium,sm|Small;innerlabel:0;placeholder:Choose button size">Size</ui-component>
+		</div>
+
+		<div class="col-sm-3 m">
+			<ui-component name="input" path="?.icon" config="innerlabel:0;type:icon;placeholder:Choose icon">Icon</ui-component>
+		</div>
+	</div>
+
+	<hr />
+
+	<ui-component name="input" path="?.fullwidth" config="type:checkbox">Full width</ui-component>
+	<ui-component name="input" path="?.fullwidthxs" config="type:checkbox">Full width XS</ui-component>
+
+	<hr />
+
+	<ui-component name="input" path="?.bold" config="type:checkbox">Bold</ui-component>
+	<ui-component name="input" path="?.radius" config="type:checkbox">Apply border radius</ui-component>
+	<ui-component name="input" path="?.shadow" config="type:checkbox">Apply shadow</ui-component>
+</div>

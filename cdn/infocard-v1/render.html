@@ -1,0 +1,44 @@
+<style>
+	.CLASS > div { line-height: 26px; }
+	.CLASS > div:first-child { float: left; width: 4px; height: 60px; background-color: #e0e0e0; margin-right: var(--gap); }
+	.CLASS_key { color: gray; padding-top: 4px; }
+	.CLASS_value { font-weight: bold; font-size: 22px; }
+</style>
+
+<body>
+	<div class="CLASS_icon"><i class="{{ icon }}"></i></div>
+	<div class="CLASS_key hellip">{{ key }}</div>
+	<div class="CLASS_value hellip">{{ value }}</div>
+</body>
+
+<script>
+
+	exports.id = 'infocard';
+	exports.name = 'Info card';
+	exports.group = 'Content';
+	exports.icon = 'ti ti-address-card';
+	exports.author = 'Total.js';
+	exports.version = '1';
+	exports.make = function(instance, config, element, cls) {
+
+		var html = instance.maketemplate()(config);
+		var template = instance.maketemplate(html);
+
+		var model = { value: null };
+
+		if (config.path) {
+			if (config.isnullable)
+				element.html(template(model));
+		} else
+			element.html(template(model));
+
+		instance.on('value', function(value) {
+			if (value || config.isnullable) {
+				model.value = value;
+				element.html(template(model));
+			}
+		});
+
+	};
+
+</script>

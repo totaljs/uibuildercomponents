@@ -1,0 +1,80 @@
+<style>
+	.CLASS label { font-size: 12px; margin-bottom: 5px; display: block; outline: 0; }
+	.CLASS label i { margin-right: 5px; }
+
+	.CLASS_rating i { color: #a0a0a0; font-size: 22px; margin-right: 5px; cursor: pointer; transition: transform .2s; transform: scale(1); }
+	.CLASS_rating i:last-child { margin-right: 0; }
+	.CLASS_rating i.CLASS_selected { color: var(--color); }
+	.CLASS_rating i:hover { transform: scale(1.2); }
+	.CLASS.UI_disabled { filter: grayscale(1); }
+	.CLASS.UI_disabled * { cursor: not-allowed; }
+	.CLASS.UI_disabled .CLASS_rating i { transform: scale(1); }
+</style>
+
+<script>
+	exports.id = 'cards';
+	exports.name = 'Cards';
+	exports.group = 'Content';
+	exports.icon = 'ti ti-star';
+	exports.author = 'Total.js';
+	exports.version = '1';
+	exports.make = function(instance, config, element, cls) {
+
+		var ino = 'ti-star';
+		var iok = 'ti-star-alt';
+
+		var render = function() {
+			var builder = [];
+			builder.push(instance.maketemplate('<label>{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span>{{ name }}:</span></label>')(config));
+			builder.push('<div class="{0}_rating">'.format(cls));
+
+			for (var i = 0; i < 5; i++)
+				builder.push('<i class="ti {0}" data-index="{1}"></i>'.format(ino, i + 1));
+
+			builder.push('</div>');
+			element.html(builder.join(''));
+		};
+
+		var update = function(index) {
+			element.find('i').each(function(counter) {
+				var el = $(this);
+				var is = counter < index;
+
+				if (is)
+					el.rclass(ino).aclass(iok);
+				else
+					el.rclass(iok).aclass(ino);
+
+				el.tclass(cls + '_selected', is);
+			});
+		};
+
+		element.on('click', 'i', function() {
+			if (instance.state.disabled)
+				return;
+
+			var index = ATTRD(this, 'index');
+			update(+index);
+			instance.set('value', +index, 'nobind');
+		});
+
+		instance.on('set', function(type, value, kind) {
+			if (kind === 'nobind')
+				return;
+
+			if (type === 'value') {
+				update(value);
+			}
+		});
+
+		instance.on('ready', function() {
+			render();
+		});
+	};
+
+</script>
+
+<readme>
+
+</readme>
+

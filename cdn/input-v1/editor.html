@@ -1,0 +1,27 @@
+<script>
+
+	exports.id = 'input';
+	exports.name = 'Input';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-expand';
+	exports.config = { name: 'Name', read: '' };
+	exports.render = 'https://cdn.componentator.com/uibuilder/input-v1/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/input-v1/settings.html';
+	exports.inputs = [{ id: 'load', name: 'Load data' }];
+	exports.version = '1';
+	exports.follow = true;
+	exports.gap = true;
+
+	exports.make = function(instance, config, element) {
+		element.aclass('UI_special').html('<i class="{0}"></i><label>{1}<span>{name}</span></label>'.format(instance.component.icon, instance.component.name).args(config, 'escape'));
+		instance.on('configure', function() {
+			element.find('label span').text(config.name);
+		});
+	};
+
+</script>
+
+<readme>
+The component processes input data and sets it according to a defined path.
+</readme>

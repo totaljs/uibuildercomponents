@@ -1,0 +1,107 @@
+<style>
+	.CLASS_settings .fields { border: 1px solid #E0E0E0; border-radius: var(--radius); }
+	.CLASS_settings .ui-listform-item .item { padding: 7px 10px; }
+	.CLASS_settings .ui-listform-form { border-radius: 0; border: 0; border-bottom: 1px solid #e0e0e0; }
+	.CLASS_settings .ui-listform-form-container { padding: 0; }
+	.CLASS_settings .listing .item { line-height: 34px; font-size: 12px; background-color: #F8F8F8; border-radius: var(--radius); margin-bottom: 2px; padding: 0 10px; cursor: pointer; }
+	.CLASS_settings .listing .item:hover { background-color: #E8E8E8; }
+
+	.CLASS_cards { border: 1px solid #E0E0E0; background-color: #FFF; margin-bottom: var(--margin); overflow: hidden; }
+	.CLASS_cards_preview { margin: 20px auto; max-width: 250px; width: 100%; }
+	.CLASS_cards_preview_image { height: 150px; padding: 70px 20px 20px; background-color: #F0F0F0; font-size: 12px; text-align: center; }
+	.CLASS_cards_title { font-size: 16px; color: #000; font-weight: bold; padding: 2px 15px; }
+	.CLASS_cards_summary { font-size: 14px; color: #888; padding: 2px 15px; }
+	.CLASS_cards_label { font-size: 12px; color: #999; padding: 2px 15px; }
+	.CLASS_cards_hr hr { margin: 0; }
+	.CLASS_cards_empty { height: 10px; }
+	.CLASS_cards_header { display: flex; justify-content: flex-end; padding: 4px; }
+	.CLASS_cards_header button { border: 0; background-color: transparent; font-size: 14px; color: gray; }
+	.CLASS_shadow .CLASS_cards { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+	.CLASS_radius .CLASS_cards { border-radius: var(--radius); }
+</style>
+
+<body>
+	{{ foreach m in value }}
+		{{ if m.type === 'image' }}
+		<div class="CLASS_cards_preview_image">
+			<div class="b"><i class="ti ti-image mr5"></i>Image</div>
+			<div class="help nmt">{{ m.value }}</div>
+		</div>
+		{{ else if m.type === 'title' }}
+		<div class="CLASS_cards_title">{{ m.value }}</div>
+		{{ else if m.type === 'summary' }}
+		<div class="CLASS_cards_summary">{{ m.value }}</div>
+		{{ else if m.type === 'label' }}
+		<div class="CLASS_cards_label">{{ m.value }}</div>
+		{{ else if m.type === 'price' }}
+		<div class="CLASS_cards_price">{{ m.value }}</div>
+		{{ else if m.type === 'hr' }}
+		<div class="CLASS_cards_hr"><hr /></div>
+		{{ else if m.type === 'empty' }}
+		<div class="CLASS_cards_empty"></div>
+		{{ else if m.type === 'keyvalue' }}
+		<div class="CLASS_cards_keyvalue">
+			<span>{{ m.name }}</span>
+			<div>{{ m.value }}</div>
+		</div>
+		{{ fi }}
+	{{ end }}
+</body>
+
+<script>
+
+	exports.id = 'cards';
+	exports.name = 'Cards';
+	exports.group = 'List';
+	exports.icon = 'ti ti-menu';
+	exports.author = 'Total.js';
+	exports.render = 'https://cdn.componentator.com/uibuilder/cards-v1/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/cards-v1/settings.html';
+	exports.config = { border: true, count: 4, items: [{ type: 'image', value: '{{ value.photo }}' }, { type: 'empty' }, { type: 'title', value: '{{ value.title }}' }, { type: 'empty' }] };
+	exports.gap = true;
+	exports.version = '1';
+	exports.outputs = [{ id: 'card', name: 'On card' }, { id: 'button', name: 'On button' }];
+	DEF.cl.componentcards = [{ id: 'image', icon: 'ti ti-image', name: 'Image' }, { id: 'title', icon: 'ti ti-heading', name: 'Title' }, { id: 'summary', icon: 'ti ti-align-left', name: 'Summarization' }, { id: 'label', icon: 'ti ti-font', name: 'Label' }, { id: 'hr', icon: 'ti ti-minus', name: 'Line' }, { id: 'price', icon: 'ti ti-calculator', name: 'Price' }, { id: 'empty', icon: 'ti ti-arrows-v', name: 'Empty space' }];
+
+	exports.make = function(instance, config, element, cls) {
+
+		var render = function() {
+			var builder = [];
+			var header = '';
+			builder.push('<div class="grid-{0}">'.format(config.count));
+
+			var template = instance.maketemplate(instance.component.html);
+			var output = template({ value: config.items });
+
+			if (config.buttons && config.buttons.length)
+				header = '<div class="{0}_cards_header"><button><i class="ti ti-ellipsis-h"></i></button></div>'.format(cls);
+
+			for (var i = 0; i < config.count; i++)
+				builder.push('<div class="{0}_cards">'.format(cls) + header + output + '</div>');
+			builder.push('</div>');
+			element.html(builder.join(''));
+		};
+
+		instance.on('configure', function() {
+
+			element.tclass(cls + '_shadow', config.shadow);
+			element.tclass(cls + '_radius', config.radius);
+
+			for (var item of config.items) {
+				if (item.type === 'empty' || item.type === 'hr')
+					item.value = '';
+			}
+
+			render();
+		});
+
+		var builder = [];
+		config.radius && builder.push(cls + '_radius');
+		config.shadow && builder.push(cls + '_shadow');
+		builder.length && element.aclass(builder.join(' '));
+
+		render();
+
+	};
+
+</script>

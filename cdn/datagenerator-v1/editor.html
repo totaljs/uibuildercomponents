@@ -1,0 +1,33 @@
+<script>
+
+	exports.id = 'datagenerator';
+	exports.name = 'Data generator';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-code';
+	exports.config = { name: 'Name', value: '', note: 'A custom note' };
+	exports.render = 'https://cdn.componentator.com/uibuilder/datagenerator-v1/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/datagenerator-v1/settings.html';
+	exports.follow = true;
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		element.aclass('UI_special m').html('<i class="{0}"></i><label>{1}<span>{2}</span></label>'.format(instance.component.icon, instance.component.name, config.name.encode()));
+
+		instance.on('configure', function() {
+			element.find('label span').text(config.name);
+		});
+
+		instance.on('stringify', function(meta, isbuild) {
+			if (isbuild)
+				delete meta.config.note;
+		});
+
+	};
+
+</script>
+
+<readme>
+Data generator creates data defined in the configuration.
+</readme>

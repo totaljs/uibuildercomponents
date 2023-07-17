@@ -1,0 +1,52 @@
+<style>
+	.CLASS { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; width: 100%; min-height: 120px; }
+	.CLASS_icon i { font-size: 120px; opacity: 0.1; color: #333; }
+	.CLASS_note { color: #666; font-size: 12px; margin-bottom: 2px; }
+	.CLASS_value { font-weight: bold; font-size: 38px; line-height: 40px; }
+	.CLASS_iconpos_top .CLASS_icon { position: relative; top: auto; left: auto; transform: none; margin-bottom: 10px; }
+	.CLASS_iconpos_top .CLASS_icon i { opacity: .5; font-size: 42px; }
+	.CLASS_iconpos_overlay .CLASS_icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+</style>
+
+<body>
+	<div class="CLASS_icon" data-name="icon"><i class="{{ icon }}" {{ if color }}style="color:{{ color }}"{{ fi }}></i></div>
+	<div class="CLASS_note hellip">{{ note }}</div>
+	<div class="CLASS_value hellip">{{ value }}</div>
+</body>
+
+<script>
+
+	exports.id = 'lastvalue';
+	exports.name = 'Last value';
+	exports.group = 'Dashboard';
+	exports.icon = 'ti ti-stopwatch';
+	exports.author = 'Total.js';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls) {
+
+		var html = instance.maketemplate()(config);
+		var template = instance.maketemplate(html);
+
+		var model = { value: null };
+
+		if (config.path) {
+			if (config.isnullable)
+				element.html(template(model));
+		} else
+			element.html(template(model));
+
+		element.rclass2(cls + '_iconpos_').aclass(cls + '_iconpos_' + config.iconpos);
+
+		instance.on('value', function(value) {
+			if (value || config.isnullable) {
+				model = value;
+
+				element.html(template(model));
+
+			}
+		});
+
+	};
+
+</script>

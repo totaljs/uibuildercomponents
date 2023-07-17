@@ -1,0 +1,82 @@
+<style>
+	.CLASS div { padding: 0; margin: 0; position: relative; display: inline-block; width: 100%; }
+	.CLASS .com_callout { display: flex; align-items: center; border-radius: var(--radius); padding: 20px 15px; color: rgba(0,0,0,0.7); }
+	.CLASS .com_callout > i { font-size: 30px; width: 40px; text-align: center; }
+	.CLASS .com_callout .text { display: inline-block; margin-left: 10px; font-size: 15px; }
+</style>
+
+<script>
+
+	exports.id = 'callout';
+	exports.name = 'Callout';
+	exports.group = 'Content';
+	exports.icon = 'ti ti-info-circle';
+	exports.author = 'Total.js';
+	exports.config = { color: '#F0F0F0', icon: 'ti ti-totaljs', html: 'Enter your text here' };
+	exports.render = 'https://cdn.componentator.com/uibuilder/callout-v1/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/callout-v1/settings.html';
+	exports.version = '1';
+	exports.gap = true;
+	exports.type = ['app', 'dashboard'];
+
+	exports.make = function(instance, config, element) {
+
+		var template = instance.maketemplate('<div class="com_callout" style="background-color:{{ color }}"><i class="icon {{ icon }}"></i><div class="text">{{ html | raw }}</div></div>');
+
+		var render = function() {
+			element.html(template(config));
+		};
+
+		render();
+
+		element.on('dblclick', '.text', function(e) {
+
+			e.stopPropagation();
+			e.preventDefault();
+
+			var el = $(this);
+			var opt = {};
+
+			instance.edit(el, opt, function(response) {
+				config.html = response.html;
+			});
+
+		});
+
+		element.on('click', 'a', function(e) {
+			e.preventDefault();
+			UIBuilder.emit('link', this, function() {
+				config.html = element.find('.text').html();
+			});
+		});
+
+		element.on('click', '.icon', function(e) {
+			UIBuilder.emit('icon', this, function(el, val) {
+				config.icon = val;
+			});
+		});
+
+		element.find('.text').on('click', '.ti', function(e) {
+
+			if (e.ctrlKey || e.metaKey) {
+				UIBuilder.emit('attr', this, function() {
+					config.html = element.find('.text').html();
+				});
+				return;
+			}
+
+			UIBuilder.emit('icon', this, function(el, val) {
+				if (!val)
+					el.remove();
+				config.html = element.find('.text').html();
+			});
+
+		});
+
+		instance.on('configure', function() {
+			render();
+		});
+
+	};
+
+</script>

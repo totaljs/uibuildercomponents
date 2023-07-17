@@ -1,0 +1,20 @@
+<script>
+
+	exports.id = 'flowinput';
+	exports.name = 'Flow Input';
+	exports.group = 'Flow';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-object-group';
+	exports.inputs = [{ id: 'input', name: 'Input' }];
+	exports.version = '1';
+	exports.gap = true;
+
+	exports.make = function(instance, config, element) {
+		instance.input('input', function(value) {
+			for (var m of config.target)
+				instance.app.input(m, value);
+		});
+
+	};
+
+</script>

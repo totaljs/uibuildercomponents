@@ -1,0 +1,32 @@
+<div class="padding">
+
+	<div class="grid-4">
+		<div class="m">
+			<ui-component name="input" path="?.count" config="required:1;type:number;min:1;max:12">@(Count)</ui-component>
+			<div class="help">@(All display types)</div>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.fractions" default="'1fr 1fr 1fr'">@(Fractions)</ui-component>
+			<div class="help">@(Use CSS 'fr' units)</div>
+		</div>
+		<!-- <div class="m"> -->
+			<!-- <ui-component name="input" path="?.countmd" config="type:number;min:0;max:12">@(Count (MD))</ui-component> -->
+			<!-- <div class="help">@(Medium display)</div> -->
+		<!-- </div> -->
+		<!-- <div class="m"> -->
+			<!-- <ui-component name="input" path="?.countsm" config="type:number;min:0;max:12">@(Count (SM))</ui-component> -->
+			<!-- <div class="help">@(Small display)</div> -->
+		<!-- </div> -->
+		<!-- <div class="m"> -->
+			<!-- <ui-component name="input" path="?.countxs" config="type:number;min:0;max:12">@(Count (XS))</ui-component> -->
+			<!-- <div class="help">@(Extra small display)</div> -->
+		<!-- </div> -->
+	</div>
+
+	<hr class="nmt"/>
+
+	<ui-component name="input" path="?.background" config="type:checkbox">@(Apply background and padding)</ui-component>
+	<ui-component name="input" path="?.rounded" config="type:checkbox">@(Rounded corners)</ui-component>
+	<ui-component name="input" path="?.hidden" config="type:checkbox">@(Hide in render)</ui-component>
+
+</div>

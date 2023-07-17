@@ -1,0 +1,26 @@
+<style>
+	.CLASS { background: url(https://cdn.componentator.com/uibuilder/map-v1/map.jpg) no-repeat 50% 50%; background-size: cover; }
+</style>
+<script>
+
+	exports.id = 'map';
+	exports.name = 'Map';
+	exports.group = 'Controls';
+	exports.icon = 'ti ti-map-pin';
+	exports.author = 'Total.js';
+	exports.config = { default: '', height: 200, maxzoom: 19, zoom: 11, draggable: true };
+	exports.render = 'https://cdn.componentator.com/uibuilder/map-v1/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/map-v1/settings.html';
+	exports.version = '1';
+	exports.follow = true;
+	exports.inputs = [{ id: 'gps', name: 'Load GPS' }];
+
+	exports.make = function(instance, config, element) {
+		element.aclass('UI_special m').html('<i class="{0}"></i><label>{name}</label>'.format(instance.component.icon).args(config, 'escape')).css('height', config.height);
+		instance.on('configure', function() {
+			element.find('> .UI_label span').text(config.name);
+			element.css('height', config.height);
+		});
+	};
+
+</script>

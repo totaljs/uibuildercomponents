@@ -1,0 +1,17 @@
+<script>
+	exports.id = 'container';
+	exports.group = 'Layouts';
+	exports.name = 'Container';
+	exports.icon = 'ti ti-window';
+	exports.author = 'Total.js';
+	exports.render = 'https://cdn.componentator.com/uibuilder/container-v1/render.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		element.append('<div class="UI_label"><i class="{icon}"></i><span>{0}</span></div><div class="UI_border UI_components" data-index="0"></div>'.format(config.name.encode()).args(instance.component));
+		instance.on('configure', function() {
+			element.find('> .UI_label span').text(config.name);
+		});
+	};
+
+</script>

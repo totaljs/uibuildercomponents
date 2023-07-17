@@ -1,0 +1,33 @@
+<style>
+	.CLASS { font-size: 14px; color: #A0A0A0; }
+	.CLASS > i { margin: 3px 5px 0 0; float: left; }
+</style>
+
+<script>
+
+	exports.id = 'comment';
+	exports.group = 'Content';
+	exports.name = 'Comment';
+	exports.icon = 'ti ti-comment';
+	exports.author = 'Total.js';
+	exports.config = { html : 'Enter comment' };
+	exports.render = 'https://cdn.componentator.com/uibuilder/comment-v1/render.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		element.append('<i class="{1}"></i><div>{0}</div>'.format(config.html, instance.component.icon));
+		element.on('dblclick', 'div', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			var el = $(this);
+			var opt = {};
+			opt.icons = false;
+			opt.format = true;
+			opt.bold = true;
+			instance.edit(el, opt, function(response) {
+				config.html = response.html;
+			});
+		});
+	};
+
+</script>

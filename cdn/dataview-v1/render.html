@@ -1,0 +1,31 @@
+<script>
+
+	exports.id = 'dataview';
+	exports.name = 'Data view';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-database';
+	exports.version = '1';
+	exports.make = function(instance, config, element) {
+
+		var interval = null;
+
+		var load = function(data) {
+			if (config.read)
+				data = instance.read(data, config.read);
+			instance.set('value', data);
+		};
+
+		var request = function() {
+			instance.app.view(config.id, ERROR(load));
+			if (config.interval)
+				interval = setTimeout(request, config.interval * 1000);
+		};
+
+		instance.on('destroy', function() {
+			interval && clearTimeout(interval);
+		});
+
+		instance.on('ready', request);
+	};
+</script>

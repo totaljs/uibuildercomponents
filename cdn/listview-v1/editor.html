@@ -1,0 +1,46 @@
+<style>
+	.CLASS label { display: block; }
+</style>
+
+<script>
+
+	exports.id = 'listview';
+	exports.name = 'Listview';
+	exports.group = 'List';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-list-alt';
+	exports.config = { required: false, background: false, nolabel: false };
+	exports.settings = 'https://cdn.componentator.com/uibuilder/listview-v1/settings.html';
+	exports.render = 'https://cdn.componentator.com/uibuilder/listview-v1/render.html';
+	exports.version = '1';
+	exports.follow = true;
+
+	exports.make = function(instance, config, element, cls) {
+		var options = { name: instance.component.id, count: 3 };
+
+		instance.on('configure', function() {
+			options.background = config.background ? true : false;
+			var html = FUNC.placeholder(options);
+			var label = instance.maketemplate('<label class="UI_label">{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span class="editable">{{ name }}:</span></label>');
+
+			config.nolabel ? element.html(html) : element.html(label(config) + html);
+		});
+
+		instance.emit('configure');
+
+	};
+
+</script>
+
+<readme>
+__Listview data-source needs to contain__:
+
+```js
+[
+	{ name: 'Ruby' },
+	{ name: 'PHP' },
+	{ name: 'Total.js', description: 'Lorem ipsum' // optional },
+	{ name: 'Python' }
+]
+```
+</readme>

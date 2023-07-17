@@ -1,0 +1,18 @@
+<script>
+
+	exports.id = 'datagenerator';
+	exports.name = 'Data generator';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-code';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		instance.on('ready', function() {
+			setTimeout(function() {
+				var value = new Function('return ' + config.value)();
+				instance.set('value', value);
+			}, 2);
+		});
+	};
+</script>

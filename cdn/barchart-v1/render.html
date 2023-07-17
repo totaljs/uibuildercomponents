@@ -1,0 +1,119 @@
+<style>
+	.CLASS-barchart { overflow: hidden; }
+</style>
+
+<script>
+
+	exports.id = 'barchart';
+	exports.name = 'Bar chart';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-chart-bar';
+	exports.import = ['https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.36.3/apexcharts.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.36.3/apexcharts.min.css'];
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls) {
+
+		var container = '<div class="{0}-barchart"><div class="{0}-barchart-apex"></div></div>'.format(cls);
+		var dateformat = '';
+		var chart = null;
+		var options = {};
+		var timeout = null;
+
+		element.append(container);
+
+		switch (config.datetype) {
+			case 'full':
+				dateformat = '[date]';
+				break;
+			case 'years':
+				dateformat = 'yyyy';
+				break;
+			case 'months':
+				dateformat = 'MMM';
+				break;
+			case 'days':
+				dateformat = 'ddd';
+				break;
+			case 'hours':
+				dateformat = 'HH:mm';
+				break;
+		}
+
+		var options = {
+			chart: {
+				type: 'bar',
+				toolbar: {
+					show: false,
+					tools: {
+						zoom: false
+					}
+				}
+			},
+			legend: {
+				show: true,
+				position: 'bottom',
+				fontSize: '11px',
+				itemMargin: {
+					vertical: 5
+				}
+			},
+			yaxis: {
+				max: max => (config.max ? config.max : max),
+				min: min => (config.min ? config.min : min)
+			},
+			xaxis: {
+				labels: {
+					formatter: value => value.format(config.decimals) + ' ' + config.unit,
+					style: {
+						fontSize: '11px'
+					}
+				}
+			},
+			plotOptions: {
+				bar: {
+					horizontal: true
+				}
+			},
+			dataLabels: {
+				enabled: false
+			}
+		};
+
+		var render = function(response) {
+
+			timeout = null;
+
+			for (var item of response) {
+				if (item.value && item.value.length) {
+					item.data = item.value;
+					delete item.value;
+				}
+
+				for (var data of item.data)
+					data.x = data.x.format(dateformat);
+			}
+
+			if (chart) {
+				chart.updateSeries(response);
+			} else {
+				options.series = response;
+
+				if (!config.unit && response.length)
+					config.unit = response[0].unit;
+
+				if (!config.decimals && response.length)
+					config.decimals = response[0].decimals;
+
+				chart = new ApexCharts(element.find('.{0}-barchart-apex'.format(cls))[0], options);
+				chart.render();
+			}
+		};
+
+		instance.on('value', function(response) {
+			timeout && clearTimeout(timeout);
+			timeout = setTimeout(render, 200, response);
+		});
+
+	};
+</script>

@@ -1,0 +1,18 @@
+<div class="padding">
+
+	<ui-component name="input" path="?.input" config="required:1;dirsource:#inputs;placeholder:@(Choose an input)">Input</ui-component>
+	<div class="help">Where to send data?</div>
+
+	<hr />
+
+	<div class="grid-3">
+		<div class="m">
+			<ui-component name="input" path="?.read" config="placeholder:address.city;monospace:1">Read from</ui-component>
+			<div class="help">Read value according to the path</div>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.write" config="placeholder:city;monospace:1">Write to</ui-component>
+			<div class="help">Write value according to the path</div>
+		</div>
+	</div>
+</div>

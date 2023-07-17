@@ -1,0 +1,28 @@
+<script>
+
+	exports.id = 'redirect';
+	exports.name = 'Redirect';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-external';
+	exports.inputs = [{ id: 'load', name: 'Load data' }];
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		instance.input('load', function(value) {
+			
+			var tmp = value;
+			
+			if (config.read)
+				tmp = instance.read(value, config.read);
+
+			if (!tmp)
+				return;
+			
+			instance.datasource(config.datasource, function(response) {
+				var item = response.findItem('id', tmp);
+				location.href = item.url;
+			});
+		});
+	};
+</script>

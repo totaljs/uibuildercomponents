@@ -1,0 +1,129 @@
+<style>
+	.CLASS label { font-size: 12px; margin-bottom: 5px; display: block; outline: 0; }
+	.CLASS label i { margin-right: 5px; }
+
+	.CLASS_togglegroup { display: flex; justify-content: space-between; }
+	.CLASS_togglegroup > figure { position: relative; cursor: pointer; flex-grow: 1; padding: 15px; text-align: center; font-size: 12px; background-color: #fff; transition: background-color .2s, border-color .2s; border: 1px solid #e0e0e0; border-right: 0; }
+	.CLASS_togglegroup > figure:last-child { border-right: 1px solid #e0e0e0; }
+	.CLASS_togglegroup > figure i { font-size: 18px; margin-bottom: 5px; transform: scale(1); }
+	.CLASS_togglegroup > figure.UI_checked { border-color: var(--color) !important; background-color: var(--color) !important; color: #fff !important; font-weight: bold; }
+	.CLASS_togglegroup > figure:hover { background-color: rgba(var(--rgb), 0.05);  }
+
+	.CLASS.UI_required label { font-weight: bold; }
+	.CLASS.UI_required label:before { content: '*'; color: red; margin-right: 5px; }
+	.CLASS.UI_disabled * { cursor: not-allowed !important; }
+	.CLASS.UI_disabled figure { background-color: #f0f0f0; color: #a0a0a0; }
+	.CLASS.UI_disabled figure.UI_checked { background-color: rgba(var(--rgb), 0.5) !important; border-color: rgba(var(--rgb), 0.05) !important; }
+
+	.CLASS_bg .CLASS_togglegroup > figure { background-color: #f8f8f8; }
+	.CLASS_radius > .CLASS_togglegroup { border-radius: var(--radius); }
+	.CLASS_radius > .CLASS_togglegroup > figure:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+	.CLASS_radius > .CLASS_togglegroup > figure:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+</style>
+
+<body>
+	<div class="CLASS_togglegroup">
+		{{ foreach m in value }}
+			<figure data-id="{{ if m.id }}{{ m.id }}{{ else }}{{ m.name }}{{ fi }}">{{ if m.icon }}<i class="{{ m.icon }}"></i>{{ fi }}<div>{{ m.name }}</div></figure>
+		{{ end }}
+	</div>
+</body>
+
+<script>
+
+	exports.id = 'togglegroup';
+	exports.name = 'Toggle group';
+	exports.group = 'Controls';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-dot-circle';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls) {
+		instance.state.bind = true;
+
+		var defaultval = null;
+
+		var render = function(response) {
+			var template = instance.maketemplate();
+			var icon = config.icon ? '<i class="{0}"></i>'.format(config.icon) : '';
+			var label = !config.nolabel ? '<label>{1}<span>{0}:</span></label>'.format(config.name, icon) : '';
+
+			element.html(label + template({ value: response }));
+
+			select(defaultval);
+		}
+
+		var select = function(value) {
+			element.find('figure[data-id="' + value + '"]').aclass('UI_checked');
+		}
+
+		element.on('click', 'figure', function() {
+
+			if (instance.state.disabled)
+				return;
+
+			var el = $(this);
+			var id = el.attrd('id');
+
+			element.find('.UI_checked').rclass('UI_checked');
+			el.tclass('UI_checked');
+
+			instance.set('value', id, 'nobind');
+			instance.set('modified', true);
+			setTimeout(() => instance.set('touched', true), 200);
+		});
+
+		element.tclass('UI_required', config.required == true);
+
+		instance.validate = function() {
+			var value = instance.state.value;
+			return config.required ? !!value : true;
+		};
+
+		instance.default = function() {
+			return defaultval;
+		};
+
+		instance.on('reset', function() {
+			instance.set('touched', false);
+			instance.set('modified', false);
+		});
+
+		instance.on('set', function(type, value, kind) {
+			if (kind === 'nobind')
+				return;
+
+			switch (type) {
+				case 'value':
+					loaddata();
+					break;
+			}
+		});
+
+		var loaddata = function() {
+			instance.datasource(config.datasource, function(response) {
+
+				if (config.default !== 0) {
+					var index = config.default - 1 || 0;
+
+					if (index > response.length)
+						index = 0
+
+					defaultval = response[index].id ? response[index].id : response[index].name;
+					instance.set('value', defaultval, 'nobind');
+				}
+				
+				render(response);
+			});
+		}
+
+		instance.on('ready', function() {
+			config.background && element.aclass(cls + '_bg');
+			config.radius && element.aclass(cls + '_radius');
+
+			loaddata();
+			instance.check();
+		});
+
+	};
+</script>

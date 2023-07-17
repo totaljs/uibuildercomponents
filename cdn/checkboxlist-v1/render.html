@@ -1,0 +1,108 @@
+<style>
+	.CLASS label { font-size: 12px; margin-bottom: 5px; display: block; outline: 0; }
+	.CLASS label i { margin-right: 5px; }
+
+	.CLASS figure * { cursor: pointer; }
+	.CLASS figure span { width: 20px; height: 20px; line-height: 19px; font-size: 11px; margin: 0 7px 0 0; text-align: center; float: left; border: 1px solid #d0d0d0; border-radius: var(--radius); background: #fff; }
+	.CLASS figure div { line-height: 22px; font-size: 12px; margin-bottom: 3px; display: block; outline: 0; margin-left: 30px; margin-bottom: 5px; }
+	.CLASS figure span i { display: none; font-weight: bold; }
+	.CLASS figure.UI_checked span { background-color: var(--color); border-color: var(--color); }
+	.CLASS figure.UI_checked span i { display: inline-block; color: #fff; }
+
+	.CLASS.UI_touched.UI_invalid figure span, .CLASS.UI_touched.UI_invalid figure div { border-color: red; color: red; }
+	.CLASS.UI_required label { font-weight: bold; }
+	.CLASS.UI_required label:before { content: '*'; color: red; margin-right: 5px; }
+	.CLASS.UI_disabled * { cursor: not-allowed !important; }
+	.CLASS.UI_disabled figure { color: #a0a0a0; }
+	.CLASS.UI_disabled figure span { background-color: #f0f0f0; color: #b0b0b0; border-color: #e0e0e0; }
+
+
+</style>
+
+<body>
+	{{ foreach m in value }}
+		<figure data-id="{{ if m.id }}{{ m.id }}{{ else }}{{ m.name }}{{ fi }}"><span><i class="ti ti-check"></i></span><div>{{ m.name }}</div></figure>
+	{{ end }}
+</body>
+
+<script>
+
+	exports.id = 'checkboxlist';
+	exports.name = 'Checkboxlist';
+	exports.group = 'Controls';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-list-alt';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		instance.state.bind = true;
+
+		var arr = [];
+
+		var render = function(response) {
+			var template = instance.maketemplate();
+			var icon = config.icon ? '<i class="{0}"></i>'.format(config.icon) : '';
+			var label = !config.nolabel ? '<label>{1}<span>{0}:</span></label>'.format(config.name, icon) : '';
+
+			element.html(label + template({ value: response }));
+		};
+
+		element.on('click', '> figure', function() {
+			var el = $(this);
+			var id = el.attrd('id');
+			el.tclass('UI_checked');
+
+			var is = el.hasClass('UI_checked');
+			var index = arr.indexOf(id);
+
+			if (is)
+				index === -1 && arr.push(id);
+			else
+				index !== -1 && arr.splice(index, 1);
+
+			instance.set('value', arr, 'nobind');
+			instance.set('modified', true);
+			setTimeout(() => instance.set('touched', true), 200);
+		});
+
+		element.tclass('UI_required', config.required == true);
+
+		instance.validate = function() {
+			var value = instance.state.value;
+			return config.required ? !!value : true;
+		};
+
+		instance.default = function() {
+			loaddata();
+		};
+
+		instance.on('reset', function() {
+			instance.set('touched', false);
+			instance.set('modified', false);
+		});
+
+		instance.on('set', function(type, value, kind) {
+			if (kind === 'nobind')
+				return;
+
+			switch (type) {
+				case 'value':
+					loaddata();
+					break;
+			}
+		});
+
+		var loaddata = function() {
+			instance.datasource(config.datasource, function(response) {
+				render(response);
+			});
+		}
+
+		instance.on('ready', function() {
+			loaddata();
+			instance.check();
+		});
+
+	};
+</script>

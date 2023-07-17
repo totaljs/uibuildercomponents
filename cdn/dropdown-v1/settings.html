@@ -1,0 +1,28 @@
+<div class="padding">
+
+	<div class="m">
+		<ui-component name="input" path="?.datasource" config="dirsource:#datasource;dirraw:1;innerlabel:1;required:1">Datasource</ui-component>
+	</div>
+
+	<div class="grid-3">
+		<div class="m">
+			<ui-component name="input" path="?.error" config="placeholder:A custom error message">Error message</ui-component>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.help" config="placeholder:Enter a value">Help message</ui-component>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.placeholder" config="placeholder:Enter a value">Placeholder</ui-component>
+		</div>
+		<div class="m">
+			<ui-component name="input" path="?.icon" config="type:icon;placeholder:Choose icon">Icon</ui-component>
+		</div>
+
+	</div>
+
+	<hr style="margin-top:10px" />
+	<ui-component name="input" path="?.required" config="type:checkbox" class="b">Required</ui-component>
+	<ui-component name="input" path="?.bold" config="type:checkbox">Use bold font</ui-component>
+	<ui-component name="input" path="?.monospace" config="type:checkbox">Use monospace font</ui-component>
+
+</div>

@@ -1,0 +1,115 @@
+<style>
+	.CLASS label { font-size: 12px; margin-bottom: 5px; display: block; outline: 0; }
+	.CLASS label i { margin-right: 5px; }
+
+	.CLASS figure * { cursor: pointer; }
+	.CLASS figure span { width: 20px; height: 20px; line-height: 18px; font-size: 10px; margin: 0 7px 0 0; transition: background-color .2s, border-color .2s; text-align: center; float: left; border: 1px solid #d0d0d0; border-radius: 50%; background: #fff; }
+	.CLASS figure div { line-height: 22px; font-size: 12px; margin-bottom: 3px; display: block; outline: 0; }
+	.CLASS figure span i { display: none; font-weight: bold; font-size: 10px; color: #fff; }
+	.CLASS figure.UI_checked span { border-color: var(--color); background-color: var(--color); }
+	.CLASS figure.UI_checked span i { display: inline-block; }
+
+	.CLASS.UI_required label { font-weight: bold; }
+	.CLASS.UI_required label:before { content: '*'; color: red; margin-right: 5px; }
+	.CLASS.UI_disabled * { cursor: not-allowed !important; }
+	.CLASS.UI_disabled figure { color: #a0a0a0; }
+	.CLASS.UI_disabled figure span { background-color: #f0f0f0; color: #b0b0b0; border-color: #e0e0e0; }
+</style>
+
+<body>
+	{{ foreach m in value }}
+		<figure data-id="{{ if m.id }}{{ m.id }}{{ else }}{{ m.name }}{{ fi }}"><span><i class="ti ti-check"></i></span><div>{{ m.name }}</div></figure>
+	{{ end }}
+</body>
+
+<script>
+
+	exports.id = 'radiobutton';
+	exports.name = 'Radio button';
+	exports.group = 'Controls';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-dot-circle';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls) {
+		instance.state.bind = true;
+
+		var defaultval = null;
+
+		var render = function(response) {
+			var template = instance.maketemplate();
+			var icon = config.icon ? '<i class="{0}"></i>'.format(config.icon) : '';
+			var label = '<label>{1}<span>{0}:</span></label>'.format(config.name, icon);
+
+			element.html(label + template({ value: response }));
+
+			select(defaultval);
+		}
+
+		var select = function(value) {
+			element.find('figure[data-id="' + value + '"]').aclass('UI_checked');
+		}
+
+		element.on('click', '> figure', function() {
+
+			if (instance.state.disabled)
+				return;
+
+			var el = $(this);
+			var id = el.attrd('id');
+
+			element.find('.UI_checked').rclass('UI_checked');
+			el.tclass('UI_checked');
+
+			instance.set('value', id, 'nobind');
+			instance.set('modified', true);
+			setTimeout(() => instance.set('touched', true), 200);
+		});
+
+		element.tclass('UI_required', config.required == true);
+
+		instance.validate = function() {
+			var value = instance.state.value;
+			return config.required ? !!value : true;
+		};
+
+		instance.default = function() {
+			return defaultval;
+		};
+
+		instance.on('reset', function() {
+			instance.set('touched', false);
+			instance.set('modified', false);
+		});
+
+		instance.on('set', function(type, value, kind) {
+			if (kind === 'nobind')
+				return;
+
+			switch (type) {
+				case 'value':
+					loaddata();
+					break;
+			}
+		});
+
+		var loaddata = function() {
+			instance.datasource(config.datasource, function(response) {
+				var index = config.default - 1 || 0;
+
+				if (index > response.length)
+					index = 0
+
+				defaultval = response[index].id ? response[index].id : response[index].name;
+				instance.set('value', defaultval, 'nobind');
+				render(response);
+			});
+		}
+
+		instance.on('ready', function() {
+			loaddata();
+			instance.check();
+		});
+
+	};
+</script>
