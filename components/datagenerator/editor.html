@@ -4,8 +4,8 @@
 	exports.name = 'Data generator';
 	exports.group = 'Data';
 	exports.author = 'Total.js';
-	exports.icon = 'ti ti-database';
-	exports.config = { value: '', note: 'A custom note' };
+	exports.icon = 'ti ti-code';
+	exports.config = { name: 'Name', value: '', note: 'A custom note' };
 	exports.render = '/components/datagenerator/render.html';
 	exports.settings = '/components/datagenerator/settings.html';
 	exports.follow = true;
@@ -13,28 +13,17 @@
 
 	exports.make = function(instance, config, element) {
 
-		element.aclass('UI_special m').html('<i class="{0}"></i><label>{name}</label><div>{note}</div>'.format(instance.component.icon).args(config, 'escape'));
-
-		element.on('dblclick', 'div', function(e) {
-			e.preventDefault();
-			e.stopPropagation();
-			var el = $(this);
-			var opt = {};
-			opt.icons = false;
-			opt.format = false;
-			instance.edit(el, opt, function(response) {
-				config.note = response.html;
-			});
-		});
+		element.aclass('UI_special m').html('<i class="{0}"></i><label>{1}<span>{2}</span></label>'.format(instance.component.icon, instance.component.name, config.name.encode()));
 
 		instance.on('configure', function() {
-			element.find('label').text(config.name);
+			element.find('label span').text(config.name);
 		});
 
 		instance.on('stringify', function(meta, isbuild) {
 			if (isbuild)
 				delete meta.config.note;
 		});
+
 	};
 
 </script>

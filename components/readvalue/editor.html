@@ -6,7 +6,7 @@
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-eye';
 	exports.version = '1';
-	exports.config = { read: '' };
+	exports.config = { name: 'Name', read: '' };
 	exports.render = '/components/readvalue/render.html';
 	exports.settings = '/components/readvalue/settings.html';
 	exports.follow = true;
@@ -14,11 +14,11 @@
 
 	exports.make = function(instance, config, element) {
 
-		element.aclass('UI_special m').html('<i class="{0}"></i><label>{name}</label><div class="monospace">{read}</div>'.format(instance.component.icon).args(config, 'escape'));
+		element.aclass('UI_special m').html('<i class="{0}"></i><label>Read value<span>{name}</span></label><div><i class="ti ti-long-arrow-right mr5"></i><span class="monospace">{1}</span></div>'.format(instance.component.icon, config.read || DEF.empty).args(config, 'escape'));
 
 		instance.on('configure', function() {
-			element.find('label').text(config.name);
-			element.find('div').text(config.read);
+			element.find('label span').text(config.name);
+			element.find('div span').text(config.read || DEF.empty);
 		});
 
 	};

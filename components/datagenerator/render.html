@@ -4,12 +4,11 @@
 	exports.name = 'Data generator';
 	exports.group = 'Data';
 	exports.author = 'Total.js';
-	exports.icon = 'ti ti-globe';
+	exports.icon = 'ti ti-code';
 	exports.version = '1';
 
 	exports.make = function(instance, config, element) {
 		instance.on('ready', function() {
-			// A small delay due to other initializations
 			setTimeout(function() {
 				var value = new Function('return ' + config.value)();
 				instance.set('value', value);

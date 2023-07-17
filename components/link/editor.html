@@ -12,11 +12,11 @@
 	exports.gap = true;
 
 	exports.make = function(instance, config, element) {
-		element.aclass('UI_special').html('<i class="{0}"></i><label></label><div></div>'.format(instance.component.icon));
+		element.aclass('UI_special').html('<i class="{0}"></i><label></label><div><i class="ti ti-arrow-right mr5"></i><span></span></div>'.format(instance.component.icon));
 		instance.on('configure', function() {
 			element.find('label').text(config.name);
 			var name = DEF.cl.apps.findValue('id', config.url, 'name', '');
-			element.find('div').html(name || config.url);
+			element.find('div span').text(name || config.url || DEF.empty);
 		});
 		instance.emit('configure');
 	};

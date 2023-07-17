@@ -24,7 +24,7 @@
 	exports.make = function(instance, config, element, cls) {
 
 		var cls2 = '.' + cls;
-		var html = instance.maketemplate('<div class="CLASS_icon" data-name="icon"><i class="{{ icon }}" {{ if color }}style="color:{{ color }}"{{ fi }}></i></div><div class="CLASS_note hellip" data-name="note">{{ note }}</div><div class="CLASS_value hellip" data-name="value">{{ value }}</div>');
+		var html = instance.maketemplate('<div class="CLASS_icon" data-name="icon"><i class="{{ icon }}"{{ if color }} style="color:{{ color }}"{{ fi }}></i></div><div class="CLASS_note hellip" data-name="note">{{ note }}</div><div class="CLASS_value hellip" data-name="value">{{ value }}</div>');
 
 		var render = function() {
 			element.html(html(config));
