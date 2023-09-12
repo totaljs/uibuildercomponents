@@ -413,6 +413,16 @@
 		"readme": "The component can load another app."
 	},
 	{
+		"id": "listbox",
+		"group": "Content",
+		"name": "Listbox",
+		"author": "Total.js",
+		"icon": "ti ti-list-alt",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/listbox-v1/editor.html",
+		"readme": "__Listbox data-source needs to contain__:\n\n```js\n[\n\t{ name: 'Ruby' },\n\t{ name: 'PHP' },\n\t{ name: 'node.js', description: 'Lorem ipsum' // optional },\n\t{ name: 'Python' }\n]\n```"
+	},
+	{
 		"id": "listview",
 		"group": "List",
 		"name": "Listview",
