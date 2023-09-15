@@ -40,6 +40,8 @@ FUNC.parse = function(filename, response) {
 	var icon = response.match(/exports\.icon.*?;/);
 	var name = response.match(/exports\.name.*?;/);
 	var group = response.match(/exports\.group.*?;/);
+	var type = response.match(/exports\.type.*?;/);
+	var floating = response.match(/exports\.floating.*?;/);
 	var data = {};
 
 	data.id = filename;
@@ -47,6 +49,8 @@ FUNC.parse = function(filename, response) {
 	data.name = name ? FUNC.evaluate(name[0]).name : '';
 	data.author = author ? FUNC.evaluate(author[0]).author : '';
 	data.icon = icon ? FUNC.evaluate(icon[0]).icon : '';
+	data.type = type ? FUNC.evaluate(type[0]).type : '';
+	data.floating = floating ? FUNC.evaluate(floating[0]).floating : '';
 	data.color = color ? FUNC.evaluate(color[0]).color : undefined;
 	data.version = version ? FUNC.evaluate(version[0]).version : '';
 	data.url = 'https://cdn.componentator.com/uibuilder/' + filename + '-v' + (data.version || '1') + '/editor.html';
@@ -61,6 +65,7 @@ FUNC.parse = function(filename, response) {
 
 var path = F.path.join(process.cwd(), '/components/');
 var components = [];
+var lists = { app: {}, dashboard: {}, flowboard: {} };
 
 Fs.readdir(path, function(err, dir) {
 
@@ -84,6 +89,19 @@ Fs.readdir(path, function(err, dir) {
 				var html = F.Fs.readFileSync(F.Path.join(dircomponent, file)).toString('utf8');
 				var data = FUNC.parse(item, html);
 
+
+				if (data.floating)
+					lists.flowboard[data.id] = data.url;
+				else if (data.type) {
+					for (let t of data.type) {
+						if (lists[t])
+							lists[t][data.id] = data.url;
+					}
+				} else {
+					lists.app[data.id] = data.url;
+					lists.dashboard[data.id] = data.url;
+				}
+
 				components.push(data);
 
 				p = F.Path.join(cdn, item + '-v' + (data.version || 1));
@@ -102,8 +120,13 @@ Fs.readdir(path, function(err, dir) {
 	}, function() {
 
 		F.Fs.writeFile(F.Path.join(cdn, 'db.json'), JSON.stringify(components, null, '\t'), function() {
+
+			for (var key in lists)
+				F.Fs.writeFileSync(F.Path.join(cdn, key + '.json'), JSON.stringify(lists[key], null, '\t'));
+
 			console.log('Done.');
 			process.exit(0);
 		});
+
 	});
 });
