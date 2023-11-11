@@ -23,5 +23,5 @@ This component renders external image from.
 </readme>
 
 <body>
-{{ if link }}<a href="{{ url }}"{{ if newtab }} target="_blank"{{ fi }}>{{ fi }}<img src="{{ src }}" alt=""{{ if width }} width="{{ width }}"{{ fi }}{{ if height }} height="{{ height }}"{{ fi }}{{ if rounded }} class="img-rounded"{{ fi }} />{{ if link }}</a>{{ fi }}
+{{ if link }}<a href="{{ url }}"{{ if newtab }} target="_blank"{{ fi }}>{{ fi }}<img src="{{ src }}" alt=""{{ if width }} width="{{ width }}"{{ fi }}{{ if height }} height="{{ height }}"{{ fi }} class="img-responsive{{ if rounded }} img-rounded{{ fi }}" />{{ if link }}</a>{{ fi }}
 </body>
