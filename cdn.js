@@ -105,7 +105,8 @@ Fs.readdir(path, function(err, dir) {
 
 				components.push(data);
 
-				p = F.Path.join(cdn, item + '-v' + (data.version || 1));
+				// p = F.Path.join(cdn, item + '-v' + (data.version || 1));
+				p = F.Path.join(cdn, item);
 
 				try {
 					F.Fs.mkdirSync(p);

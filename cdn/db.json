@@ -8,7 +8,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/accordion-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/accordion/editor.html",
 		"readme": "The Accordion is a vertically collapsible content panel which is displaying panels, one or multiple at a time within the available space."
 	},
 	{
@@ -20,7 +20,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/applayout-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/applayout/editor.html",
 		"readme": ""
 	},
 	{
@@ -35,7 +35,7 @@
 		],
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/barchart-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/barchart/editor.html",
 		"readme": "__Barchart data-source needs to contain__:\n\n```js\n[\n\t{\n\t\tname: 'name', // name of the serie\n\t\tdata: [{ x: 'DATE', y: 'value' }, { x: 'DATE', y: 'value' }, ...], // series\n\t\tdecimals: 2, // optional, number of decimal places\n\t\tunit: '°C' // optional\n\t}\n]\n```"
 	},
 	{
@@ -50,7 +50,7 @@
 		],
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/button-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/button/editor.html",
 		"readme": "# Button Component\n\nThe Button component allows you to customize various aspects of buttons in your web application. You can configure the following options:\n\n- **Path:** Set the path for the button.\n- **Font and Style:** Customize the font and style of the button.\n- **Input:** Define the input settings for the button.\n- **Name:** Specify the name or label for the button."
 	},
 	{
@@ -62,7 +62,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/calendar-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/calendar/editor.html",
 		"readme": "The Calendar is a component which provides the multi-view representation to display and select a date. Also, provide options to navigate in different levels of views like month, year, decade."
 	},
 	{
@@ -77,7 +77,7 @@
 		],
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/callout-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/callout/editor.html",
 		"readme": "# Callout Component\n\nThe Callout component is a versatile element that allows you to create various callout messages in your web application. With this component, you can easily set the following properties:\n\n- **Path:** Define the path or location for the callout.\n- **Name:** Specify a name or label for the callout.\n- **Icon:** Customize the icon associated with the callout.\n- **Type:** Choose from different callout types: alert, error, message, and success."
 	},
 	{
@@ -89,7 +89,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/captureoutput-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/captureoutput/editor.html",
 		"readme": "This component can capture data from an output."
 	},
 	{
@@ -101,7 +101,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/cards-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/cards/editor.html",
 		"readme": "With this component you can create interesting content. Most suitable on articles."
 	},
 	{
@@ -113,7 +113,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/checkbox-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/checkbox/editor.html",
 		"readme": "The component that switches between two states: `true`/`false`"
 	},
 	{
@@ -125,7 +125,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/checkboxlist-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/checkboxlist/editor.html",
 		"readme": "__Checkboxlist data-source needs to contain__:\n\n```js\n[\n\t{  id: 1, name: 'Ruby' },\n\t{  id: 2, name: 'PHP' },\n\t{  id: 3, name: 'node.js' },\n\t{  id: 4, name: 'Python', }\n]\n```"
 	},
 	{
@@ -137,7 +137,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/color-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/color/editor.html",
 		"readme": "The component allows selecting a color from the offered list."
 	},
 	{
@@ -149,7 +149,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/columnchart-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/columnchart/editor.html",
 		"readme": "__Columnchart data-source needs to contain__:\n\n```js\n[\n\t{\n\t\tname: 'name', // name of the serie\n\t\tdata: [{ x: 'DATE', y: 'value' }, { x: 'DATE', y: 'value' }, ...], // series\n\t\tdecimals: 2, // optional, number of decimal places\n\t\tunit: '°C' // optional\n\t}\n]\n```"
 	},
 	{
@@ -161,7 +161,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/columns-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/columns/editor.html",
 		"readme": "# Columns Component\n\nThe Columns component is a valuable tool for dividing and organizing your content into a specified number of parts within your web application. With this component, you can achieve the following:\n\n- **Content Division:** Easily divide your content into a specific number of parts.\n- **Settings:** Configure the number of parts to suit your content organization needs."
 	},
 	{
@@ -173,7 +173,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/comment-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/comment/editor.html",
 		"readme": "Simple component for writing a comment."
 	},
 	{
@@ -185,7 +185,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/container-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/container/editor.html",
 		"readme": "Container is a siple layout-component, where you can place your content."
 	},
 	{
@@ -197,7 +197,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/counter-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/counter/editor.html",
 		"readme": "This component keeps track of the count and increments it every time it receives a notify-event."
 	},
 	{
@@ -209,7 +209,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/datagenerator-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/datagenerator/editor.html",
 		"readme": "Data generator creates data defined in the configuration."
 	},
 	{
@@ -221,7 +221,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/datagps-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/datagps/editor.html",
 		"readme": "This component can retrieve GPS position.\n\n__Output__:\n\n```js\n{\n\tlat: Number,\n\tlng: Number,\n\tspeed: Number,\n\taltitude: Number,\n\taccuracy: Number,\n\tpos: String\n}\n```"
 	},
 	{
@@ -233,7 +233,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/datagrid-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/datagrid/editor.html",
 		"readme": "This component displays data from your datasource in a grid. In settings you can set datasource, as well as style of grid columns."
 	},
 	{
@@ -245,7 +245,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/datareader-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/datareader/editor.html",
 		"readme": "Data reader reads data from the URL address and stores them in memory. Other components can read this data."
 	},
 	{
@@ -257,7 +257,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/datasource-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/datasource/editor.html",
 		"readme": "This component displays data from specified datasource."
 	},
 	{
@@ -269,7 +269,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/datatransformer-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/datatransformer/editor.html",
 		"readme": "The data transform component can transform incoming data."
 	},
 	{
@@ -281,7 +281,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/dataview-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/dataview/editor.html",
 		"readme": "Data view reads data from predefined data views and stores them in memory. Other components can read this data."
 	},
 	{
@@ -293,7 +293,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/display-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/display/editor.html",
 		"readme": "This component sets display sizes according to the current element width (as a class e.g. `d-xs` or `d-lg`). It can affect, for example, the Columns component."
 	},
 	{
@@ -305,7 +305,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/donutchart-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/donutchart/editor.html",
 		"readme": "__Donutchart data-source needs to contain__:\n\n```js\n[\n\t{\n\t\tdata: 44,\n\t\tname: 'Apple',\n\t\tunit: '',\n\t\tdecimals: 1\n\t},\n\t{\n\t\tdata: 55,\n\t\tname: 'Mango',\n\t\tunit: '',\n\t\tdecimals: 1\n\t}\n```"
 	},
 	{
@@ -317,7 +317,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/dropdown-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/dropdown/editor.html",
 		"readme": "__Dropdown data-source needs to contain__:\n\n```js\n[\n\t{ id: 1, name: 'Nothing' },\n\t{ id: 2, name: 'jComponent' },\n\t{ id: 3, name: 'Angular.js' },\n\t{ id: 4, name: 'React' }\n]\n```"
 	},
 	{
@@ -329,7 +329,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/enable-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/enable/editor.html",
 		"readme": "This component enables editing of elements in it, under specified conditions, you can set in settings."
 	},
 	{
@@ -341,7 +341,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/externalimage-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/externalimage/editor.html",
 		"readme": "This component renders external image from."
 	},
 	{
@@ -355,7 +355,7 @@
 		],
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/fbfloorplan-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/fbfloorplan/editor.html",
 		"readme": "The component can be used as a background / floor plan for dynamic markers."
 	},
 	{
@@ -369,7 +369,7 @@
 		],
 		"floating": true,
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/fbmarker-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/fbmarker/editor.html",
 		"readme": ""
 	},
 	{
@@ -381,7 +381,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/fileuploader-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/fileuploader/editor.html",
 		"readme": "The component allows users to upload files to a specific endpoint. A response will be binded to the path set in the configuration."
 	},
 	{
@@ -393,7 +393,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/flowinput-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/flowinput/editor.html",
 		"readme": "The component will resend input to other inputs."
 	},
 	{
@@ -405,7 +405,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/flowoutput-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/flowoutput/editor.html",
 		"readme": "The component will capture output from other outputs and send data to the Flow."
 	},
 	{
@@ -417,7 +417,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/form-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/form/editor.html",
 		"readme": "The form collects only components with defined paths."
 	},
 	{
@@ -429,7 +429,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/gap-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/gap/editor.html",
 		"readme": "This component creates a gap, according to number of pixels you set in settings."
 	},
 	{
@@ -441,7 +441,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/headline-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/headline/editor.html",
 		"readme": "This component creates headline. You can set type and style in settings."
 	},
 	{
@@ -453,7 +453,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/hiddencontainer-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/hiddencontainer/editor.html",
 		"readme": "This container will always be hidden in the render and it's targeted for data operations."
 	},
 	{
@@ -465,7 +465,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/hr-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/hr/editor.html",
 		"readme": "Horizontal rule component."
 	},
 	{
@@ -477,7 +477,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/html-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/html/editor.html",
 		"readme": "This component renders raw HTML."
 	},
 	{
@@ -489,7 +489,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/icon-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/icon/editor.html",
 		"readme": "The component obtaining a list of Total.js icons and search field."
 	},
 	{
@@ -501,7 +501,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/image-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/image/editor.html",
 		"readme": "This component inserts image from your device, or from specific path. Just click on the component in the editor, and insert comfortably image from your device, or set a path to your image in settings."
 	},
 	{
@@ -513,7 +513,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/infocard-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/infocard/editor.html",
 		"readme": "This component displays an information-type text. You can set your style in settings."
 	},
 	{
@@ -525,7 +525,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/input-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/input/editor.html",
 		"readme": "The component processes input data and sets it according to a defined path."
 	},
 	{
@@ -537,7 +537,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/json-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/json/editor.html",
 		"readme": "This component prints data in JSON format."
 	},
 	{
@@ -549,7 +549,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/lastvalue-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/lastvalue/editor.html",
 		"readme": "This component displays text value and icon according to your styles in settings."
 	},
 	{
@@ -561,7 +561,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/linechart-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/linechart/editor.html",
 		"readme": "__Linechart data-source needs to contain__:\n\n```js\n[\n\t{\n\t\tname: 'name', // name of the serie\n\t\tdata: [{ x: 'DATE', y: 'value' }, { x: 'DATE', y: 'value' }, ...], // series\n\t\tdecimals: 2, // optional, number of decimal places\n\t\tunit: '°C' // optional\n\t}\n]\n```"
 	},
 	{
@@ -573,7 +573,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/link-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/link/editor.html",
 		"readme": "The component can load another app."
 	},
 	{
@@ -585,7 +585,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/listbox-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/listbox/editor.html",
 		"readme": "__Listbox data-source needs to contain__:\n\n```js\n[\n\t{ name: 'Ruby' },\n\t{ name: 'PHP' },\n\t{ name: 'node.js', description: 'Lorem ipsum' // optional },\n\t{ name: 'Python' }\n]\n```"
 	},
 	{
@@ -597,7 +597,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/listview-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/listview/editor.html",
 		"readme": "__Listview data-source needs to contain__:\n\n```js\n[\n\t{ name: 'Ruby' },\n\t{ name: 'PHP' },\n\t{ name: 'Total.js', description: 'Lorem ipsum' // optional },\n\t{ name: 'Python' }\n]\n```"
 	},
 	{
@@ -609,7 +609,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/map-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/map/editor.html",
 		"readme": "This component displays a map, with a position, you set in settings as a map center. In settings you can change the style of this component."
 	},
 	{
@@ -621,7 +621,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/panel-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/panel/editor.html",
 		"readme": "The component is suitable to making a better design."
 	},
 	{
@@ -633,7 +633,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/paragraph-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/paragraph/editor.html",
 		"readme": "This component creates a paragraph element with specific style you can set in settings."
 	},
 	{
@@ -650,7 +650,7 @@
 		],
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/part-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/part/editor.html",
 		"readme": "The form collects only components with defined paths."
 	},
 	{
@@ -664,7 +664,7 @@
 		],
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/partcontainer-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/partcontainer/editor.html",
 		"readme": "The form collects only components with defined paths."
 	},
 	{
@@ -676,7 +676,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/piechart-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/piechart/editor.html",
 		"readme": "__Piechart data-source needs to contain__:\n\n```js\n[\n\t{\n\t\tdata: 44,\n\t\tname: 'Apple',\n\t\tunit: '',\n\t\tdecimals: 1\n\t},\n\t{\n\t\tdata: 55,\n\t\tname: 'Mango',\n\t\tunit: '',\n\t\tdecimals: 1\n\t}\n]\n```"
 	},
 	{
@@ -688,7 +688,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/progressbar-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/progressbar/editor.html",
 		"readme": "Progress bar is used to visualize the progression of an extended operation."
 	},
 	{
@@ -700,7 +700,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/radiobutton-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/radiobutton/editor.html",
 		"readme": "__Radio button__ data-source needs to contain:\n\n```js\n[\n\t{ id: 1, name: 'Ruby', },\n\t{ id: 2, name: 'PHP', },\n\t{ id: 3, name: 'Node' },\n\t{ id: 4, name: 'Python' }\n]\n```"
 	},
 	{
@@ -712,7 +712,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/rating-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/rating/editor.html",
 		"readme": "The component lets a user provide a star rating or view other people's ratings on a numeric scale for any service provided."
 	},
 	{
@@ -724,7 +724,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/readvalue-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/readvalue/editor.html",
 		"readme": "Read value component reads a value according to the path and sets it according to the component's path."
 	},
 	{
@@ -736,7 +736,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/redirect-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/redirect/editor.html",
 		"readme": "The component can redirect page by datasource. Datasource is required and needs to contain: \n\n```js\n[\n\t{ id: 1, url: 'https://www.totaljs.com/' },\n\t{ id: 2, url: 'https://www.totaljs.com/' },\n\t{ id: 3, url: 'https://www.totaljs.com/' }\n]\n```"
 	},
 	{
@@ -748,7 +748,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/restreader-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/restreader/editor.html",
 		"readme": "This component reads data from a REST service and sets them according to the specified path."
 	},
 	{
@@ -760,7 +760,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/richtext-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/richtext/editor.html",
 		"readme": "Usage:ripple=\"false\"\n\t- Configure tis component by providing your API key, enabling plugins, and toggling autosave.\n\t\n- **API Key**: You can enter your API key, which is required for using the editor.\n- **Plugins**: You can select which TinyMCE plugins to enable for the editor.\n- **Autosave**: You can toggle autosave functionality."
 	},
 	{
@@ -772,7 +772,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/sendtoinput-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/sendtoinput/editor.html",
 		"readme": "This component can send data to an input."
 	},
 	{
@@ -784,7 +784,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/show-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/show/editor.html",
 		"readme": "This component shows/hides components you put into it. You cen set your circumstances in settings of this component."
 	},
 	{
@@ -796,7 +796,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/slider-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/slider/editor.html",
 		"readme": "Component allows to select a single value, but highlights with a range selection from the min value to the current handle value."
 	},
 	{
@@ -808,7 +808,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/sound-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/sound/editor.html",
 		"readme": "This component will play the sound you set in your settings."
 	},
 	{
@@ -820,7 +820,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/stylebox-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/stylebox/editor.html",
 		"readme": "This component is a content component, that displays content you put into it in editor. You can style this component in setttings."
 	},
 	{
@@ -832,7 +832,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/tabs-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/tabs/editor.html",
 		"readme": "The component is a content panel to show multiple contents in specific space one at a time."
 	},
 	{
@@ -844,7 +844,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/textarea-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/textarea/editor.html",
 		"readme": "The Multiline Textbox is used to edit or display multiple lines of text. You can allow resiging the height of an element."
 	},
 	{
@@ -856,7 +856,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/textbox-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/textbox/editor.html",
 		"readme": "A Textbox is an input element that allows to get input from the user. It allows the user either to edit or display the input values.\n__Types__:\n\t- `string`\n\t- `number`\n\t- `date`\n\t- `datetime`\n\t- `email`\n\t- `ZIP`\n\t- `phone number`\n\t- `password`"
 	},
 	{
@@ -868,7 +868,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/togglebutton-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/togglebutton/editor.html",
 		"readme": "Button that switches between two states: `true`/`false`"
 	},
 	{
@@ -880,7 +880,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/togglegroup-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/togglegroup/editor.html",
 		"readme": "__Toggle group__ data-source needs to contain:\n\n```js\n[\n\t{ id: 1, name: 'Ruby', icon: 'ti ti-totaljs' // optional },\n\t{ id: 2, name: 'PHP', },\n\t{ id: 3, name: 'Node' },\n\t{ id: 4, name: 'Python' }\n]\n```"
 	},
 	{
@@ -892,7 +892,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/toolbar-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/toolbar/editor.html",
 		"readme": "Series of buttons on a single line with headline."
 	},
 	{
@@ -904,7 +904,7 @@
 		"type": "",
 		"floating": "",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/video-v1/editor.html",
+		"url": "https://cdn.componentator.com/uibuilder/video/editor.html",
 		"readme": "This component plays a video from a link you set in settings."
 	}
 ]
