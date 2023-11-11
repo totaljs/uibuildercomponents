@@ -1,0 +1,25 @@
+<script>
+
+	exports.id = 'html';
+	exports.name = 'HTML';
+	exports.icon = 'ti ti-html';
+	exports.author = 'Total.js';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		var template = config.html.indexOf('{{') === -1 ? null : instance.maketemplate(config.html);
+		if (template) {
+			var model = {};
+			model.value = null;
+			element.html(template(model));
+			instance.on('set', function(type, value) {
+				if (type === 'value') {
+					model.value = value;
+					element.html(template(model));
+				}
+			});
+		} else
+			element.html(config.html);
+	};
+
+</script>
