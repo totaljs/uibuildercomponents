@@ -1,7 +1,7 @@
 <div class="padding">
 	<div class="grid-2">
 		<div class="m">
-			<ui-component name="input" path="?.url">Image URL address</ui-component>
+			<ui-component name="input" path="?.src">Image URL address</ui-component>
 		</div>
 		<div class="grid-2">
 			<div class="m">
@@ -17,5 +17,10 @@
 	<ui-component name="input" path="?.link" config="type:checkbox">Enable link</ui-component>
 	<ui-bind path="?.link" config="show" class="block hidden">
 		<ui-component name="input" path="?.newtab" config="type:checkbox">Open link in a new tab</ui-component>
+		<hr />
+		<div class="m">
+			<ui-component name="input" path="?.url" config="required:1">Link URL address</ui-component>
+		</div>
 	</ui-bind>
+
 </div>
