@@ -1,0 +1,18 @@
+<script>
+
+	exports.id = 'externalimage';
+	exports.name = 'External image';
+	exports.icon = 'ti ti-image';
+	exports.author = 'Total.js';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		var template = instance.maketemplate(instance.component.html);
+		element.html(template(config));
+	};
+
+</script>
+
+<body>
+{{ if link }}<a href="{{ url }}"{{ if newtab }} target="_blank"{{ fi }}>{{ fi }}<img src="{{ src }}" alt=""{{ if width }} width="{{ width }}"{{ fi }}{{ if height }} height="{{ height }}"{{ fi }}{{ if rounded }} class="img-rounded"{{ fi }} />{{ if link }}</a>{{ fi }}
+</body>

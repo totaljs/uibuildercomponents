@@ -16,7 +16,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-window",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/applayout-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/applayout-v1/editor.html",
+		"readme": ""
 	},
 	{
 		"id": "barchart",
@@ -35,7 +36,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-pointer",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/button-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/button-v1/editor.html",
+		"readme": "# Button Component\n\nThe Button component allows you to customize various aspects of buttons in your web application. You can configure the following options:\n\n- **Path:** Set the path for the button.\n- **Font and Style:** Customize the font and style of the button.\n- **Input:** Define the input settings for the button.\n- **Name:** Specify the name or label for the button."
 	},
 	{
 		"id": "calendar",
@@ -54,7 +56,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-info-circle",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/callout-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/callout-v1/editor.html",
+		"readme": "# Callout Component\n\nThe Callout component is a versatile element that allows you to create various callout messages in your web application. With this component, you can easily set the following properties:\n\n- **Path:** Define the path or location for the callout.\n- **Name:** Specify a name or label for the callout.\n- **Icon:** Customize the icon associated with the callout.\n- **Type:** Choose from different callout types: alert, error, message, and success."
 	},
 	{
 		"id": "captureoutput",
@@ -73,7 +76,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-menu",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/cards-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/cards-v1/editor.html",
+		"readme": "With this component you can create interesting content. Most suitable on articles."
 	},
 	{
 		"id": "checkbox",
@@ -122,7 +126,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-columns",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/columns-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/columns-v1/editor.html",
+		"readme": "# Columns Component\n\nThe Columns component is a valuable tool for dividing and organizing your content into a specified number of parts within your web application. With this component, you can achieve the following:\n\n- **Content Division:** Easily divide your content into a specific number of parts.\n- **Settings:** Configure the number of parts to suit your content organization needs."
 	},
 	{
 		"id": "comment",
@@ -131,7 +136,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-comment",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/comment-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/comment-v1/editor.html",
+		"readme": "Simple component for writing a comment."
 	},
 	{
 		"id": "container",
@@ -140,7 +146,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-window",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/container-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/container-v1/editor.html",
+		"readme": "Container is a siple layout-component, where you can place your content."
 	},
 	{
 		"id": "counter",
@@ -149,7 +156,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-calculator",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/counter-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/counter-v1/editor.html",
+		"readme": "This component keeps track of the count and increments it every time it receives a notify-event."
 	},
 	{
 		"id": "datagenerator",
@@ -178,7 +186,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-database-alt",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/datasource-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/datasource-v1/editor.html",
+		"readme": "This component displays data from specified datasource."
 	},
 	{
 		"id": "datatransformer",
@@ -207,7 +216,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-table-alt",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/datagrid-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/datagrid-v1/editor.html",
+		"readme": "This component displays data from your datasource in a grid. In settings you can set datasource, as well as style of grid columns."
 	},
 	{
 		"id": "display",
@@ -246,7 +256,18 @@
 		"author": "Total.js",
 		"icon": "ti ti-config",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/enable-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/enable-v1/editor.html",
+		"readme": "This component enables editing of elements in it, under specified conditions, you can set in settings."
+	},
+	{
+		"id": "externalimage",
+		"group": "Content",
+		"name": "External image",
+		"author": "Total.js",
+		"icon": "ti ti-image",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/externalimage-v1/editor.html",
+		"readme": "This component renders external image from."
 	},
 	{
 		"id": "fileuploader",
@@ -305,7 +326,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-enter",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/gap-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/gap-v1/editor.html",
+		"readme": "This component creates a gap, according to number of pixels you set in settings."
 	},
 	{
 		"id": "datagps",
@@ -324,7 +346,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-heading",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/headline-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/headline-v1/editor.html",
+		"readme": "This component creates headline. You can set type and style in settings."
 	},
 	{
 		"id": "hiddencontainer",
@@ -343,7 +366,18 @@
 		"author": "Total.js",
 		"icon": "ti ti-minus",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/hr-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/hr-v1/editor.html",
+		"readme": "Horizontal rule component."
+	},
+	{
+		"id": "html",
+		"group": "Content",
+		"name": "HTML",
+		"author": "Total.js",
+		"icon": "ti ti-html",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/html-v1/editor.html",
+		"readme": "This component renders raw HTML."
 	},
 	{
 		"id": "icon",
@@ -362,7 +396,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-image",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/image-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/image-v1/editor.html",
+		"readme": "This component inserts image from your device, or from specific path. Just click on the component in the editor, and insert comfortably image from your device, or set a path to your image in settings."
 	},
 	{
 		"id": "infocard",
@@ -371,7 +406,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-address-card",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/infocard-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/infocard-v1/editor.html",
+		"readme": "This component displays an information-type text. You can set your style in settings."
 	},
 	{
 		"id": "input",
@@ -390,7 +426,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-stopwatch",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/lastvalue-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/lastvalue-v1/editor.html",
+		"readme": "This component displays text value and icon according to your styles in settings."
 	},
 	{
 		"id": "linechart",
@@ -439,7 +476,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-map-pin",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/map-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/map-v1/editor.html",
+		"readme": "This component displays a map, with a position, you set in settings as a map center. In settings you can change the style of this component."
 	},
 	{
 		"id": "fbmarker",
@@ -448,7 +486,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-pin-alt",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/fbmarker-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/fbmarker-v1/editor.html",
+		"readme": ""
 	},
 	{
 		"id": "panel",
@@ -467,7 +506,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-align-left",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/paragraph-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/paragraph-v1/editor.html",
+		"readme": "This component creates a paragraph element with specific style you can set in settings."
 	},
 	{
 		"id": "part",
@@ -506,7 +546,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-volume",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/sound-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/sound-v1/editor.html",
+		"readme": "This component will play the sound you set in your settings."
 	},
 	{
 		"id": "progressbar",
@@ -576,7 +617,7 @@
 		"icon": "ti ti-underline",
 		"version": "1",
 		"url": "https://cdn.componentator.com/uibuilder/richtext-v1/editor.html",
-		"readme": ""
+		"readme": "Usage:ripple=\"false\"\n\t- Configure tis component by providing your API key, enabling plugins, and toggling autosave.\n\t\n- **API Key**: You can enter your API key, which is required for using the editor.\n- **Plugins**: You can select which TinyMCE plugins to enable for the editor.\n- **Autosave**: You can toggle autosave functionality."
 	},
 	{
 		"id": "sendtoinput",
@@ -595,7 +636,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-eye",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/show-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/show-v1/editor.html",
+		"readme": "This component shows/hides components you put into it. You cen set your circumstances in settings of this component."
 	},
 	{
 		"id": "slider",
@@ -614,7 +656,8 @@
 		"author": "Total.js",
 		"icon": "ti ti-pencil-paintbrush",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/stylebox-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/stylebox-v1/editor.html",
+		"readme": "This component is a content component, that displays content you put into it in editor. You can style this component in setttings."
 	},
 	{
 		"id": "tabs",
@@ -693,6 +736,7 @@
 		"author": "Total.js",
 		"icon": "ti ti-photo-video",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/video-v1/editor.html"
+		"url": "https://cdn.componentator.com/uibuilder/video-v1/editor.html",
+		"readme": "This component plays a video from a link you set in settings."
 	}
 ]

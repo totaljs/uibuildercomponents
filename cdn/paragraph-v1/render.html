@@ -25,7 +25,7 @@
 			var model = {};
 			model.value = null;
 			el.html(datatemplate(model));
-			instance.on('set', function(type, value, kind) {
+			instance.on('set', function(type, value) {
 				if (type === 'value') {
 					model.value = value;
 					el.html(datatemplate(model));
