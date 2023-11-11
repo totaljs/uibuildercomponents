@@ -1,0 +1,30 @@
+<style>
+	.CLASS .components { min-height: 40px; }
+</style>
+
+<script>
+
+	exports.id = 'restreader';
+	exports.name = 'REST Reader';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-globe';
+	exports.config = { url: '', timeout: 300 };
+	exports.render = 'https://cdn.componentator.com/uibuilder/restreader/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/restreader/settings.html';
+	exports.inputs = [{ id: 'load', name: 'Load data' }];
+	exports.follow = true;
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		element.append('<div class="UI_label"><i class="{icon}"></i><span>{0}</span></div><div class="UI_components UI_border m" data-index="0"></div>'.format(config.name.encode()).args(instance.component));
+		instance.on('configure', function() {
+			element.find('> .UI_label span').text(config.name);
+		});
+	};
+
+</script>
+
+<readme>
+This component reads data from a REST service and sets them according to the specified path.
+</readme>

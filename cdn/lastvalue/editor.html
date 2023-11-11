@@ -1,0 +1,62 @@
+<style>
+	.CLASS { margin-top: 21px; }
+	.CLASS { display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; width: 100%; min-height: 140px; /* padding: var(--gap); */ }
+	.CLASS_icon i { font-size: 100px; opacity: 0.1; color: #333; }
+	.CLASS_note { color: gray; padding-top: 9px; font-size: 12px; position: relative; z-index: 10; min-height: 26px; }
+	.CLASS_value { font-weight: bold; font-size: 17px; position: relative; z-index: 10; min-height: 25px; }
+	.CLASS_iconpos_top .CLASS_icon { position: relative; top: auto; left: auto; transform: none; }
+	.CLASS_iconpos_top .CLASS_icon i { opacity: .7; font-size: 42px; }
+	.CLASS_iconpos_overlay .CLASS_icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+</style>
+
+<script>
+
+	exports.id = 'lastvalue';
+	exports.name = 'Last value';
+	exports.group = 'Dashboard';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-stopwatch';
+	exports.config = { note: 'Enter note', value: 'Enter value', icon: 'ti ti-dashboard', iconpos: 'overlay' };
+	exports.settings = 'https://cdn.componentator.com/uibuilder/lastvalue/settings.html';
+	exports.render = 'https://cdn.componentator.com/uibuilder/lastvalue/render.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls) {
+
+		var cls2 = '.' + cls;
+		var html = instance.maketemplate('<div class="CLASS_icon" data-name="icon"><i class="{{ icon }}"{{ if color }} style="color:{{ color }}"{{ fi }}></i></div><div class="CLASS_note hellip" data-name="note">{{ note }}</div><div class="CLASS_value hellip" data-name="value">{{ value }}</div>');
+
+		var render = function() {
+			element.html(html(config));
+
+			element.rclass2(cls + '_iconpos_').aclass(cls + '_iconpos_' + config.iconpos);
+		};
+
+		render();
+
+		element.on('dblclick','' + cls2 + '_value, ' + cls2 + '_note', function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+
+			var el = $(this);
+			var type = el.attrd('name');
+			var opt = {};
+
+			instance.edit(el, opt, function(response) {
+				if (response.change)
+					config[type] = response.html;
+			});
+
+		});
+
+		instance.on('configure', function() {
+			render();
+		});
+
+	};
+
+</script>
+
+<readme>
+	This component displays text value and icon according to your styles in settings. 
+</readme>

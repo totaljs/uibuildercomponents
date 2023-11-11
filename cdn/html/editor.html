@@ -1,0 +1,22 @@
+<script>
+
+	exports.id = 'html';
+	exports.group = 'Content';
+	exports.name = 'HTML';
+	exports.icon = 'ti ti-html';
+	exports.author = 'Total.js';
+	exports.config = { html: 'You <b>HTML</b> code' };
+	exports.render = 'https://cdn.componentator.com/uibuilder/html/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/html/settings.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+		instance.on('configure', () => element.html(config.html));
+		instance.emit('configure');
+	};
+
+</script>
+
+<readme>
+This component renders raw HTML.
+</readme>

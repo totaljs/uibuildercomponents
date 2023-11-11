@@ -1,0 +1,45 @@
+<style>
+	.CLASS { margin: 5px; }
+	.CLASS_linechart { height: 140px; }
+</style>
+
+<script>
+
+	exports.id = 'linechart';
+	exports.name = 'Line chart';
+	exports.group = 'Charts';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-chart-line';
+	exports.config = { datetype: 'full', datasource: '', stroke: 'smooth', unit: '', decimals: 0 };
+	exports.settings = 'https://cdn.componentator.com/uibuilder/linechart/settings.html';
+	exports.render = 'https://cdn.componentator.com/uibuilder/linechart/render.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls) {
+
+		var placeholder = { name: instance.component.id };
+		var html = '<div class="UI_label"><i class="{icon}"></i><span>{0}</span></div><div class="{2}_linechart">{1}</div>'.format(config.name.encode(), FUNC.placeholder(placeholder), cls).args(instance.component);
+
+		element.html(html);
+
+		instance.on('configure', function() {
+			element.find('> .UI_label span').text(config.name);
+		});
+	};
+
+</script>
+
+<readme>
+__Linechart data-source needs to contain__:
+
+```js
+[
+	{
+		name: 'name', // name of the serie
+		data: [{ x: 'DATE', y: 'value' }, { x: 'DATE', y: 'value' }, ...], // series
+		decimals: 2, // optional, number of decimal places
+		unit: '°C' // optional
+	}
+]
+```
+</readme>

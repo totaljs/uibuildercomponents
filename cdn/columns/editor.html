@@ -1,0 +1,86 @@
+<style>
+	.CLASS > .containers { min-height: 50px; display: grid; grid-gap: var(--gap); }
+	.CLASS_bg > .containers > .UI_components { background-color: #F8F8F8; padding: var(--gap); }
+	.CLASS_rounded > .containers > .UI_components { border-radius: var(--radius); }
+	.CLASS_border > .containers > .UI_components { border-top: 1px solid #e0e0e0; border-radius: 0; }
+	.CLASS_border > .containers > .UI_components > div { margin-top: 7px; }
+</style>
+
+<script>
+
+	exports.id = 'columns';
+	exports.name = 'Columns';
+	exports.group = 'Layouts';
+	exports.icon = 'ti ti-columns';
+	exports.author = 'Total.js';
+	exports.config = { count: 3, countmd: 0, countsm: 0, countxs: 0, background: true, rounded: true, hidden: false, fractions: '1fr 1fr 1fr' };
+	exports.render = 'https://cdn.componentator.com/uibuilder/columns/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/columns/settings.html';
+	exports.version = '1';
+	exports.make = function(instance, config, element, cls) {
+
+		var container;
+
+		var resize = function() {
+			container.css('grid-template-columns', config.fractions);
+			config.countmd && container.aclass('grid-md-' + config.countmd);
+			config.countsm && container.aclass('grid-sm-' + config.countsm);
+			config.countxs && container.aclass('grid-xs-' + config.countxs);
+		};
+
+		var make = function() {
+			var builder = [];
+			for (var i = 0; i < config.count; i++)
+				builder.push('<div class="UI_components" data-index="{0}"></div>'.format(i));
+			element.html('<div class="UI_label"><i class="{icon}"></i><span>{1}</span></div><div class="containers">{0}</div>'.format(builder.join(''), config.name.encode()).args(instance.component));
+			container = element.find('> .containers');
+			resize();
+		};
+
+		instance.on('configure', function() {
+
+			element.find('> .UI_label span').text(config.name);
+			element.tclass(cls + '_bg', config.background);
+			element.tclass(cls + '_rounded', config.rounded);
+			element.tclass(cls + '_border', !config.background);
+
+			var cols = container.find('> .UI_components');
+			var diff = 0;
+
+			if (cols.length < config.count) {
+				diff = config.count - cols.length;
+				for (var i = 0; i < diff; i++)
+					container.append('<div class="UI_components" data-index="{0}"></div>'.format(cols.length + (i + 1)));
+			} else {
+				diff = cols.length - config.count;
+				if (diff) {
+					cols = cols.toArray();
+					for (var i = 0; i < diff; i++) {
+						var el = cols[cols.length - 1];
+						if (el.parentNode)
+							el.parentNode.removeChild(el);
+					}
+				}
+				instance.app.clean();
+			}
+
+			resize();
+		});
+
+		config.background && element.aclass(cls + '_bg');
+		config.rounded && element.aclass(cls + '_rounded');
+		!config.background && element.aclass(cls + '_border');
+		make();
+	};
+
+</script>
+
+<readme>
+	# Columns Component
+
+	The Columns component is a valuable tool for dividing and organizing your content into a specified number of parts within your web application. With this component, you can achieve the following:
+
+	- **Content Division:** Easily divide your content into a specific number of parts.
+	- **Settings:** Configure the number of parts to suit your content organization needs.
+
+</readme>

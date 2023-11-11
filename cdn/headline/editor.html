@@ -1,0 +1,85 @@
+<style>
+	.CLASS div { padding: 0; margin: 0; position: relative; display: inline-block; width: 100%; }
+	.CLASS .text-right { text-align: right; }
+	.CLASS .text-center { text-align: center; }
+	.CLASS .h1 { font-size: 30px; font-weight: bold; }
+	.CLASS .h2 { font-size: 26px; font-weight: bold; border-bottom: 1px solid #E0E0E0; padding: 0 0 5px; }
+	.CLASS .h3 { font-size: 22px; font-weight: bold; }
+	.CLASS .h4 { font-size: 16px; font-weight: bold; }
+</style>
+
+<script>
+
+	// H1, H2, H3, H4, H5
+
+	exports.id = 'headline';
+	exports.group = 'Content';
+	exports.name = 'Headline';
+	exports.icon = 'ti ti-heading';
+	exports.author = 'Total.js';
+	exports.config = { html: 'Enter text for headline', align: 'left', type: 'h1', color: '' };
+	exports.render = 'https://cdn.componentator.com/uibuilder/headline/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/headline/settings.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		var template = instance.maketemplate('<div class="text-{{ align }} {{ type }} text"{{ if color }} style="color:{{ color }}"{{ fi }}>{{ html | raw }}</div>');
+
+		var render = function() {
+			element.html(template(config));
+		};
+
+		render();
+
+		element.on('click', '.ti', function(e) {
+
+			if (e.ctrlKey || e.metaKey) {
+				UIBuilder.emit('attr', this, function() {
+					config.html = element.find('.text').html();
+				});
+				return;
+			}
+
+			UIBuilder.emit('icon', this, function(el, val) {
+				if (!val)
+					el.remove();
+				config.html = element.find('.text').html();
+			});
+
+		});
+
+		element.on('dblclick', '.text', function(e) {
+
+			e.stopPropagation();
+			e.preventDefault();
+
+			var el = $(this);
+			var opt = {};
+
+			opt.icon = true;
+
+			instance.edit(el, opt, function(response) {
+				config.html = response.html;
+			});
+
+		});
+
+		element.on('click', 'a', function(e) {
+			e.preventDefault();
+			UIBuilder.emit('link', this, function() {
+				config.html = element.find('.text').html();
+			});
+		});
+
+		instance.on('configure', function() {
+			render();
+		});
+
+	};
+
+</script>
+
+<readme>
+	This component creates headline. You can set type and style in settings.
+</readme>

@@ -1,0 +1,44 @@
+<script>
+
+	exports.id = 'datatransformer';
+	exports.name = 'Data transformer';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-robot';
+	exports.config = { name: 'Name', value: 'return value' };
+	exports.render = 'https://cdn.componentator.com/uibuilder/datatransformer/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/datatransformer/settings.html';
+	exports.follow = true;
+	exports.version = '1';
+
+	exports.make = function(instance, config, element) {
+
+		element.aclass('UI_special m').html('<i class="{0}"></i><label>{1}<span>{name}</span></label>'.format(instance.component.icon, instance.component.name).args(config, 'escape'));
+
+		element.on('dblclick', 'div', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			var el = $(this);
+			var opt = {};
+			opt.icons = false;
+			opt.format = false;
+			instance.edit(el, opt, function(response) {
+				config.note = response.html;
+			});
+		});
+
+		instance.on('configure', function() {
+			element.find('label span').text(config.name);
+		});
+
+		instance.on('stringify', function(meta, isbuild) {
+			if (isbuild)
+				delete meta.config.note;
+		});
+	};
+
+</script>
+
+<readme>
+	The data transform component can transform incoming data.
+</readme>

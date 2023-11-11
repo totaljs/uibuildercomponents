@@ -1,0 +1,28 @@
+<script>
+
+	exports.id = 'link';
+	exports.name = 'Link';
+	exports.group = 'Special';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-rocket';
+	exports.config = { url: '', input: '', resetcss: true };
+	exports.render = 'https://cdn.componentator.com/uibuilder/link/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/link/settings.html';
+	exports.version = '1';
+	exports.gap = true;
+
+	exports.make = function(instance, config, element) {
+		element.aclass('UI_special').html('<i class="{0}"></i><label></label><div><i class="ti ti-arrow-right mr5"></i><span></span></div>'.format(instance.component.icon));
+		instance.on('configure', function() {
+			element.find('label').text(config.name);
+			var name = DEF.cl.apps.findValue('id', config.url, 'name', '');
+			element.find('div span').text(name || config.url || DEF.empty);
+		});
+		instance.emit('configure');
+	};
+
+</script>
+
+<readme>
+The component can load another app.
+</readme>

@@ -1,0 +1,88 @@
+<style>
+	.CLASS_settings .fields { border: 1px solid #E0E0E0; border-radius: var(--radius); }
+	.CLASS_settings .ui-listform-item .item { padding: 7px 10px; }
+	.CLASS_settings .ui-listform-form { border-radius: 0; border: 0; border-bottom: 1px solid #e0e0e0; }
+	.CLASS_settings .ui-listform-form-container { padding: 0; }
+	.CLASS_settings .listing .item { line-height: 34px; font-size: 12px; background-color: #F8F8F8; border-radius: var(--radius); margin-bottom: 2px; padding: 0 10px; cursor: pointer; }
+	.CLASS_settings .listing .item:hover { background-color: #E8E8E8; }
+
+	.CLASS_header { height: 60px; border-bottom: 1px solid #E0E0E0; padding: 0 20px; display: flex; align-items: center; }
+	.CLASS_header label { line-height: 59px; font-weight: bold; }
+	.CLASS > .UI_components { padding: 20px; }
+	.CLASS_header .toolbar { margin-left: auto; }
+	.CLASS_header .CLASS_backbtn { margin-right: 20px; border: 0; border-radius: var(--radius); width: 30px; height: 30px; }
+	.CLASS > .UI_components { min-height: 100px; }
+</style>
+
+<body>
+	<div class="CLASS_header">
+		{{ if backnav }}
+			<button class="CLASS_backbtn"><i class="ti ti-angle-left"></i></button>
+		{{ fi }}
+		<label>{{ name }}</label>
+		<div class="toolbar">
+			{{ foreach m in value }}
+				<button data-id="{{ m.id }}"><i class="{{ m.icon }} mr5" style="color:{{ m.color }}"></i>{{ m.name }}</button>
+			{{ end }}
+		</div>
+	</div>
+	<div class="UI_components" data-index="0"></div>
+</body>
+
+<script>
+	exports.id = 'applayout';
+	exports.group = 'Layouts';
+	exports.name = 'App Layout';
+	exports.icon = 'ti ti-window';
+	exports.author = 'Total.js';
+	exports.render = 'https://cdn.componentator.com/uibuilder/applayout/render.html';
+	exports.settings = 'https://cdn.componentator.com/uibuilder/applayout/settings.html';
+	exports.hidden = true;
+	exports.version = '1';
+	exports.outputs = [{ id: 'button', name: 'On button' }];
+
+	exports.make = function(instance, config, element, cls) {
+
+		var render = function() {
+			var template = instance.maketemplate(instance.component.html);
+			var output = template({ value: config.buttons, name: config.name.encode(), backnav: config.backnav ? true : false });
+			element.html(output);
+		};
+
+		instance.on('configure', function() {
+
+			var container = element.find('> .UI_components')[0];
+			var cache = {};
+
+			cache = document.createElement('DIV');
+			while (container.children.length) {
+				var child = container.children[0];
+				cache.appendChild(child);
+			}
+
+			render();
+
+			var tmp = cache;
+
+			if (tmp) {
+				var content = element.find('> .UI_components')[0];
+				while (tmp.children.length) {
+					content.appendChild(tmp.children[0]);
+				}
+			}
+		});
+
+		instance.on('resize', function() {
+			element.find('> .UI_components').css('min-height', WH - 45 - 60);
+		});
+
+		instance.emit('resize');
+		render();
+
+	};
+
+</script>
+
+<readme>
+	
+</readme>

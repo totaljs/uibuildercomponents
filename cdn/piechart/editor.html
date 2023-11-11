@@ -1,0 +1,50 @@
+<style>
+	.CLASS { margin: 5px; }
+</style>
+
+<script>
+
+	exports.id = 'piechart';
+	exports.name = 'Pie chart';
+	exports.group = 'Charts';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-chart-pie';
+	exports.config = { datetype: 'full', datasource: '', unit: '', decimals: 0 };
+	exports.settings = 'https://cdn.componentator.com/uibuilder/piechart/settings.html';
+	exports.render = 'https://cdn.componentator.com/uibuilder/piechart/render.html';
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls) {
+
+		var placeholder = { name: instance.component.id };
+		var html = '<div class="UI_label"><i class="{icon}"></i><span>{0}</span></div><div class="{2}_piechart">{1}</div>'.format(config.name.encode(), FUNC.placeholder(placeholder), cls).args(instance.component);
+
+		element.html(html);
+
+		instance.on('configure', function() {
+			element.find('> .UI_label span').text(config.name);
+		});
+	};
+
+</script>
+
+<readme>
+__Piechart data-source needs to contain__:
+
+```js
+[
+	{
+		data: 44,
+		name: 'Apple',
+		unit: '',
+		decimals: 1
+	},
+	{
+		data: 55,
+		name: 'Mango',
+		unit: '',
+		decimals: 1
+	}
+]
+```
+</readme>

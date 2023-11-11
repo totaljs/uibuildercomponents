@@ -1,0 +1,37 @@
+<style>
+	.CLASS_checkbox { height: 28px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; line-height: 28px; color: #a0a0a0; }
+	.CLASS_checkbox i { width: 20px; height: 20px; border-radius: var(--radius); border: 1px solid #E0E0E0; float: left; margin: 4px 7px 0 0; display: block; background-color: #fff; }
+	.CLASS_checkbox.UI_required span { font-weight: bold; }
+</style>
+
+<script>
+
+	exports.id = 'checkbox';
+	exports.name = 'Checkbox';
+	exports.group = 'Controls';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-check-square';
+	exports.config = { required: false };
+	exports.settings = 'https://cdn.componentator.com/uibuilder/checkbox/settings.html';
+	exports.render = 'https://cdn.componentator.com/uibuilder/checkbox/render.html';
+	exports.version = '1';
+	exports.follow = true;
+
+	exports.make = function(instance, config, element, cls) {
+
+		var html = instance.maketemplate('<div class="{0}_checkbox"><i></i><span>{{ name }}</span></div>'.format(cls));
+
+		instance.on('configure', function() {
+			element.html(html(config));
+			element.tclass('UI_required', config.required == true);
+		});
+
+		instance.emit('configure');
+
+	};
+
+</script>
+
+<readme>
+The component that switches between two states: `true`/`false`
+</readme>
