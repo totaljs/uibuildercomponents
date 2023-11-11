@@ -53,7 +53,8 @@ FUNC.parse = function(filename, response) {
 	data.floating = floating ? FUNC.evaluate(floating[0]).floating : '';
 	data.color = color ? FUNC.evaluate(color[0]).color : undefined;
 	data.version = version ? FUNC.evaluate(version[0]).version : '';
-	data.url = 'https://cdn.componentator.com/uibuilder/' + filename + '-v' + (data.version || '1') + '/editor.html';
+	// data.url = 'https://cdn.componentator.com/uibuilder/' + filename + '-v' + (data.version || '1') + '/editor.html';
+	data.url = 'https://cdn.componentator.com/uibuilder/' + filename + '/editor.html';
 
 	var index = response.indexOf('<readme>');
 
@@ -111,7 +112,8 @@ Fs.readdir(path, function(err, dir) {
 				} catch (e) {}
 
 				var reg = new RegExp('/components/' + item + '/', 'g');
-				F.Fs.writeFile(F.Path.join(p, file), html.replace(reg, 'https://cdn.componentator.com/uibuilder/' + item + '-v' + (data.version || 1) + '/'), next);
+				//F.Fs.writeFile(F.Path.join(p, file), html.replace(reg, 'https://cdn.componentator.com/uibuilder/' + item + '-v' + (data.version || 1) + '/'), next);
+				F.Fs.writeFile(F.Path.join(p, file), html.replace(reg, 'https://cdn.componentator.com/uibuilder/' + item + '/'), next);
 			} else
 				F.Fs.copyFile(F.Path.join(dircomponent, file), F.Path.join(p, file), next);
 

@@ -56,7 +56,8 @@ PATH.fs.readdir(path, function(err, response) {
 			data.icon = icon ? evaluate(icon[0]).icon : '';
 			data.color = color ? evaluate(color[0]).color : undefined;
 			data.version = version ? evaluate(version[0]).version : '';
-			data.url = 'https://cdn.componentator.com/uibuilder/' + filename + '-v' + (data.version || '1') + '/editor.html';
+			// data.url = 'https://cdn.componentator.com/uibuilder/' + filename + '-v' + (data.version || '1') + '/editor.html';
+			data.url = 'https://cdn.componentator.com/uibuilder/' + filename + '/editor.html';
 
 			var index = response.indexOf('<readme>');
 
