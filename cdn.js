@@ -66,6 +66,7 @@ FUNC.parse = function(filename, response) {
 
 var path = F.path.join(process.cwd(), '/components/');
 var components = [];
+var downloaded = [];
 var lists = { app: {}, dashboard: {}, flowboard: {} };
 
 Fs.readdir(path, function(err, dir) {
@@ -86,8 +87,11 @@ Fs.readdir(path, function(err, dir) {
 
 		files.wait(function(file, next) {
 
+			var html;
+
 			if (file === 'editor.html') {
-				var html = F.Fs.readFileSync(F.Path.join(dircomponent, file)).toString('utf8');
+
+				html = F.Fs.readFileSync(F.Path.join(dircomponent, file)).toString('utf8');
 				var data = FUNC.parse(item, html);
 
 
@@ -115,21 +119,26 @@ Fs.readdir(path, function(err, dir) {
 				var reg = new RegExp('/components/' + item + '/', 'g');
 				//F.Fs.writeFile(F.Path.join(p, file), html.replace(reg, 'https://cdn.componentator.com/uibuilder/' + item + '-v' + (data.version || 1) + '/'), next);
 				F.Fs.writeFile(F.Path.join(p, file), html.replace(reg, 'https://cdn.componentator.com/uibuilder/' + item + '/'), next);
-			} else
+			} else {
+
+				if (file === 'render.html')
+					downloaded.push('UIBuilder.component(\'' + item + '\', \'base64 ' + btoa(encodeURIComponent(F.Fs.readFileSync(F.Path.join(dircomponent, file)).toString('utf8'))) + '\');');
+
 				F.Fs.copyFile(F.Path.join(dircomponent, file), F.Path.join(p, file), next);
+			}
 
 		}, next);
 
 	}, function() {
 
-		F.Fs.writeFile(F.Path.join(cdn, 'db.json'), JSON.stringify(components, null, '\t'), function() {
+		F.Fs.writeFileSync(F.Path.join(cdn, 'components.js'), downloaded.join('\n'));
+		F.Fs.writeFileSync(F.Path.join(cdn, 'db.json'), JSON.stringify(components, null, '\t'));
 
-			for (var key in lists)
-				F.Fs.writeFileSync(F.Path.join(cdn, key + '.json'), JSON.stringify(lists[key], null, '\t'));
+		for (var key in lists)
+			F.Fs.writeFileSync(F.Path.join(cdn, key + '.json'), JSON.stringify(lists[key], null, '\t'));
 
-			console.log('Done.');
-			process.exit(0);
-		});
+		console.log('Done.');
+		process.exit(0);
 
 	});
 });
