@@ -374,7 +374,7 @@
 		"group": "Content",
 		"name": "HTML",
 		"author": "Total.js",
-		"icon": "ti ti-html",
+		"icon": "ti ti-html5",
 		"version": "1",
 		"url": "https://cdn.componentator.com/uibuilder/html/editor.html",
 		"readme": "This component renders raw HTML."
