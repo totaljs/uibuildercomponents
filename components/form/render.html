@@ -28,6 +28,18 @@
 		config.border && element.aclass('UI_border');
 		element.append('<div class="UI_components m" data-index="0"></div>{0}'.format((config.button ? '<button name="submit" class="{1}_button m" disabled>{0}{2}</button>'.format(config.button, cls, icon) : '')));
 
+		var clear = function() {
+			skip = true;
+			button && button.prop('disabled', true);
+			for (var m of children) {
+				if (m.default) {
+					m.set('value', m.default(), 'noemitstate');
+					m.reset();
+				}
+			}
+			setTimeout(refresh, delay);
+		};
+
 		if (config.button) {
 			button = element.find('> button');
 			button.on('click', function() {
@@ -53,6 +65,7 @@
 
 		instance.on('ready', function() {
 			children = instance.family();
+			config.default && clear();
 		});
 
 		instance.input('load', function(data) {
@@ -86,17 +99,7 @@
 			setTimeout(refresh, delay);
 		});
 
-		instance.input('clear', function() {
-			skip = true;
-			button && button.prop('disabled', true);
-			for (var m of children) {
-				if (m.default) {
-					m.set('value', m.default(), 'noemitstate');
-					m.reset();
-				}
-			}
-			setTimeout(refresh, delay);
-		});
+		instance.input('clear', clear);
 
 		var refresh = function() {
 
