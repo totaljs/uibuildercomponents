@@ -25,6 +25,8 @@
 	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
+
+
 		instance.state.bind = true;
 
 		var cls2 = '.' + cls;
@@ -39,19 +41,16 @@
 				return;
 
 			var val = !instance.get();
-			instance.set('value', val, 'nobind');
+			instance.set('value', config.reverse ? !val : val, 'nobind');
 			instance.set('modified', true);
-
-			setTimeout(function() {
-				element.tclass('UI_checked', val);
-				instance.set('touched', true);
-			}, 200)
-
+			instance.check(true);
+			element.tclass('UI_checked', val);
+			instance.set('touched', true);
 		});
 
 		instance.validate = function() {
 			var value = instance.state.value;
-			return config.required ? !!value : true;
+			return config.required ? (config.reverse ? !value : !!value) : true;
 		};
 
 		instance.default = function() {
@@ -68,8 +67,10 @@
 			if (kind === 'nobind')
 				return;
 
-			if (type === 'value')
-				element.tclass('UI_checked', !!value);
+			if (type === 'value') {
+				var val = !!value;
+				element.tclass('UI_checked', config.reverse ? !val : val);
+			}
 
 		});
 
