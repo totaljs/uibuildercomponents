@@ -26,7 +26,6 @@
 
 	exports.make = function(instance, config, element, cls) {
 
-
 		instance.state.bind = true;
 
 		var cls2 = '.' + cls;
@@ -41,11 +40,10 @@
 				return;
 
 			var val = !instance.get();
-			var is = config.reverse ? !val : val;
-			instance.set('value', is, 'nobind');
+			instance.set('value', config.reverse ? !val : val, 'nobind');
 			instance.set('modified', true);
 			instance.check(true);
-			element.tclass('UI_checked', is);
+			element.tclass('UI_checked', val);
 			instance.set('touched', true);
 		});
 
