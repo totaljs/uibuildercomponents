@@ -41,10 +41,11 @@
 				return;
 
 			var val = !instance.get();
-			instance.set('value', config.reverse ? !val : val, 'nobind');
+			var is = config.reverse ? !val : val;
+			instance.set('value', is, 'nobind');
 			instance.set('modified', true);
 			instance.check(true);
-			element.tclass('UI_checked', val);
+			element.tclass('UI_checked', is);
 			instance.set('touched', true);
 		});
 
