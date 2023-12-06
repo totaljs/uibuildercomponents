@@ -55,12 +55,16 @@
 		var elyears, elmonths, elbody;
 		var badges;
 
-		self.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-		self.days_short = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR','SA'];
-		self.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		self.months_short = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-		self.years_from;
-		self.years_to;
+		self.days = W.DAYS;
+		self.days_short = [];
+
+		for (let m of self.days)
+			self.days_short.push(m.substring(0, 2).toUpperCase());
+
+		self.months = W.MONTHS;
+
+		for (let m of self.months)
+			self.months_short.push(m.substring(0, 3));
 
 		function getMonthDays(dt) {
 			var m = dt.getMonth();
