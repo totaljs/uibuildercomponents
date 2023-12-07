@@ -39,7 +39,8 @@
 			if (instance.state.disabled)
 				return;
 
-			var val = !instance.get();
+			var val = !element.hclass('UI_checked');
+
 			instance.set('value', config.reverse ? !val : val, 'nobind');
 			instance.set('modified', true);
 			instance.check(true);
@@ -67,6 +68,7 @@
 				return;
 
 			if (type === 'value') {
+				console.log('som tu', type);
 				var val = !!value;
 				element.tclass('UI_checked', config.reverse ? !val : val);
 			}
