@@ -1,0 +1,111 @@
+<script>
+
+	exports.id = 'scope';
+	exports.name = 'Scope';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-receipt';
+	exports.version = '1';
+	exports.inputs = [{ id: 'load', name: 'Load' }, { id: 'reset', name: 'Reset' }, { id: 'clear', name: 'Clear' }];
+	exports.scope = true;
+
+	exports.make = function(instance, config, element, cls) {
+
+		instance.state.bind = true;
+
+		var button = null;
+		var children = null;
+		var skip = false;
+		var delay = 800;
+		var timeout;
+
+		element.append('<div class="UI_components m" data-index="0"></div>');
+
+		var clear = function() {
+			skip = true;
+			for (var m of children) {
+				if (m.default) {
+					m.set('value', m.default(), 'noemitstate');
+					m.reset();
+				}
+			}
+			setTimeout(refresh, delay);
+		};
+
+		var collectdata = function() {
+			var model = {};
+			for (var m of children) {
+				if (m.state.bind && m.config.path && m.config.path.charAt(0) !== '@')
+					instance.write(model, m.config.path, m.state.value);
+				m.reset();
+			}
+			return model;
+		};
+
+		instance.on('ready', function() {
+			children = instance.family();
+			config.default && clear();
+		});
+
+		instance.input('load', function(data) {
+			for (var m of children) {
+				if (m.state.bind) {
+					var val = instance.read(data, m.config.path);
+					m.set('value', val, 'noemitstate');
+					m.reset();
+				}
+			}
+		});
+
+		instance.input('reset', function() {
+			skip = true;
+			for (var m of children)
+				m.reset();
+			setTimeout(refresh, delay);
+		});
+
+		instance.input('clear', clear);
+
+		var refresh = function() {
+
+			skip = false;
+			timeout = null;
+
+			var invalid = false;
+			var modified = false;
+
+			for (var m of children) {
+
+				if (config.checkvisible && m.hidden())
+					continue;
+
+				if (m.state.modified)
+					modified = true;
+
+				if (m.validate && !m.validate())
+					invalid = true;
+
+			}
+
+			instance.set('invalid', invalid);
+			instance.set('modified', modified);
+			instance.set('value', collectdata(), 'nobind');
+		};
+
+		instance.on('state', function(e) {
+
+			e.stopPropagation();
+
+			if (!children || skip)
+				return;
+
+			var target = e.instance;
+			if (!target.config.path || target.config.path.charAt(0) === '@')
+				return;
+
+			timeout && clearTimeout(timeout);
+			timeout = setTimeout(refresh, 100);
+
+		});
+
+	};
+</script>
