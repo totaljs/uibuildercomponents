@@ -620,6 +620,16 @@
 		"readme": "Usage:ripple=\"false\"\n\t- Configure tis component by providing your API key, enabling plugins, and toggling autosave.\n\t\n- **API Key**: You can enter your API key, which is required for using the editor.\n- **Plugins**: You can select which TinyMCE plugins to enable for the editor.\n- **Autosave**: You can toggle autosave functionality."
 	},
 	{
+		"id": "scope",
+		"group": "Data",
+		"name": "Scope",
+		"author": "Total.js",
+		"icon": "ti ti-receipt",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/scope/editor.html",
+		"readme": "The scope component creates a scope for nested components."
+	},
+	{
 		"id": "sendtoinput",
 		"group": "Data",
 		"name": "Send to input",
