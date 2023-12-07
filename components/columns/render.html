@@ -14,13 +14,20 @@
 	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
+
 		if (config.hidden)
 			element.aclass('hidden');
-		element.css('grid-template-columns', config.fractions);
-		element.aclass('grid-' + (config.countmd ? (' grid-md-' + config.countmd) : '') + (config.countsm ? (' grid-sm-' + config.countsm) : '') + (config.countxs ? (' grid-xs-' + config.countxs) : '') + (config.background ? (' ' + cls + '_bg') : '') + (config.rounded ? (' ' + cls + '_rounded') : ''));
+
+		if (config.fractions)
+			element.css('grid-template-columns', config.fractions);
+
+		element.aclass('grid-' + config.count + (config.countmd ? (' grid-md-' + config.countmd) : '') + (config.countsm ? (' grid-sm-' + config.countsm) : '') + (config.countxs ? (' grid-xs-' + config.countxs) : '') + (config.background ? (' ' + cls + '_bg') : '') + (config.rounded ? (' ' + cls + '_rounded') : ''));
+
 		var builder = [];
+
 		for (var i = 0; i < config.count; i++)
 			builder.push('<div class="UI_components" data-index="{0}"></div>'.format(i));
+
 		element.html(builder.join(''));
 	};
 

@@ -13,7 +13,7 @@
 	exports.group = 'Layouts';
 	exports.icon = 'ti ti-columns';
 	exports.author = 'Total.js';
-	exports.config = { count: 3, countmd: 0, countsm: 0, countxs: 0, background: true, rounded: true, hidden: false, fractions: '1fr 1fr 1fr' };
+	exports.config = { count: 3, countmd: 0, countsm: 0, countxs: 0, background: true, rounded: true, hidden: false, fractions: '' };
 	exports.render = '/components/columns/render.html';
 	exports.settings = '/components/columns/settings.html';
 	exports.version = '1';
@@ -23,6 +23,8 @@
 
 		var resize = function() {
 			container.css('grid-template-columns', config.fractions);
+			container.rclass2('grid-');
+			config.count && container.aclass('grid-' + config.count);
 			config.countmd && container.aclass('grid-md-' + config.countmd);
 			config.countsm && container.aclass('grid-sm-' + config.countsm);
 			config.countxs && container.aclass('grid-xs-' + config.countxs);
@@ -69,7 +71,10 @@
 
 		config.background && element.aclass(cls + '_bg');
 		config.rounded && element.aclass(cls + '_rounded');
-		!config.background && element.aclass(cls + '_border');
+
+		if (!config.background)
+			element.aclass(cls + '_border');
+
 		make();
 	};
 
