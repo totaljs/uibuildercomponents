@@ -1,0 +1,46 @@
+<style>
+	.CLASS { font-size: 14px; }
+</style>
+
+<script>
+
+	exports.id = 'hiddenvalue';
+	exports.name = 'Hidden value';
+	exports.group = 'Controls';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-variables';
+	exports.render = 'auto';
+	exports.settings = 'auto';
+	exports.config = { type: 'string', value: '' };
+	exports.version = '1';
+	exports.follow = true;
+
+	exports.make = function(instance, config, element) {
+
+		element.aclass('UI_special m').html('<i class="{0}"></i><label>{1}<span>{2}</span></label><div></div>'.format(instance.component.icon, instance.component.name, config.name.encode()));
+
+		instance.on('configure', function() {
+
+			var type = config.type;
+
+			type = type.substring(0, 1).toUpperCase() + type.substring(1);
+
+			switch (type) {
+				case 'Json':
+					type = 'JSON';
+					break;
+			}
+
+			element.find('label span').text(config.name);
+			element.find('div').html('<div><span class="badge badge-orange">{0}</span></div><div class="monospace mt5">{1}</div>'.format(type, config.value.encode()));
+		});
+
+		instance.emit('configure');
+
+	};
+
+</script>
+
+<readme>
+The component sets a hidden value to the model.
+</readme>
