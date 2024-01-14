@@ -19,7 +19,7 @@
 			instance.app.on('output', function(opt) {
 				if (opt.instanceid !== instance.id && config.target.includes(opt.id)) {
 					opt.processed = true; // for j-UIStudio component
-					instance.output('output', opt.data);
+					instance.output('output', opt.data == undefined ? EMPTYOBJECT : opt.data);
 				}
 			});
 
