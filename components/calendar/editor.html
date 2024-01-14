@@ -31,7 +31,6 @@
 		instance.on('configure', function() {
 			label = instance.maketemplate('<label>{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span class="editable">{{ name }}:</span></label>');
 			element.html(label(config) + html);
-
 			element.tclass(cls + '_bg', config.bg);
 			element.tclass(cls + '_shadow', config.shadow);
 			element.tclass(cls + '_border', config.border);
@@ -47,4 +46,3 @@
 <readme>
 The Calendar is a component which provides the multi-view representation to display and select a date. Also, provide options to navigate in different levels of views like month, year, decade.
 </readme>
-
