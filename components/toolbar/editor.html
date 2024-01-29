@@ -50,8 +50,8 @@
 	exports.icon = 'ti ti-wrench';
 	exports.author = 'Total.js';
 	exports.config = { border: false, padding: false };
-	exports.render = '/components/toolbar/render.html';
-	exports.settings = '/components/toolbar/settings.html';
+	exports.render = 'auto';
+	exports.settings = 'auto';
 	exports.version = '1';
 	exports.follow = true;
 
@@ -61,15 +61,11 @@
 			var template = instance.maketemplate(instance.component.html);
 			var output = template({ value: config.items, name: config.name.encode() });
 			element.html(output);
-
 			element.tclass(cls + '_border', config.border);
 			element.tclass(cls + '_padding', config.padding);
 		};
 
-		instance.on('configure', function() {
-			render();
-		});
-
+		instance.on('configure', render);
 		render();
 	};
 

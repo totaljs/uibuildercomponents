@@ -5,11 +5,6 @@
 <script>
 
 	exports.id = 'datagrid';
-	exports.name = 'Datagrid';
-	exports.group = 'List';
-	exports.icon = 'ti ti-table-alt';
-	exports.author = 'Total.js';
-	exports.version = '1';
 	exports.inputs = [{ id: 'rows', name: 'Rows' }];
 	exports.outputs = [{ id: 'row', name: 'On row' }, { id: 'button', name: 'On button' }];
 
@@ -20,6 +15,7 @@
 		var pathfn = path + '_exec';
 		var pathclick = path + '_click';
 		var isdynamic = config.dynamic && config.datasource && config.datasource.charAt(0) === '#' ? true : false;
+		var allowselecting = false;
 
 		if (typeof(config.height) === 'string' && config.height === 'parent')
 			config.height += '1';
@@ -53,7 +49,7 @@
 		cfg.push('checkbox:' + (config.checkbox ? 1 : 0));
 
 		W[pathclick] = function(row) {
-			if (row)
+			if (row && (allowselecting || config.autoselect))
 				instance.output('row', row);
 		};
 
@@ -139,6 +135,10 @@
 
 		}
 
+		instance.on('ready', function() {
+			setTimeout(() => allowselecting = true, 500);
+		});
+
 		instance.on('destroy', function() {
 			delete W[path];
 			delete W[pathclick];
@@ -146,5 +146,4 @@
 		});
 
 	};
-
 </script>

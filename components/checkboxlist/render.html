@@ -3,8 +3,8 @@
 	.CLASS label i { margin-right: 5px; }
 
 	.CLASS figure * { cursor: pointer; }
-	.CLASS figure span { width: 20px; height: 20px; line-height: 19px; font-size: 11px; margin: 0 7px 0 0; text-align: center; float: left; border: 1px solid #d0d0d0; border-radius: var(--radius); background: #fff; }
 	.CLASS figure div { line-height: 22px; font-size: 12px; margin-bottom: 3px; display: block; outline: 0; margin-left: 30px; margin-bottom: 5px; }
+	.CLASS figure span { width: 20px; height: 20px; line-height: 17px; font-size: 11px; margin: 0 7px 0 0; text-align: center; float: left; border: 1px solid #d0d0d0; border-radius: var(--radius); background: #fff; }
 	.CLASS figure span i { display: none; font-weight: bold; }
 	.CLASS figure.UI_checked span { background-color: var(--color); border-color: var(--color); }
 	.CLASS figure.UI_checked span i { display: inline-block; color: #fff; }
@@ -28,11 +28,6 @@
 <script>
 
 	exports.id = 'checkboxlist';
-	exports.name = 'Checkboxlist';
-	exports.group = 'Controls';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-list-alt';
-	exports.version = '1';
 
 	exports.make = function(instance, config, element) {
 
@@ -43,9 +38,12 @@
 		var render = function(response) {
 			var template = instance.maketemplate();
 			var icon = config.icon ? '<i class="{0}"></i>'.format(config.icon) : '';
-			var label = !config.nolabel ? '<label>{1}<span>{0}:</span></label>'.format(config.name, icon) : '';
+			var label = !config.hidelabel ? '<label>{1}<span>{0}:</span></label>'.format(config.name, icon) : '';
 
-			element.html(label + template({ value: response }));
+			element.html(label + template({ value: response, config: config }));
+
+			if (arr && arr.length)
+				select(arr);
 		};
 
 		element.on('click', '> figure', function() {
@@ -93,15 +91,31 @@
 			}
 		});
 
+		var select = function(value) {
+			for (var item of arr) {
+				var el = element.find('input[id={0}]'.format(item));
+				el.attr('checked', true);
+			}
+		};
+
 		var loaddata = function() {
-			instance.datasource(config.datasource, function(response) {
-				render(response);
-			});
+
+			if (config.items && config.items.length) {
+				arr = instance.state.value ? instance.state.value : [];
+				render(config.items);
+				instance.check();
+			} else {
+				instance.datasource(config.datasource, function(response) {
+					arr = instance.state.value ? instance.state.value : [];
+					render(response);
+					instance.check();
+				});
+			}
+			
 		}
 
 		instance.on('ready', function() {
 			loaddata();
-			instance.check();
 		});
 
 	};

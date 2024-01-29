@@ -1,7 +1,42 @@
 <style>
 	.CLASS label { display: block; }
+	.CLASS_settings .ui-listform-item .item { padding: 7px 10px; }
 </style>
 
+<body>
+	{{ if !hidelabel }}<label class="UI_label">{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span class="editable">{{ name }}:</span></label>{{ fi }}
+
+	<div class="CLASS_listbox listing{{ if background }}2{{ fi }}">
+		{{ if items && items.length }}
+			{{ foreach m in items }}
+				<figure>
+					<section>
+						<div>{{ m.name }}</div>
+						{{ if m.description }}
+							<div class="help nmt">{{ m.description }}</div>
+						{{ fi }}
+					</section>
+				</figure>
+			{{ end }}
+		{{ else }}
+			<figure>
+				<section>
+					<div>Listbox item 1</div>
+				</section>
+			</figure>
+			<figure>
+				<section>
+					<div>Listbox item 2</div>
+				</section>
+			</figure>
+			<figure>
+				<section>
+					<div>Listbox item 3</div>
+				</section>
+			</figure>
+		{{ fi }}
+	</div>
+</body>
 <script>
 
 	exports.id = 'listbox';
@@ -9,21 +44,24 @@
 	exports.group = 'Content';
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-list-alt';
-	exports.config = { required: false, background: false, nolabel: false };
-	exports.settings = '/components/listbox/settings.html';
-	exports.render = '/components/listbox/render.html';
+	exports.config = { required: false, background: false, hidelabel: false, items: [] };
+	exports.settings = 'auto';
+	exports.render = 'auto';
 	exports.version = '1';
 	exports.follow = true;
+	exports.outputs = [{ id: 'click', name: 'Click' }];
 
 	exports.make = function(instance, config, element, cls) {
-		var options = { name: instance.component.id, count: 3 };
+		// var options = { name: instance.component.id, count: 3 };
+		var html = instance.maketemplate();
 
 		instance.on('configure', function() {
-			options.background = config.background ? true : false;
-			var html = FUNC.placeholder(options);
-			var label = instance.maketemplate('<label class="UI_label">{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span class="editable">{{ name }}:</span></label>');
-
-			config.nolabel ? element.html(html) : element.html(label(config) + html);
+			element.html(html(config));
+			
+			// options.background = config.background ? true : false;
+			// var html = FUNC.placeholder(options);
+			// var label = instance.maketemplate('<label class="UI_label">{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span class="editable">{{ name }}:</span></label>');
+			// config.nolabel ? element.html(html) : element.html(label(config) + html);
 		});
 
 		instance.emit('configure');

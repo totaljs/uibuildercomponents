@@ -7,26 +7,20 @@
 <script>
 
 	exports.id = 'form';
-	exports.name = 'Form';
-	exports.group = 'Data';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-database-alt';
-	exports.version = '1';
-	exports.inputs = [{ id: 'load', name: 'Load data', note: '' }, { id: 'reset', name: 'Reset', note: 'Reset form' }, { id: 'clear', name: 'Clear', note: 'Clear form' }];
-	exports.outputs = [{ id: 'submit', name: 'Submit', note: 'Process data' }];
+	exports.inputs = [{ id: 'load', name: 'Load data' }, { id: 'partial', name: 'Load partial data' }, { id: 'reset', name: 'Reset' }, { id: 'clear', name: 'Clear' }];
+	exports.outputs = [{ id: 'submit', name: 'Submit' }];
 	exports.scope = true;
-
 	exports.make = function(instance, config, element, cls) {
 
-		var button = null;
 		var children = null;
+		var timeout = null;
+		var button = null;
+		var delay = 800;
 		var icon = config.icon ? '<i class="{0}"></i>'.format(config.icon) : '';
 		var skip = false;
-		var delay = 800;
-		var timeout;
 
 		config.border && element.aclass('UI_border');
-		element.append('<div class="UI_components m" data-index="0"></div>{0}'.format((config.button ? '<button name="submit" class="{1}_button m" disabled>{0}{2}</button>'.format(config.button, cls, icon) : '')));
+		element.append('<div class="UI_components m" data-index="0"></div>{0}'.format((config.button ? '<button name="submit" class="{1}_button m" disabled>{2}{0}</button>'.format(config.button, cls, icon) : '')));
 
 		var clear = function() {
 			skip = true;
@@ -70,12 +64,31 @@
 
 		instance.input('load', function(data) {
 			for (var m of children) {
-				if (m.state.bind) {
+				if ((m.state.bind || config.bindtoall) && m.config.path && m.config.path.charAt(0) !== '@') {
 					var val = instance.read(data, m.config.path);
 					m.set('value', val, 'noemitstate');
 					m.reset();
 				}
 			}
+			instance.set('value', data);
+		});
+
+		instance.input('partial', function(data) {
+			var value = instance.state.value;
+			for (var m of children) {
+				if ((m.state.bind || config.bindtoall) && m.config.path && m.config.path.charAt(0) !== '@') {
+					var val = instance.read(data, m.config.path);
+					if (val != undefined) {
+						m.set('value', val, 'noemitstate');
+						m.reset();
+					}
+				}
+			}
+
+			for (var key in data)
+				value[key] = data[key];
+			
+			instance.set('value', value);
 		});
 
 		instance.input('submit', function() {
@@ -91,14 +104,16 @@
 			}
 		});
 
-		instance.input('reset', function() {
+		var reset = function() {
 			skip = true;
 			button && button.prop('disabled', true);
 			for (var m of children)
 				m.reset();
 			setTimeout(refresh, delay);
-		});
+		};
 
+		instance.on('reset', reset);
+		instance.input('reset', reset);
 		instance.input('clear', clear);
 
 		var refresh = function() {
@@ -125,6 +140,14 @@
 			button && button.prop('disabled', !modified || invalid);
 			instance.set('invalid', invalid);
 			instance.set('modified', modified);
+
+			var tmp = instance.state.value || {};
+
+			for (var key in model)
+				tmp[key] = model[key];
+
+			instance.set('value', tmp);
+
 		};
 
 		instance.on('state', function(e) {
@@ -135,6 +158,7 @@
 				return;
 
 			var target = e.instance;
+
 			if (!target.config.path || target.config.path.charAt(0) === '@')
 				return;
 

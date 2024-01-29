@@ -11,13 +11,13 @@
 <script>
 
 	exports.id = 'datagrid';
-	exports.name = 'Datagrid';
+	exports.name = 'DataGrid';
 	exports.group = 'List';
 	exports.icon = 'ti ti-table-alt';
 	exports.author = 'Total.js';
 	exports.config = { datasource: '', border: true, icon: 'ti ti-totaljs', columns: [], margin: 0, height: '500', minheight: 300, numbering: true, checkbox: false, autoselect: false, dynamic: false };
-	exports.render = '/components/datagrid/render.html';
-	exports.settings = '/components/datagrid/settings.html';
+	exports.render = 'auto';
+	exports.settings = 'auto';
 	exports.version = '1';
 	exports.inputs = [{ id: 'rows', name: 'Rows' }];
 	exports.outputs = [{ id: 'row', name: 'On row' }, { id: 'button', name: 'On button' }];

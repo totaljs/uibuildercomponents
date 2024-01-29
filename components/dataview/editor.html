@@ -6,15 +6,15 @@
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-database';
 	exports.version = '1';
-	exports.config = { name: 'Name', interval: 0, id: '', read: '' };
-	exports.render = '/components/dataview/render.html';
-	exports.settings = '/components/dataview/settings.html';
+	exports.config = { name: 'Name', interval: 0, id: '', read: '', query: '' };
+	exports.render = 'auto';
+	exports.settings = 'auto';
 	exports.follow = true;
 	exports.version = '1';
 
 	exports.make = function(instance, config, element) {
 
-		element.aclass('UI_special m').html('<i class="{0}"></i><label>{1}<span></span></label><div><i class="ti ti-arrow-right mr5"></i><span>---</span></div>'.format(instance.component.icon, instance.component.name));
+		element.aclass('UI_special m').html('<i class="{icon}"></i><label>{name}<span></span></label><div><i class="ti ti-arrow-right mr5"></i><span>---</span></div>'.args(instance.component));
 
 		instance.on('configure', function() {
 			var item = DEF.cl.views.findItem('id', config.id);
@@ -31,4 +31,3 @@
 <readme>
 Data view reads data from predefined data views and stores them in memory. Other components can read this data.
 </readme>
-

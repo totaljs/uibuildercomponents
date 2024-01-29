@@ -3,7 +3,7 @@
 	.CLASS label i { margin-right: 5px; }
 
 	.CLASS figure * { cursor: pointer; }
-	.CLASS figure span { width: 20px; height: 20px; line-height: 18px; font-size: 10px; margin: 0 7px 0 0; transition: background-color .2s, border-color .2s; text-align: center; float: left; border: 1px solid #d0d0d0; border-radius: 50%; background: #fff; }
+	.CLASS figure span { width: 20px; height: 20px; line-height: 17px; font-size: 10px; margin: 0 7px 0 0; transition: background-color .2s, border-color .2s; text-align: center; float: left; border: 1px solid #d0d0d0; border-radius: 50%; background: #fff; }
 	.CLASS figure div { line-height: 22px; font-size: 12px; margin-bottom: 3px; display: block; outline: 0; }
 	.CLASS figure span i { display: none; font-weight: bold; font-size: 10px; color: #fff; }
 	.CLASS figure.UI_checked span { border-color: var(--color); background-color: var(--color); }
@@ -17,6 +17,8 @@
 </style>
 
 <body>
+	{{ if !config.hidelabel }}<label>{{ if config.icon }}<i class="{{ config.icon }}mr5"></i>{{ fi }}<span>{{ config.name }}</span></label>{{ fi }}
+
 	{{ foreach m in value }}
 		<figure data-id="{{ if m.id }}{{ m.id }}{{ else }}{{ m.name }}{{ fi }}"><span><i class="ti ti-check"></i></span><div>{{ m.name }}</div></figure>
 	{{ end }}
@@ -25,11 +27,6 @@
 <script>
 
 	exports.id = 'radiobutton';
-	exports.name = 'Radio button';
-	exports.group = 'Controls';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-dot-circle';
-	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
 		instance.state.bind = true;
@@ -38,12 +35,10 @@
 
 		var render = function(response) {
 			var template = instance.maketemplate();
-			var icon = config.icon ? '<i class="{0}"></i>'.format(config.icon) : '';
-			var label = '<label>{1}<span>{0}:</span></label>'.format(config.name, icon);
+			element.html(template({ value: response, config: config }));
 
-			element.html(label + template({ value: response }));
-
-			select(defaultval);
+			if (defaultval)
+				select(defaultval);
 		}
 
 		var select = function(value) {
@@ -94,21 +89,21 @@
 		});
 
 		var loaddata = function() {
-			instance.datasource(config.datasource, function(response) {
-				var index = config.default - 1 || 0;
-
-				if (index > response.length)
-					index = 0
-
-				defaultval = response[index].id ? response[index].id : response[index].name;
-				instance.set('value', defaultval, 'nobind');
-				render(response);
-			});
+			if (config.items && config.items.length) {
+				defaultval = instance.state.value ? instance.state.value : null;
+				render(config.items);
+				instance.check();
+			} else {
+				instance.datasource(config.datasource, function(response) {
+					defaultval = instance.state.value ? instance.state.value : null;
+					render(response);
+					instance.check();
+				});
+			}
 		}
 
 		instance.on('ready', function() {
 			loaddata();
-			instance.check();
 		});
 
 	};

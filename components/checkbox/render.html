@@ -18,11 +18,6 @@
 <script>
 
 	exports.id = 'checkbox';
-	exports.name = 'Checkbox';
-	exports.group = 'Controls';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-check-square';
-	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
 
@@ -68,7 +63,6 @@
 				return;
 
 			if (type === 'value') {
-				console.log('som tu', type);
 				var val = !!value;
 				element.tclass('UI_checked', config.reverse ? !val : val);
 			}

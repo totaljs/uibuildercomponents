@@ -1,20 +1,13 @@
 <script>
 
 	exports.id = 'input';
-	exports.name = 'Input';
-	exports.group = 'Data';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-expand';
 	exports.inputs = [{ id: 'load', name: 'Load data' }];
-	exports.version = '1';
-	exports.follow = true;
-	exports.gap = true;
 
 	exports.make = function(instance, config, element) {
 		instance.input('load', function(value) {
 			var tmp = value;
 			if (config.read)
-				tmp = instance.read(value, config.read);
+				tmp = instance.read(tmp, config.read);
 			instance.set('value', tmp);
 		});
 

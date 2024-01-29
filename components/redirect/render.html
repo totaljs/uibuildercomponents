@@ -1,12 +1,7 @@
 <script>
 
 	exports.id = 'redirect';
-	exports.name = 'Redirect';
-	exports.group = 'Data';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-external';
 	exports.inputs = [{ id: 'load', name: 'Load data' }];
-	exports.version = '1';
 
 	exports.make = function(instance, config, element) {
 		instance.input('load', function(value) {

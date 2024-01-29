@@ -20,13 +20,6 @@
 <script>
 
 	exports.id = 'dropdown';
-	exports.name = 'Dropdown';
-	exports.group = 'Controls';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-angle-down';
-	exports.version = '1';
-	exports.config = { type: 'string', min: null, max: null, decimals: null, icon: '', help: '', error: '', placeholder: '' };
-
 	exports.make = function(instance, config, element, cls) {
 
 		instance.state.bind = true;
@@ -42,7 +35,7 @@
 		var label = '<label>{0}<span>{1}:</span></label>'.format(icon, config.name);
 		var items;
 
-		html = instance.maketemplate('<div class="{0}_dropdown">{1}<div class="{0}_icon"><i class="ti ti-angle-down"></i></div><div class="{0}_value{{ if bold }}b{{ fi }}{{ if monospace}}monospace{{ fi }}"></div>'.format(cls, placeholder_tmpl));
+		html = instance.maketemplate('<div class="{0}_dropdown">{1}<div class="{0}_icon"><i class="ti ti-angle-down"></i></div><div class="{0}_value"></div>'.format(cls, placeholder_tmpl));
 
 		element.html(label + html(config) + help + error);
 		element.tclass('UI_required', config.required == true);
@@ -61,14 +54,22 @@
 		var show = function(el) {
 			var opt = {};
 			opt.element = el;
-			opt.items = function(search, next) {
-				instance.clfind(config.datasource, search, next);
-			};
+
+			if (config.items && config.items.length) {
+				opt.items = config.items;
+			} else {
+				opt.items = function(search, next) {
+					instance.clfind(config.datasource, search, next);
+				};
+			}
+			
 			opt.offsetY = 18;
 			opt.callback = function(val) {
 				instance.set('modified', true);
+				instance.set('touched', true);
 				instance.set('value', val ? val.id : null);
 			};
+			
 			SETTER('directory/show', opt);
 		};
 
@@ -90,13 +91,23 @@
 		var bindvalue = function(value) {
 			var el = element.find(cls2 + '_value');
 			if (value) {
-				instance.clread(config.datasource, value, function(response) {
-					el.text(response ? response.name : DEF.empty);
-					if (!response)
+
+				if (config.items && config.items.length) {
+					var item = config.items.findItem('id', value);
+					el.text(item ? item.name : DEF.empty);
+					if (!item)
 						instance.set('value', null);
 					checkplaceholder();
 					instance.check();
-				});
+				} else {
+					instance.clread(config.datasource, value, function(response) {
+						el.text(response ? response.name : DEF.empty);
+						if (!response)
+							instance.set('value', null);
+						checkplaceholder();
+						instance.check();
+					});
+				}
 			} else {
 				el.text(DEF.empty);
 				checkplaceholder();

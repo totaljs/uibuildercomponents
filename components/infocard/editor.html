@@ -13,8 +13,8 @@
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-address-card';
 	exports.config = { key: 'Enter key', value: 'Enter value' };
-	exports.settings = '/components/infocard/settings.html';
-	exports.render = '/components/infocard/render.html';
+	exports.settings = 'auto';
+	exports.render = 'auto';
 	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
@@ -29,6 +29,7 @@
 		render();
 
 		element.on('dblclick','' + cls2 + '_value, ' + cls2 + '_key', function(e) {
+
 			e.stopPropagation();
 			e.preventDefault();
 

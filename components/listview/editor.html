@@ -10,10 +10,11 @@
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-list-alt';
 	exports.config = { required: false, background: false, nolabel: false };
-	exports.settings = '/components/listview/settings.html';
-	exports.render = '/components/listview/render.html';
+	exports.settings = 'auto';
+	exports.render = 'auto';
 	exports.version = '1';
 	exports.follow = true;
+	exports.outputs = [{ id: 'click', name: 'Click' }];
 
 	exports.make = function(instance, config, element, cls) {
 		var options = { name: instance.component.id, count: 3 };
@@ -22,7 +23,6 @@
 			options.background = config.background ? true : false;
 			var html = FUNC.placeholder(options);
 			var label = instance.maketemplate('<label class="UI_label">{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span class="editable">{{ name }}:</span></label>');
-
 			config.nolabel ? element.html(html) : element.html(label(config) + html);
 		});
 

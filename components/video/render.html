@@ -6,11 +6,6 @@
 <script>
 
 	exports.id = 'video';
-	exports.group = 'Content';
-	exports.name = 'Video';
-	exports.icon = 'ti ti-photo-video';
-	exports.author = 'Total.js';
-	exports.version = '1';
 
 	exports.make = function(instance, config, element) {
 		var url = (config.url || '').trim().replace('/watch?v=', '/embed/').replace('/vimeo.com/', '/player.vimeo.com/video/');

@@ -1,8 +1,8 @@
-<div class="padding">
+<ui-bind path="?.items" config="hide:value && value.length" class="padding block">
+	<ui-component name="input" path="?.datasource" config="dirsource:#datasource;dirraw:1;required:1;placeholder:@(Choose a datasource)">@(Data source)</ui-component>
+</ui-bind>
 
-	<div class="m">
-		<ui-component name="input" path="?.datasource" config="dirsource:#datasource;dirraw:1;innerlabel:1">Datasource</ui-component>
-	</div>
+<div class="padding">
 
 	<div class="grid-3">
 		<div class="m">
@@ -14,7 +14,42 @@
 	</div>
 
 	<hr style="margin-top:10px" />
-	<ui-component name="input" path="?.nolabel" config="type:checkbox">Hide label</ui-component>
+	<ui-component name="input" path="?.hidelabel" config="type:checkbox">Hide label</ui-component>
 	<ui-component name="input" path="?.background" config="type:checkbox">Enable background</ui-component>
+
+	<hr />
+
+	<ui-component name="listform" path="?.items" config="autofocus:1;empty:@(Create a custom data source)" class="m">
+
+		<script type="text/html">
+			<div class="item monospace"><div class="controls nmr"><button name="up" class="mr5"><i class="ti ti-arrow-up"></i></button><button name="down" class="mr5"><i class="ti ti-arrow-down"></i></button><button name="remove" class="red"><i class="ti ti-trash"></i></button></div><b>{{ name }}</b></div>
+		</script>
+
+		<script type="text/html">
+			<div class="padding">
+				<div class="grid-3">
+					<div class="m">
+						<ui-component name="input" path="?.name" config="required:1" default="''" class="m">@(Name)</ui-component>
+					</div>
+					<div class="m">
+						<ui-component name="input" path="?.id" config="required:1" default="''" class="m">@(Value)</ui-component>
+					</div>
+					<div class="m">
+						<ui-component name="input" path="?.description" default="''" class="m">@(Description)</ui-component>
+					</div>
+				</div>
+
+				<ui-component name="validate" path="?" config="validonly:true" class="toolbar">
+					<button name="submit" disabled><i class="ti ti-file-code"></i>@(Save)</button>
+					<button name="remove">@(Remove)</button>
+					<button name="cancel">@(Cancel)</button>
+				</ui-component>
+			</div>
+		</script>
+
+		<script type="text/html">
+			<div style="margin-top:15px"><button class="btn small" name="create" style="width:120px"><i class="ti ti-plus-circle green"></i>@(Create)</button></div>
+		</script>
+	</ui-component>
 
 </div>

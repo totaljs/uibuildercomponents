@@ -1,10 +1,6 @@
 <script>
 
 	exports.id = 'html';
-	exports.name = 'HTML';
-	exports.icon = 'ti ti-html5';
-	exports.author = 'Total.js';
-	exports.version = '1';
 
 	exports.make = function(instance, config, element) {
 		var template = config.html.indexOf('{{') === -1 ? null : instance.maketemplate(config.html);

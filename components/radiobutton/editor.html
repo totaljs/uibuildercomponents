@@ -1,9 +1,27 @@
 <style>
 	.CLASS label { font-size: 12px; margin-bottom: 5px; display: block; }
 	.CLASS label i { margin-right: 5px; }
+	.CLASS_settings .ui-listform-item .item { padding: 7px 10px; }
 	.CLASS.UI_required label { font-weight: bold; }
 	.CLASS.UI_required label:before { content: '*'; color: red; margin-right: 5px; }
+	.CLASS figure span { width: 20px; height: 20px; line-height: 18px; font-size: 10px; margin: 0 7px 0 0; transition: background-color .2s, border-color .2s; text-align: center; float: left; border: 1px solid #d0d0d0; border-radius: 50%; background: #fff; }
+	.CLASS figure div { line-height: 20px; font-size: 12px; margin-bottom: 5px; display: block; outline: 0; }
+	.CLASS figure span i { display: none; font-weight: bold; font-size: 10px; color: #fff; }
 </style>
+
+<body>
+	{{ if !hidelabel }}<label class="label">{{ if icon }}<i class="{{ icon }} mr5"></i>{{ fi }}{{ name }}</label>{{ fi }}
+
+	{{ if items && items.length }}
+		{{ foreach m in items }}
+			<figure><span><i class="ti ti-check"></i></span><div>{{ m.name }}</div></figure>
+		{{ end }}
+	{{ else }}
+		<figure><span><i class="ti ti-check"></i></span><div>Radiobutton 1</div></figure>
+		<figure><span><i class="ti ti-check"></i></span><div>Radiobutton 2</div></figure>
+		<figure><span><i class="ti ti-check"></i></span><div>Radiobutton 3</div></figure>
+	{{ fi }}
+</body>
 
 <script>
 
@@ -12,22 +30,17 @@
 	exports.group = 'Controls';
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-dot-circle';
-	exports.config = { required: false, default: 1 };
-	exports.settings = '/components/radiobutton/settings.html';
-	exports.render = '/components/radiobutton/render.html';
+	exports.config = { required: false, hidelabel: false, items: [] };
+	exports.settings = 'auto';
+	exports.render = 'auto';
 	exports.follow = true;
 	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
-
-		var options = { name: instance.component.id, count: 3 };
-		var label = '';
-		var html = FUNC.placeholder(options);
+		var html = instance.maketemplate();
 
 		instance.on('configure', function() {
-			label = instance.maketemplate('<label>{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span class="editable">{{ name }}:</span></label>');
-			element.html(label(config) + html);
-			element.tclass('UI_required', config.required == true);
+			element.html(html(config));
 		});
 
 		instance.emit('configure');

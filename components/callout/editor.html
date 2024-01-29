@@ -13,8 +13,8 @@
 	exports.icon = 'ti ti-info-circle';
 	exports.author = 'Total.js';
 	exports.config = { color: '#F0F0F0', icon: 'ti ti-totaljs', html: 'Enter your text here' };
-	exports.render = '/components/callout/render.html';
-	exports.settings = '/components/callout/settings.html';
+	exports.render = 'auto';
+	exports.settings = 'auto';
 	exports.version = '1';
 	exports.gap = true;
 	exports.type = ['app', 'dashboard'];
@@ -73,22 +73,19 @@
 
 		});
 
-		instance.on('configure', function() {
-			render();
-		});
+		instance.on('configure', render);
 
 	};
 
 </script>
 
 <readme>
-	# Callout Component
+# Callout Component
 
-	The Callout component is a versatile element that allows you to create various callout messages in your web application. With this component, you can easily set the following properties:
+The Callout component is a versatile element that allows you to create various callout messages in your web application. With this component, you can easily set the following properties:
 
-	- **Path:** Define the path or location for the callout.
-	- **Name:** Specify a name or label for the callout.
-	- **Icon:** Customize the icon associated with the callout.
-	- **Type:** Choose from different callout types: alert, error, message, and success.
-
+- **Path:** Define the path or location for the callout.
+- **Name:** Specify a name or label for the callout.
+- **Icon:** Customize the icon associated with the callout.
+- **Type:** Choose from different callout types: alert, error, message, and success.
 </readme>

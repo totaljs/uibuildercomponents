@@ -1,0 +1,14 @@
+<style>
+	.CLASS { margin: 0 auto; width: 100%; }
+</style>
+
+<script>
+
+	exports.id = 'variablecontainer';
+
+	exports.make = function(instance, config, element) {
+		var width = config.maxwidth;
+		element.css({ 'max-width': (width + ((/[a-z%]$/).test(width) ? '' : 'px')) });
+		element.append('<div class="UI_components" data-index="0"></div>');
+	};
+</script>

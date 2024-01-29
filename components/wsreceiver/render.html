@@ -1,0 +1,92 @@
+<script>
+
+	exports.scope = true;
+	exports.make = function(instance, config, element, cls) {
+
+		instance.state.value = {};
+
+		var children = null;
+		var skip = false;
+		var socket;
+
+		element.append('<div class="UI_components m" data-index="0"></div>');
+
+		var reconnect = function() {
+			var url = config.endpoint;
+
+			if (url.charAt(0) === '/')
+				url = location.origin.replace(/^http/, 'ws') + url;
+
+			socket = new WebSocket(url);
+
+			socket.onclose = function() {
+				socket = null;
+				setTimeout(reconnect, 1000);
+			};
+			
+			socket.onmessage = onmessage;
+		};
+
+		var onmessage = function(e) {
+
+			var data;
+
+			try {
+				data = PARSE(e.data);
+			} catch (e) {
+				console.warn('WebSocket "{0}": {1}'.format(config.endpoint, e.toString()));
+				return;
+			}
+
+			var value = instance.state.value;
+			for (var m of children) {
+				if ((m.state.bind || config.bindtoall) && m.config.path && m.config.path.charAt(0) !== '@') {
+					var val = instance.read(data, m.config.path);
+					if (val != undefined)
+						m.set('value', val, 'noemitstate');
+				}
+			}
+
+			for (var key in data)
+				value[key] = data[key];
+
+			instance.set('value', value);
+		};
+
+		instance.on('ready', function() {
+			children = instance.family();
+			reconnect();
+		});
+
+		instance.on('state', function(e) {
+
+			e.stopPropagation();
+
+			if (!children || skip || !e.changes.value)
+				return;
+
+			var target = e.instance;
+
+			if (!target.config.path || target.config.path.charAt(0) === '@')
+				return;
+
+			var value = target.state.value;
+			var path = target.config.path;
+
+			if (config.sendall) {
+				instance.write(instance.state.value, path, value);
+				socket && socket.send(STRINGIFY(instance.state.value));
+			} else {
+				var obj = {};
+				instance.write(instance.state.value, path, value);
+				target.write(obj, path, value);
+				socket && socket.send(STRINGIFY(obj));
+			}
+			
+			skip = true;
+			instance.set('value', instance.state.value);
+			skip = false;
+		});
+
+	};
+</script>

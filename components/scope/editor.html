@@ -14,10 +14,10 @@ The scope component creates a scope for nested components.
 	exports.version = '1';
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-receipt';
-	exports.config = { border: false, checkvisible: true, autoreset: true, default: false };
-	exports.inputs = [{ id: 'load', name: 'Load' }, { id: 'reset', name: 'Reset' }, { id: 'clear', name: 'Clear' }];
-	exports.render = '/components/scope/render.html';
-	exports.settings = '/components/scope/settings.html';
+	exports.config = { border: false, checkvisible: true, autoreset: true, default: false, bindtoall: true };
+	exports.inputs = [{ id: 'load', name: 'Load' }, { id: 'partial', name: 'Load partial data' }, { id: 'reset', name: 'Reset' }, { id: 'clear', name: 'Clear' }];
+	exports.render = 'auto';
+	exports.settings = 'auto';
 	exports.follow = true;
 
 	exports.make = function(instance, config, element) {
@@ -34,5 +34,5 @@ The scope component creates a scope for nested components.
 </script>
 
 <readme>
-	The components creates a formular.
+The components creates a form scope.
 </readme>

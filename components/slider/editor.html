@@ -3,7 +3,6 @@
 	.CLASS label i { margin-right: 5px; }
 	.CLASS.UI_required label { font-weight: bold; }
 	.CLASS.UI_required label:before { content: '*'; color: red; margin-right: 5px; }
-
 	.CLASS_slider { height: 4px; width: 100%; position: relative; border-radius: 12px; display: inline-block; }
 	.CLASS_rail { position: absolute; top: 50%; transform: translateY(-50%); height: inherit; display: block; opacity: 0.4; width: 100%; background-color: #e0e0e0; border-radius: inherit; }
 	.CLASS_track { height: 6px; border: 1px solid #e0e0e0; width: 50%; opacity: 1; position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: #e0e0e0; border-radius: inherit; }
@@ -18,8 +17,8 @@
 	exports.icon = 'ti ti-sliders-h';
 	exports.author = 'Total.js';
 	exports.config = { required: false, value: 50 };
-	exports.render = '/components/slider/render.html';
-	exports.settings = '/components/slider/settings.html';
+	exports.render = 'auto';
+	exports.settings = 'auto';
 	exports.version = '1';
 	exports.follow = true;
 

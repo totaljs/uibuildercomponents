@@ -12,12 +12,8 @@
 </style>
 
 <script>
-	exports.id = 'cards';
-	exports.name = 'Cards';
-	exports.group = 'Content';
-	exports.icon = 'ti ti-star';
-	exports.author = 'Total.js';
-	exports.version = '1';
+	exports.id = 'rating';
+
 	exports.make = function(instance, config, element, cls) {
 
 		var ino = 'ti-star';
@@ -52,19 +48,14 @@
 		element.on('click', 'i', function() {
 			if (instance.state.disabled)
 				return;
-
 			var index = ATTRD(this, 'index');
 			update(+index);
 			instance.set('value', +index, 'nobind');
 		});
 
 		instance.on('set', function(type, value, kind) {
-			if (kind === 'nobind')
-				return;
-
-			if (type === 'value') {
+			if (kind !== 'nobind' && type === 'value')
 				update(value);
-			}
 		});
 
 		instance.on('ready', function() {
@@ -73,8 +64,3 @@
 	};
 
 </script>
-
-<readme>
-
-</readme>
-

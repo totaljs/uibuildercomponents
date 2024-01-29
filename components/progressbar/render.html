@@ -24,11 +24,6 @@
 <script>
 
 	exports.id = 'progressbar';
-	exports.name = 'Slider';
-	exports.group = 'Controls';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-sliders-h';
-	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
 
@@ -65,6 +60,7 @@
 					break;
 			}
 		});
+		
 		instance.on('ready', function() {
 			instance.check();
 		});

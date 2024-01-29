@@ -5,12 +5,8 @@
 <script>
 
 	exports.id = 'donutchart';
-	exports.name = 'Donut chart';
-	exports.group = 'Charts';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-chart-pie';
 	exports.import = ['https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.36.3/apexcharts.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.36.3/apexcharts.min.css'];
-	exports.version = '1';
+
 	exports.make = function(instance, config, element, cls) {
 
 		var container = '<div class="{0}_donutchart_apex"></div>'.format(cls);

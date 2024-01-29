@@ -32,11 +32,6 @@
 <script>
 
 	exports.id = 'togglegroup';
-	exports.name = 'Toggle group';
-	exports.group = 'Controls';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-dot-circle';
-	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
 		instance.state.bind = true;
@@ -120,7 +115,6 @@
 		instance.on('ready', function() {
 			config.background && element.aclass(cls + '_bg');
 			config.radius && element.aclass(cls + '_radius');
-
 			loaddata();
 			instance.check();
 		});

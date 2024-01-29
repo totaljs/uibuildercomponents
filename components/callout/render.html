@@ -8,11 +8,6 @@
 <script>
 
 	exports.id = 'callout';
-	exports.name = 'Callout';
-	exports.group = 'Content';
-	exports.icon = 'ti ti-info-circle';
-	exports.author = 'Total.js';
-	exports.version = '1';
 	exports.make = function(instance, config, element) {
 
 		var template = instance.maketemplate('<div class="com_callout" style="background-color:{{ color }}"><i class="{{ icon }}"></i><div class="text">{{ html | raw }}</div></div>');

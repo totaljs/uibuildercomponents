@@ -5,12 +5,8 @@
 <script>
 
 	exports.id = 'linechart';
-	exports.name = 'Line chart';
-	exports.group = 'Data';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-chart-line';
 	exports.import = ['https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.36.3/apexcharts.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.36.3/apexcharts.min.css'];
-	exports.version = '1';
+
 	exports.make = function(instance, config, element, cls) {
 
 		var container = '<div class="{0}_linechart"><div class="{0}_linechart_apex"></div></div>'.format(cls);

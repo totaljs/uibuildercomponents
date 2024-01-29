@@ -1,0 +1,30 @@
+<script>
+
+	exports.id = 'wsreceiver';
+	exports.name = 'WebSocket receiver';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-spinner';
+	exports.render = 'auto';
+	exports.settings = 'auto';
+	exports.config = { endpoint: '/realtime/' };
+	exports.version = '1';
+	exports.follow = true;
+
+	exports.make = function(instance, config, element, cls) {
+
+		var counter = 0;
+		var format = '';
+		element.append('<div class="UI_label"><i class="{icon}"></i><span>{0}</span></div><div class="UI_components UI_border m" data-index="0"></div>'.format(config.name.encode()).args(instance.component));
+		instance.on('configure', function() {
+			element.find('> .UI_label span').text(config.name);
+		});
+
+		instance.emit('configure');
+	};
+
+</script>
+
+<readme>
+The component creates a WebSocket connection, binds all incoming messages to the model, and sends changes over WebSocket.
+</readme>

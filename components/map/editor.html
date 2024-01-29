@@ -1,5 +1,5 @@
 <style>
-	.CLASS { background: url(/components/map/map.jpg) no-repeat 50% 50%; background-size: cover; }
+	.CLASS { background: url(/ui/components/map/map.jpg) no-repeat 50% 50%; background-size: cover; }
 </style>
 <script>
 
@@ -9,8 +9,8 @@
 	exports.icon = 'ti ti-map-pin';
 	exports.author = 'Total.js';
 	exports.config = { default: '', height: 200, maxzoom: 19, zoom: 11, draggable: true };
-	exports.render = '/components/map/render.html';
-	exports.settings = '/components/map/settings.html';
+	exports.render = 'auto';
+	exports.settings = 'Auto';
 	exports.version = '1';
 	exports.follow = true;
 	exports.inputs = [{ id: 'gps', name: 'Load GPS' }];
@@ -26,5 +26,5 @@
 </script>
 
 <readme>
-	This component displays a map, with a position, you set in settings as a map center. In settings you can change the style of this component.
+This component displays a map, with a position, you set in settings as a map center. In settings you can change the style of this component.
 </readme>

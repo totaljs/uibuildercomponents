@@ -21,12 +21,9 @@
 <script>
 
 	exports.id = 'color';
-	exports.name = 'Color';
-	exports.group = 'Controls';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-palette';
-	exports.version = '1';
+
 	exports.make = function(instance, config, element, cls) {
+
 		instance.state.bind = true;
 
 		var cls2 = '.' + cls;
@@ -40,6 +37,7 @@
 		element.tclass('UI_required', config.required == true);
 
 		element.find('' + cls2 + '_ricon, ' + cls2 + '_value').on('click', function(e) {
+
 			if (config.disabled)
 				return;
 

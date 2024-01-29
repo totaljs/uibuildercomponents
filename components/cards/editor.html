@@ -55,12 +55,13 @@
 	exports.group = 'List';
 	exports.icon = 'ti ti-menu';
 	exports.author = 'Total.js';
-	exports.render = '/components/cards/render.html';
-	exports.settings = '/components/cards/settings.html';
+	exports.render = 'auto';
+	exports.settings = 'auto';
 	exports.config = { border: true, count: 4, items: [{ type: 'image', value: '{{ value.photo }}' }, { type: 'empty' }, { type: 'title', value: '{{ value.title }}' }, { type: 'empty' }] };
 	exports.gap = true;
 	exports.version = '1';
 	exports.outputs = [{ id: 'card', name: 'On card' }, { id: 'button', name: 'On button' }];
+
 	DEF.cl.componentcards = [{ id: 'image', icon: 'ti ti-image', name: 'Image' }, { id: 'title', icon: 'ti ti-heading', name: 'Title' }, { id: 'summary', icon: 'ti ti-align-left', name: 'Summarization' }, { id: 'label', icon: 'ti ti-font', name: 'Label' }, { id: 'hr', icon: 'ti ti-minus', name: 'Line' }, { id: 'price', icon: 'ti ti-calculator', name: 'Price' }, { id: 'empty', icon: 'ti ti-arrows-v', name: 'Empty space' }];
 
 	exports.make = function(instance, config, element, cls) {

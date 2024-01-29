@@ -52,8 +52,8 @@
 	exports.icon = 'ti ti-layer-plus';
 	exports.version = '1';
 	exports.config = { bg: false, border: true, radius: false, shadow: false, items: [{ id: GUID(6), name: 'Panel 1', padding: true }, { id: GUID(6), name: 'Panel 2', padding: true }] };
-	exports.render = '/components/accordion/render.html';
-	exports.settings = '/components/accordion/settings.html';
+	exports.render = 'auto';
+	exports.settings = 'auto';
 	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
@@ -138,4 +138,3 @@
 <readme>
 The Accordion is a vertically collapsible content panel which is displaying panels, one or multiple at a time within the available space.
 </readme>
-

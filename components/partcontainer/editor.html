@@ -15,13 +15,13 @@ The form collects only components with defined paths.
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-window';
 	exports.config = { border: false, checkvisible: true };
-	exports.inputs = [{ id: 'load', name: 'Load' }, { id: 'reset', name: 'Reset', note: 'Reset' }, { id: 'clear', name: 'Clear', note: 'Clear' }];
-	exports.outputs = [{ id: 'read', name: 'Read' }];
-	exports.render = '/components/partcontainer/render.html';
-	exports.settings = '/components/partcontainer/settings.html';
+	exports.render = 'auto';
+	exports.settings = 'auto';
 	exports.hidden = true;
 	exports.type = ['part'];
 	exports.version = '1';
+	exports.inputs = [{ id: 'load', name: 'Load' }, { id: 'reset', name: 'Reset' }, { id: 'clear', name: 'Clear' }];
+	exports.outputs = [{ id: 'read', name: 'Read' }];
 
 	exports.make = function(instance, config, element) {
 

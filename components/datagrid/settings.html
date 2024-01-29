@@ -7,32 +7,34 @@
 
 	<div class="grid-3">
 		<div class="m">
-			<div data---="input__?.margin__type:number;minvalue:0__0">Top margin</div>
+			<ui-component name="input" path="?.margin" config="type:number;minvalue:0" default="0">@(Top margin)</ui-component>
 			<div class="help">Must be defined in pixels</div>
 		</div>
 		<div class="m">
-			<div data---="input__?.height__dirsource:window|Window,parent|Parent,fluid|Fluid,auto|Auto;dircustom:1;align:1">Height</div>
+			<ui-component name="input" path="?.height" config="dirsource:window|Window,parent|Parent,fluid|Fluid,auto|Auto;dircustom:1;align:1">@(Height)</ui-component>
 		</div>
 		<div class="m">
-			<div data---="input__?.minheight__type:number;minvalue:50__300" data-bind="?.height__enable:value==='fluid'||value==='auto'">Min. height</div>
-			<div class="help">Must be defined in pixels</div>
+			<ui-bind path="?.height" config="enable:value==='fluid'||value==='auto'">
+				<ui-component name="input" path="?.minheight" config="type:number;minvalue:50" default="300">@(Min. height)</ui-component>
+				<div class="help">@(Must be defined in pixels)</div>
+			</ui-bind>
 		</div>
 	</div>
 
 	<hr class="nmt" />
 
-	<div data---="input__?.border__type:checkbox">Enable border</div>
-	<div data---="input__?.numbering__type:checkbox">Enable numbering</div>
-	<div data---="input__?.checkbox__type:checkbox">Enable checkboxes</div>
-	<div data---="input__?.autoselect__type:checkbox">Enable auto-select first row</div>
+	<ui-component name="input" path="?.border" config="type:checkbox">@(Enable border)</ui-component>
+	<ui-component name="input" path="?.numbering" config="type:checkbox">@(Enable numbering)</ui-component>
+	<!-- <ui-component name="input" path="?.checkbox" config="type:checkbox">@(Enable checkboxes)</ui-component> -->
+	<ui-component name="input" path="?.autoselect" config="type:checkbox">@(Enable auto-select first row)</ui-component>
 
 	<hr />
 
-	<div data---="listform__?.columns__autofocus:1;footertop:1">
+	<ui-component name="listform" path="?.columns" config="autofocus:1;footertop:1">
 
 		<script type="text/html">
 			<div class="datagrid-item">
-				<div><button name="up"><i class="far fa-arrow-up"></i></button><button name="down"><i class="ti ti-arrow-down"></i></button><button name="remove"><i class="ti ti-remove red"></i></button></div>
+				<div><button name="up"><i class="ti ti-arrow-up"></i></button><button name="down"><i class="ti ti-arrow-down"></i></button><button name="remove"><i class="ti ti-remove red"></i></button></div>
 				<div>{{ name }} <em class="gray">{{ path }}{{ if type }} ({{ type }}){{ fi }}</em></div>
 			</div>
 		</script>
@@ -41,51 +43,51 @@
 			<div class="padding">
 				<div class="row">
 					<div class="col-md-4 m">
-						<div data---="input__?.path__required:1;placeholder:field__''">Path</div>
+						<ui-component name="input" path="?.path" config="required:1;placeholder:field" default="''">@(Path)</ui-component>
 					</div>
 					<div class="col-md-4 m">
-						<div data---="input__?.name__required:1__''">Name</div>
+						<ui-component name="input" path="?.name" config="required:1" default="''">@(Name)</ui-component>
 					</div>
 					<div class="col-md-4 m">
-						<div data---="input__?.title__required:0__''">Tooltip</div>
+						<ui-component name="input" path="?.title" config="required:0" default="''">@(Tooltip)</ui-component>
 					</div>
 					<div class="col-md-4 m">
-						<div data---="input__?.width__required:1;maxlength:10;type:number__150">Width</div>
+						<ui-component name="input" path="?.width" config="required:1;maxlength:10;type:number" default="150">@(Width)</ui-component>
 					</div>
 					<div class="col-md-4 m">
-						<div data---="input__?.align__dirsource:0|Left,1|Center,2|Right;type:number__0">Align</div>
+						<ui-component name="input" path="?.align" config="dirsource:0|Left,1|Center,2|Right;type:number" default="0">@(Align)</ui-component>
 					</div>
 					<div class="col-md-4 m">
-						<div data---="input__?.format__placeholder:dd.MM.yyyy__''">Format</div>
+						<ui-component name="input" path="?.format" config="placeholder:dd.MM.yyyy" default="''">@(Format)</ui-component>
 					</div>
 					<div class="col-md-4 m">
-						<div data---="input__?.codelist__dirsource:%datagrid.cl;dirempty:Empty__''">Static code list</div>
+						<ui-component name="input" path="?.codelist" config="dirsource:%datagrid.cl;dirempty:Empty" default="''">@(Static code list)</ui-component>
 					</div>
 					<div class="col-md-4 m">
-						<div data---="input__?.type__dirsource:string|String,date|Date,boolean|Boolean,number|Number,phone|Phone,email|Email__'string'">Type</div>
+						<ui-component name="input" path="?.type" config="dirsource:string|String,date|Date,boolean|Boolean,number|Number,phone|Phone,email|Email" default="'string'">@(Type)</ui-component>
 					</div>
 				</div>
-				<div data---="input__?.template__placeholder:{{ col_name }}__''">Custom template</div>
+				<ui-component name="input" path="?.template" config="placeholder:{{ col_name }}" default="''">@(Custom template)</ui-component>
 				<div class="help">Only for developers</div>
 				<hr />
-				<div data---="input__?.filter__type:checkbox__true">Disable filtering</div>
-				<div data---="input__?.sort__type:checkbox__true">Disable sorting</div>
-				<div data---="input__?.hidden__type:checkbox__false">Hide column</div>
-				<div data---="input__?.colorize__type:checkbox__false">Colorize value</div>
+				<ui-component name="input" path="?.filter" config="type:checkbox" default="true">@(Disable filtering)</ui-component>
+				<ui-component name="input" path="?.sort" config="type:checkbox" default="true">@(Disable sorting)</ui-component>
+				<ui-component name="input" path="?.hidden" config="type:checkbox" default="false">@(Hide column)</ui-component>
+				<ui-component name="input" path="?.colorize" config="type:checkbox" default="false">@(Colorize value)</ui-component>
 				<br />
-				<div data---="validate__?" class="toolbar">
-					<button name="submit" class="b" disabled><i class="fa fa-floppy-o"></i>Save</button>
-					<button name="remove">Remove</button>
-					<button name="cancel">Cancel</button>
-				</div>
+				<ui-component name="validate" path="?" class="toolbar">
+					<button name="submit" class="b" disabled><i class="fa fa-floppy-o"></i>@(Save)</button>
+					<button name="remove">@(Remove)</button>
+					<button name="cancel">@(Cancel)</button>
+				</ui-component>
 			</div>
 		</script>
 
 		<script type="text/html">
-			<div style="margin-bottom:15px"><button class="btn small" name="create" style="width:120px"><i class="ti ti-plus-circle green"></i>Add column</button></div>
+			<div style="margin-bottom:15px"><button class="btn small" name="create" style="width:120px"><i class="ti ti-plus-circle green"></i>@(Add column)</button></div>
 		</script>
 
-	</div>
+	</ui-component>
 </div>
 
 <script>

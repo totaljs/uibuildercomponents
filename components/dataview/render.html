@@ -1,14 +1,14 @@
 <script>
-
 	exports.id = 'dataview';
-	exports.name = 'Data view';
-	exports.group = 'Data';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-database';
-	exports.version = '1';
 	exports.make = function(instance, config, element) {
 
+		instance.state.notify = true;
+
 		var interval = null;
+		var query = {};
+		var querykeys = config.query ? config.query.split(',').trim() : null;
+		var binded = false;
+		var timeout = null;
 
 		var load = function(data) {
 			if (config.read)
@@ -16,16 +16,45 @@
 			instance.set('value', data);
 		};
 
-		var request = function() {
-			instance.app.view(config.id, ERROR(load));
+		var requestforce = function() {
+
+			timeout = null;
+
+			if (config.path && !binded)
+				return;
+
+			instance.app.view(config.id, query, ERROR(load));
+
 			if (config.interval)
 				interval = setTimeout(request, config.interval * 1000);
+
+		};
+
+		var request = function() {
+			timeout && clearTimeout(timeout);
+			timeout = setTimeout(requestforce, 100);
 		};
 
 		instance.on('destroy', function() {
 			interval && clearTimeout(interval);
 		});
 
-		instance.on('ready', request);
+		instance.on('notify', function(value) {
+
+			if (!value || typeof(value) !== 'object')
+				return;
+
+			if (querykeys) {
+				for (var key of querykeys)
+					query[key] = value[key];
+			} else 
+				query = value;
+
+			binded = true;
+			request();
+		});
+
+		if (!config.path)
+			instance.on('ready', request);
 	};
 </script>

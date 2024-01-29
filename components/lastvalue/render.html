@@ -17,11 +17,6 @@
 <script>
 
 	exports.id = 'lastvalue';
-	exports.name = 'Last value';
-	exports.group = 'Dashboard';
-	exports.icon = 'ti ti-stopwatch';
-	exports.author = 'Total.js';
-	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
 
@@ -41,9 +36,7 @@
 		instance.on('value', function(value) {
 			if (value || config.isnullable) {
 				model = value;
-
 				element.html(template(model));
-
 			}
 		});
 

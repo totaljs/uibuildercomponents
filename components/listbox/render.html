@@ -4,7 +4,9 @@
 </style>
 
 <body>
-	<div class="CLASS_listbox listing">
+	{{ if !config.hidelabel }}<label class="UI_label">{{ if config.icon }}<i class="{{ config.icon }}"></i>{{ fi }}<span class="editable">{{ config.name }}:</span></label>{{ fi }}
+	
+	<div class="CLASS_listbox listing{{ if config.background }}2{{ fi }}">
 		{{ foreach m in value }}
 		<figure data-id="{{ if m.id }}{{ m.id }}{{ else }}{{ m.name }}{{ fi }}">
 			<section>
@@ -21,11 +23,6 @@
 <script>
 
 	exports.id = 'listbox';
-	exports.name = 'List box';
-	exports.group = 'List';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-list-alt';
-	exports.version = '1';
 	exports.outputs = [{ id: 'click', name: 'Click' }];
 
 	exports.make = function(instance, config, element, cls) {
@@ -36,12 +33,7 @@
 
 		var render = function(items) {
 			var template = instance.maketemplate();
-			var icon = config.icon ? '<i class="{0}"></i>'.format(config.icon) : '';
-			var label = config.nolabel ? '' : '<label>{1}<span>{0}:</span></label>'.format(config.name, icon);
-
-			element.html(label + template({ value: items }));
-
-			config.background && element.find(cls2 + '_listbox').rclass2('listing').aclass('listing2');
+			element.html(template({ value: items , config: config}));
 		};
 
 		element.on('click', 'figure', function() {
@@ -55,12 +47,15 @@
 
 		instance.on('ready', function() {
 
-			instance.datasource(config.datasource, function(response) {
-				render(response);
-			});
-
-			instance.check();
-
+			if (config.items && config.items.length) {
+				render(config.items);
+				instance.check();
+			} else {
+				instance.datasource(config.datasource, function(response) {
+					render(response);
+					instance.check();
+				});
+			}
 		});
 
 	};

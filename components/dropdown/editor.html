@@ -3,6 +3,7 @@
 	.CLASS label i { margin-right: 5px;}
 	.CLASS.UI_required label { font-weight: bold; }
 	.CLASS.UI_required label:before { content: '*'; color: red; margin-right: 5px; }
+	.CLASS_settings .ui-listform-item .item { padding: 7px 10px; }
 
 	.CLASS_dropdown { height: 38px; padding: 0 0 0 8px; border: 1px solid #D0D0D0; border-radius: var(--radius); background: #FFF; line-height: 36px; color: gray; font-size: 12px; }
 	.CLASS_dropdown .CLASS_icon { float: right; width: 34px; border-left: 1px solid #D0D0D0; text-align: center; }
@@ -16,16 +17,16 @@
 	exports.group = 'Controls';
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-angle-down';
-	exports.config = { required: false, type: 'string', monospace: false, placeholder: '' };
-	exports.settings = '/components/dropdown/settings.html';
-	exports.render = '/components/dropdown/render.html';
+	exports.config = { required: false, placeholder: '', items: [] };
+	exports.settings = 'auto';
+	exports.render = 'auto';
 	exports.version = '1';
 	exports.follow = true;
 	exports.gap = true;
 
 	exports.make = function(instance, config, element, cls) {
 
-		var template = instance.maketemplate('<div class="{0}_dropdown"><div class="{0}_icon"><i class="ti ti-angle-down"></i></div><span>{{ placeholder }}</span></div>{{ if help }}<div class="help">{{ help }}</div>{{ fi }}'.format(cls));
+		var template = instance.maketemplate('<div class="{0}_dropdown"><div class="{0}_icon"><i class="ti ti-angle-down"></i></div><span>{{ placeholder }}</span></div>'.format(cls));
 
 		instance.on('configure', function() {
 			var label = instance.maketemplate('<label>{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span>{{ name }}:</span></label>')(config);

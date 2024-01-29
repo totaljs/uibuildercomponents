@@ -1,11 +1,7 @@
 <script>
 
 	exports.id = 'scope';
-	exports.name = 'Scope';
-	exports.author = 'Total.js';
-	exports.icon = 'ti ti-receipt';
-	exports.version = '1';
-	exports.inputs = [{ id: 'load', name: 'Load' }, { id: 'reset', name: 'Reset' }, { id: 'clear', name: 'Clear' }];
+	exports.inputs = [{ id: 'load', name: 'Load' }, { id: 'partial', name: 'Load partial data' }, { id: 'reset', name: 'Reset' }, { id: 'clear', name: 'Clear' }];
 	exports.scope = true;
 
 	exports.make = function(instance, config, element, cls) {
@@ -34,11 +30,18 @@
 		var collectdata = function() {
 			var model = {};
 			for (var m of children) {
-				if (m.state.bind && m.config.path && m.config.path.charAt(0) !== '@')
+				if ((m.state.bind || config.bindtoall) && m.config.path && m.config.path.charAt(0) !== '@') {
 					instance.write(model, m.config.path, m.state.value);
 				m.reset();
 			}
 			return model;
+		};
+
+		var reset = function() {
+			skip = true;
+			for (var m of children)
+				m.reset();
+			setTimeout(refresh, delay);
 		};
 
 		instance.on('ready', function() {
@@ -48,21 +51,35 @@
 
 		instance.input('load', function(data) {
 			for (var m of children) {
-				if (m.state.bind) {
+				if (m.state.bind || (m.config.path && m.config.path.charAt(0) !== '@')) {
 					var val = instance.read(data, m.config.path);
 					m.set('value', val, 'noemitstate');
 					m.reset();
 				}
 			}
+			instance.set('value', data, 'nobind');
 		});
 
-		instance.input('reset', function() {
-			skip = true;
-			for (var m of children)
-				m.reset();
-			setTimeout(refresh, delay);
+		instance.input('partial', function(data) {
+			var value = instance.state.value;
+			for (var m of children) {
+				if ((m.state.bind || config.bindtoall) && m.config.path && m.config.path.charAt(0) !== '@') {
+					var val = instance.read(data, m.config.path);
+					if (val != undefined) {
+						m.set('value', val, 'noemitstate');
+						m.reset();
+					}
+				}
+			}
+
+			for (var key in data)
+				value[key] = data[key];
+			
+			instance.set('value', value);
 		});
 
+		instance.on('reset', reset);
+		instance.input('reset', reset);
 		instance.input('clear', clear);
 
 		var refresh = function() {
@@ -88,7 +105,14 @@
 
 			instance.set('invalid', invalid);
 			instance.set('modified', modified);
-			instance.set('value', collectdata(), 'nobind');
+
+			var model = collectdata();
+			var tmp = instance.state.value || {};
+
+			for (var key in model)
+				tmp[key] = model[key];
+
+			instance.set('value', tmp, 'nobind');
 		};
 
 		instance.on('state', function(e) {

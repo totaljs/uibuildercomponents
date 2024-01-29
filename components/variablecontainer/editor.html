@@ -1,0 +1,33 @@
+<style>
+	.CLASS { margin: 0 auto; width: 100%; }
+</style>
+
+<script>
+
+	exports.id = 'variablecontainer';
+	exports.name = 'Variable container';
+	exports.group = 'Layouts';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-arrows-h';
+	exports.render = 'auto';
+	exports.settings = 'auto';
+	exports.config = { maxwidth: '800' };
+	exports.version = '1';
+
+	exports.make = function(instance, config, element, cls, iseditor) {
+
+		element.append('<div class="UI_label"><i class="{icon}"></i><span>{0}</span></div><div class="UI_border UI_components" data-index="0"></div>'.format(config.name.encode()).args(instance.component));
+
+		instance.on('configure', function() {
+			var width = config.maxwidth;
+			element.css({ 'max-width': (width + ((/[a-z%]$/).test(width) ? '' : 'px')) });
+		});
+
+		instance.emit('configure');
+	};
+
+</script>
+
+<readme>
+A variable container offers a user-defined maximum width.
+</readme>

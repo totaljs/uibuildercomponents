@@ -1,34 +1,63 @@
 <script>
 	exports.id = 'hiddenvalue';
 	exports.make = function(instance, config, element) {
-		instance.on('ready', function() {
-			setTimeout(function() {
-				var value = config.value;
-				switch (config.type) {
-					case 'number':
-						value = value.parseFloat();
-						break;
-					case 'boolean':
-						value = value.toLowerCase();
-						value = value === 'true' || value === 'on' || value === '1' || value == 'yes' || value === 'ok';
-						break;
-					case 'date':
-						value = value.parseDate();
-						break;
-					case 'json':
-						value = value.parseJSON(true);
+
+		var isbinded = false;
+
+		instance.state.bind = true;
+
+		var rebind = function() {
+			var value = config.value;
+			switch (config.type) {
+				case 'number':
+					value = value.parseFloat();
+					break;
+				case 'boolean':
+					value = value.toLowerCase();
+					value = value === 'true' || value === 'on' || value === '1' || value == 'yes' || value === 'ok';
+					break;
+				case 'date':
+					value = value.parseDate();
+					break;
+				case 'json':
+					value = value.parseJSON(true);
+					return;
+				case 'object':
+					try {
+						value = (new Function('return ' + value))();
+					} catch (e) {
+						instance.error(e);
 						return;
-					case 'object':
-						try {
-							value = (new Function('return ' + value))();
-						} catch (e) {
-							instance.error(e);
-							return;
-						}
-						break;
+					}
+					break;
+			}
+			return value;
+		};
+
+		instance.default = function() {
+			isbinded = true;
+			return rebind();
+		};
+
+		instance.on('value', function(value) {
+			isbinded = true;
+		});
+
+		instance.on('ready', function() {
+
+			if (config.fixed) {
+				instance.set('value', rebind());
+				isbinded = true;
+				return;
+			}
+
+			setTimeout(function() {
+				if (!isbinded) {
+					instance.set('value', rebind());
+					isbinded = true;
 				}
-				instance.set('value', value);
 			}, 2);
 		});
+
 	};
 </script>

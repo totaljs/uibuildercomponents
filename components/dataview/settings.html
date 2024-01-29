@@ -1,12 +1,19 @@
 <div class="padding">
-	<div class="grid-4">
-		<div class="m">
-			<ui-component name="input" path="?.interval" config="type:number;min:0">@(Interval)</ui-component>
-			<div class="help"><i class="ti ti-chess-clock-alt"></i>@(It must be defined in seconds)</div>
-		</div>
-		<div class="m">
-			<ui-component name="input" path="?.read" config="placeholder:Enter a key/property name">@(Read value from)</ui-component>
-			<div class="help"><i class="ti ti-exchange"></i>@(You can a specific key only)</div>
+
+	<div class="grid-2">
+		<ui-bind path="?.path" config="enabled" class="block m">
+			<ui-component name="input" path="?.query" config="placeholder:id,name">@(Query arguments from the model)</ui-component>
+			<div class="help">@(Query arguments will be loaded according to the selected path)</div>
+		</ui-bind>
+		<div class="grid-2">
+			<div class="m">
+				<ui-component name="input" path="?.interval" config="type:number;min:0;format:">@(Interval)</ui-component>
+				<div class="help"><i class="ti ti-chess-clock-alt"></i>@(It must be defined in seconds)</div>
+			</div>
+			<div class="m">
+				<ui-component name="input" path="?.read" config="placeholder:Enter a key/property name">@(Read value from incoming data)</ui-component>
+				<div class="help"><i class="ti ti-exchange"></i>@(You can a specific key only)</div>
+			</div>
 		</div>
 	</div>
 
