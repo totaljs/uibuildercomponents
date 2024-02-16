@@ -20,7 +20,7 @@
 		var skip = false;
 
 		config.border && element.aclass('UI_border');
-		element.append('<div class="UI_components m" data-index="0"></div>{0}'.format((config.button ? '<button name="submit" class="{1}_button m" disabled>{2}{0}</button>'.format(config.button, cls, icon) : '')));
+		element.append('<div class="UI_components m" data-index="0"></div>{0}'.format((config.button ? '<button name="submit" class="{1}_button" disabled>{2}{0}</button>'.format(config.button, cls, icon) : '')));
 
 		var clear = function() {
 			skip = true;
@@ -140,14 +140,6 @@
 			button && button.prop('disabled', !modified || invalid);
 			instance.set('invalid', invalid);
 			instance.set('modified', modified);
-
-			var tmp = instance.state.value || {};
-
-			for (var key in model)
-				tmp[key] = model[key];
-
-			instance.set('value', tmp);
-
 		};
 
 		instance.on('state', function(e) {

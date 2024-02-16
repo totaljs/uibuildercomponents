@@ -41,6 +41,7 @@
 
 		instance.on('configure', function() {
 			element.html(html(config));
+			element.tclass('UI_required', config.required == true);
 		});
 
 		instance.emit('configure');

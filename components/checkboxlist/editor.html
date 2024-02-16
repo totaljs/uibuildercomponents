@@ -51,18 +51,9 @@
 
 	exports.make = function(instance, config, element, cls) {
 
-		// var options = { name: instance.component.id, count: 3 };
-
-		// var label = '';
-		// var html = FUNC.placeholder(options);
 		var html = instance.maketemplate();
 		
 		instance.on('configure', function() {
-			// label = instance.maketemplate('<label>{{ if icon }}<i class="{{ icon }}"></i>{{ fi }}<span class="editable">{{ name }}:</span></label>');
-			// element.html(label(config) + html);
-			// element.tclass('UI_required', config.required == true);
-			// config.hidelabel && element.find('label').aclass('hidden');
-
 			element.html(html(config));
 			element.tclass('UI_required', config.required == true);
 		});

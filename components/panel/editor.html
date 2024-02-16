@@ -23,6 +23,7 @@
 	exports.version = '1';
 
 	exports.make = function(instance, config, element, cls) {
+
 		var cls2 = '.' + cls;
 		var template = instance.maketemplate('<div class="{0}_panel"><div><span class="{0}_icon"><i class="{{ icon }}"></i></span><span class="{0}_label">{{ html | raw }}</span></div><div class="UI_components" data-index="0"></div></div>'.format(cls));
 
@@ -30,32 +31,27 @@
 			element.html(template(config));
 		};
 
-		render();
-
-		element.on('click', '.ti', function(e) {
-
-			UIBuilder.emit('icon', this, function(el, val) {
-				if (!val)
-					el.remove();
-				config.icon = element.find(cls2 + '_icon i').attr('class');
-			});
-
+		element.on('click', cls2 + '_icon,' +  cls2 + '_label .ti', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			UIBuilder.emit('icon', this);
 		});
 
-		element.on('dblclick', '' + cls2 + '_label', function(e) {
+		element.on('click', cls2 + '_label a', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			UIBuilder.emit('link', this);
+		});
 
+		element.on('dblclick', cls2 + '_label', function(e) {
 			e.stopPropagation();
 			e.preventDefault();
+			instance.edit(this, {});
+		});
 
-			var el = $(this);
-			var opt = {};
-
-			opt.icon = true;
-
-			instance.edit(el, opt, function(response) {
-				config.html = response.html;
-			});
-
+		instance.on('html', function() {
+			config.icon = element.find(cls2 + '_icon i').attr('class');
+			config.html = element.find(cls2 + '_label').html();
 		});
 
 		instance.on('configure', function() {
@@ -73,6 +69,7 @@
 		config.radius && builder.push(cls + '_radius');
 		config.shadow && builder.push(cls + '_shadow');
 		builder.length && element.aclass(builder.join(' '));
+		render();
 
 	};
 

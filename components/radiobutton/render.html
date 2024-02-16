@@ -37,8 +37,18 @@
 			var template = instance.maketemplate();
 			element.html(template({ value: response, config: config }));
 
+			if (config.selectfirst)
+				selectfirst();
+
 			if (defaultval)
 				select(defaultval);
+		}
+
+		var selectfirst = function(value) {
+			var el = $(element.find('figure')[0]);
+			var val = ATTRD(el);
+			el.aclass('UI_checked');
+			instance.set('value', val, 'nobind');
 		}
 
 		var select = function(value) {

@@ -24,10 +24,13 @@
 			opt.icons = false;
 			opt.format = true;
 			opt.bold = true;
-			instance.edit(el, opt, function(response) {
-				config.html = response.html;
-			});
+			instance.edit(el, opt);
 		});
+
+		instance.on('html', function(meta) {
+			config.html = element.find('> div').html();
+		});
+
 	};
 
 </script>

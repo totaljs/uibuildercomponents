@@ -24,26 +24,10 @@
 			element.html('<div style="color:{color}"><i class="{icon}"></i><div style="font-size:{size}px" class="text">{html}</div></div>'.args(config));
 		};
 
-		render();
-
 		element.on('dblclick', '.ti', function(e) {
-
 			e.preventDefault();
 			e.stopPropagation();
-
-			if (e.ctrlKey || e.metaKey) {
-				UIBuilder.emit('attr', this, function() {
-					config.html = element.find('.text').html();
-				});
-				return;
-			}
-
-			UIBuilder.emit('icon', this, function(el, val) {
-				if (!val)
-					el.remove();
-				config.html = element.find('.text').html();
-			});
-
+			UIBuilder.emit(e.ctrlKey || e.metaKey ? 'attr' : 'icon', this);
 		});
 
 		element.on('dblclick', '.text', function(e) {
@@ -53,21 +37,18 @@
 
 			var el = $(this);
 			var opt = {};
-
 			opt.multiline = true;
 			opt.icon = true;
 			opt.links = false;
-
-			instance.edit(el, opt, function(response) {
-				config.html = response.html;
-			});
-
+			instance.edit(el, opt);
 		});
 
-		instance.on('configure', function() {
-			render();
+		instance.on('html', function() {
+			config.html = element.find('.text').html();
 		});
-
+		
+		instance.on('configure', render);
+		render();
 	};
 
 </script>

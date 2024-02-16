@@ -22,13 +22,15 @@
 			var opt = {};
 			opt.icons = false;
 			opt.format = false;
-			instance.edit(el, opt, function(response) {
-				config.note = response.html;
-			});
+			instance.edit(el, opt);
 		});
 
 		instance.on('configure', function() {
 			element.find('label span').text(config.name);
+		});
+
+		instance.on('html', function() {
+			config.note = element.find('div');
 		});
 
 		instance.on('stringify', function(meta, isbuild) {

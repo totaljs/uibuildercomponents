@@ -1,14 +1,14 @@
 <style>
 	.CLASS > div { line-height: 26px; }
-	.CLASS > div:first-child { float: left; width: 4px; height: 60px; background-color: #e0e0e0; margin-right: var(--gap); }
-	.CLASS_key { color: gray; padding-top: 4px; }
+	.CLASS > div:first-child { float: left; width: 4px; height: 60px; margin-right: var(--gap); }
+	.CLASS_key { color: #888; padding-top: 3px; font-size: 12px; }
 	.CLASS_value { font-weight: bold; font-size: 22px; }
 </style>
 
 <body>
-	<div class="CLASS_icon"><i class="{{ icon }}"></i></div>
-	<div class="CLASS_key hellip">{{ key }}</div>
-	<div class="CLASS_value hellip">{{ value }}</div>
+	<div style="background-color:{{ color | empty('#E0E0E0') }}"></div>
+	<div class="CLASS_key hellip">{{ key | raw }}</div>
+	<div class="CLASS_value hellip">{{ value | raw }}</div>
 </body>
 
 <script>

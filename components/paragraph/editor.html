@@ -23,52 +23,28 @@
 			element.html('<p class="text-{align} text" style="font-size:{size}px;color:{color}">{html}</p>'.args(config));
 		};
 
-		render();
-
 		element.on('click', '.ti', function(e) {
-
-			if (e.ctrlKey || e.metaKey) {
-				UIBuilder.emit('attr', this, function() {
-					config.html = element.find('.text').html();
-				});
-				return;
-			}
-
-			UIBuilder.emit('icon', this, function(el, val) {
-				if (!val)
-					el.remove();
-				config.html = element.find('.text').html();
-			});
-
+			UIBuilder.emit(e.ctrlKey || e.metaKey ? 'attr' : 'icon', this);
 		});
 
 		element.on('dblclick', '.text', function(e) {
-
 			e.stopPropagation();
 			e.preventDefault();
-
-			var el = $(this);
-			var opt = {};
-
-			opt.multiline = true;
-			opt.icon = true;
-
-			instance.edit(el, opt, function(response) {
-				config.html = response.html;
-			});
-
+			instance.edit(this, { multiline: true });
 		});
 
 		element.on('click', 'a', function(e) {
 			e.preventDefault();
-			UIBuilder.emit('link', this, function() {
-				config.html = element.find('.text').html();
-			});
+			e.stopPropagation();
+			UIBuilder.emit('link', this);
 		});
 
-		instance.on('configure', function() {
-			render();
+		instance.on('configure', render);
+		instance.on('html', function(meta) {
+			config.html = element.find('.text').html();
 		});
+
+		render();
 
 	};
 

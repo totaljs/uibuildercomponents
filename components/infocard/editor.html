@@ -1,7 +1,7 @@
 <style>
 	.CLASS > div { line-height: 22px; height: 60px; }
-	.CLASS > div:first-child { float: left; width: 4px; height: 60px; background-color: #e0e0e0; margin-right: var(--gap); }
-	.CLASS_key { color: gray; padding-top: 9px; font-size: 12px; }
+	.CLASS > div:first-child { float: left; width: 4px; height: 60px; background-color: #E0E0E0; margin-right: var(--gap); }
+	.CLASS_key { color: #888; padding-top: 9px; font-size: 12px; }
 	.CLASS_value { font-weight: bold; font-size: 16px; }
 </style>
 
@@ -26,28 +26,22 @@
 			element.html(html(config));
 		};
 
-		render();
-
 		element.on('dblclick','' + cls2 + '_value, ' + cls2 + '_key', function(e) {
-
 			e.stopPropagation();
 			e.preventDefault();
-
-			var el = $(this);
-			var type = el.attrd('name');
 			var opt = {};
-
-			instance.edit(el, opt, function(response) {
-				if (response.change)
-					config[type] = response.html;
-			});
-
+			opt.link = false;
+			opt.icon = false;
+			instance.edit(this, opt);
 		});
 
-		instance.on('configure', function() {
-			render();
+		instance.on('html', function() {
+			config.key = element.find('div[data-name="key"]').html();
+			config.value = element.find('div[data-name="value"]').html();
 		});
 
+		instance.on('configure', render);
+		render();
 	};
 
 </script>

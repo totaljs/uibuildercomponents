@@ -3,7 +3,7 @@
 	.CLASS .text-right { text-align: right; }
 	.CLASS .text-center { text-align: center; }
 	.CLASS .h1 { font-size: 30px; font-weight: bold; }
-	.CLASS .h2 { font-size: 26px; font-weight: bold; border-bottom: 1px solid #E0E0E0; padding: 0 0 5px; }
+	.CLASS .h2 { font-size: 26px; font-weight: bold; border-bottom: 1px solid rgba(0,0,0,0.15); padding: 0 0 8px; }
 	.CLASS .h3 { font-size: 22px; font-weight: bold; }
 	.CLASS .h4 { font-size: 16px; font-weight: bold; }
 </style>
@@ -30,51 +30,27 @@
 			element.html(template(config));
 		};
 
-		render();
-
 		element.on('click', '.ti', function(e) {
-
-			if (e.ctrlKey || e.metaKey) {
-				UIBuilder.emit('attr', this, function() {
-					config.html = element.find('.text').html();
-				});
-				return;
-			}
-
-			UIBuilder.emit('icon', this, function(el, val) {
-				if (!val)
-					el.remove();
-				config.html = element.find('.text').html();
-			});
-
+			UIBuilder.emit(e.ctrlKey || e.metaKey ? 'attr' : 'icon', this);
 		});
 
 		element.on('dblclick', '.text', function(e) {
-
 			e.stopPropagation();
 			e.preventDefault();
-
-			var el = $(this);
-			var opt = {};
-
-			opt.icon = true;
-
-			instance.edit(el, opt, function(response) {
-				config.html = response.html;
-			});
-
+			instance.edit($(this), {});
 		});
 
 		element.on('click', 'a', function(e) {
 			e.preventDefault();
-			UIBuilder.emit('link', this, function() {
-				config.html = element.find('.text').html();
-			});
+			UIBuilder.emit('link', this);
 		});
 
-		instance.on('configure', function() {
-			render();
+		instance.on('html', function(meta) {
+			config.html = element.find('.text').html();
 		});
+
+		instance.on('configure', render);
+		render();
 
 	};
 

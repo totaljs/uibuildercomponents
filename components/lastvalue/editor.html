@@ -28,30 +28,29 @@
 
 		var render = function() {
 			element.html(html(config));
-
 			element.rclass2(cls + '_iconpos_').aclass(cls + '_iconpos_' + config.iconpos);
 		};
 
-		render();
-
 		element.on('dblclick','' + cls2 + '_value, ' + cls2 + '_note', function(e) {
+
 			e.stopPropagation();
 			e.preventDefault();
 
 			var el = $(this);
-			var type = el.attrd('name');
 			var opt = {};
-
-			instance.edit(el, opt, function(response) {
-				if (response.change)
-					config[type] = response.html;
-			});
+			opt.icon = false;
+			opt.link = false;
+			instance.edit(el, opt);
 
 		});
 
-		instance.on('configure', function() {
-			render();
+		instance.on('html', function() {
+			config.note = element.find('div[data-name="note"]').html();
+			config.value = element.find('div[data-name="value"]').html();
 		});
+
+		instance.on('configure', render);
+		render();
 
 	};
 
