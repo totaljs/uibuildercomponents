@@ -1,7 +1,7 @@
 <style>
-	.CLASS_checkbox { height: 28px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; line-height: 28px; }
+	.CLASS_checkbox { height: 26px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; line-height: 26px; font-size: 13px; }
 	.CLASS_checkbox i { width: 20px; height: 20px; border-radius: var(--radius); border: 1px solid #E0E0E0; float: left; margin: 4px 7px 0 0; display: block; background-color: #fff; }
-	.CLASS_checkbox.UI_required span { font-weight: bold; }
+	.UI_required > .CLASS_checkbox span { font-weight: bold; }
 </style>
 
 <script>
@@ -11,7 +11,7 @@
 	exports.group = 'Controls';
 	exports.author = 'Total.js';
 	exports.icon = 'ti ti-check-square';
-	exports.config = { required: false, reverse: false };
+	exports.config = { required: false, reverse: false, default: false };
 	exports.settings = 'auto';
 	exports.render = 'auto';
 	exports.version = '1';
@@ -33,5 +33,5 @@
 </script>
 
 <readme>
-The component that switches between two states: `true`/`false`
+	The component that switches between two states: `true`/`false`
 </readme>
