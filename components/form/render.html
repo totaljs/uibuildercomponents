@@ -123,6 +123,7 @@
 
 			var invalid = false;
 			var modified = false;
+			var model = {};
 
 			for (var m of children) {
 
@@ -135,11 +136,24 @@
 				if (m.validate && !m.validate())
 					invalid = true;
 
+				if (m.state.bind && m.config.path && m.config.path.charAt(0) !== '@')
+					instance.write(model, m.config.path, m.state.value);
+
 			}
 
 			button && button.prop('disabled', !modified || invalid);
 			instance.set('invalid', invalid);
 			instance.set('modified', modified);
+
+			var tmp = instance.state.value || {};
+
+			if (!tmp)
+				tmp = {};
+		
+			for (var key in model)
+				tmp[key] = model[key];
+
+			instance.set('value', tmp);
 		};
 
 		instance.on('state', function(e) {
