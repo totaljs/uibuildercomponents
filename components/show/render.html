@@ -4,6 +4,8 @@
 
 	exports.make = function(instance, config, element) {
 
+		instance.state.notify = true;
+
 		var ishidden = true;
 
 		element.aclass('hidden' + (config.border ? ' UI_border' : ''));
@@ -24,9 +26,8 @@
 				break;
 		}
 
-		var check = function() {
+		var check = function(value) {
 
-			var value = instance.get();
 			var is;
 
 			if (value2 !== null) {
@@ -53,7 +54,7 @@
 
 		};
 
-		instance.on('value', check);
+		instance.on('notify', check);
 		check();
 
 	};
