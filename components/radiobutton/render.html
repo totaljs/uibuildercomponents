@@ -3,9 +3,9 @@
 	.CLASS label i { margin-right: 5px; }
 
 	.CLASS figure * { cursor: pointer; }
-	.CLASS figure span { width: 20px; height: 20px; line-height: 17px; font-size: 10px; margin: 0 7px 0 0; transition: background-color .2s, border-color .2s; text-align: center; float: left; border: 1px solid #d0d0d0; border-radius: 50%; background: #fff; }
-	.CLASS figure div { line-height: 22px; font-size: 12px; margin-bottom: 3px; display: block; outline: 0; }
-	.CLASS figure span i { display: none; font-weight: bold; font-size: 10px; color: #fff; }
+	.CLASS figure span { width: 20px; height: 20px; line-height: 18px; font-size: 11px; margin: 0 7px 0 0; transition: background-color .2s, border-color .2s; text-align: center; float: left; border: 1px solid #d0d0d0; border-radius: 50%; background: #fff; }
+	.CLASS figure div { line-height: 22px; font-size: 13px; margin-bottom: 5px; display: block; outline: 0; }
+	.CLASS figure span i { display: none; font-weight: bold; color: #fff; }
 	.CLASS figure.UI_checked span { border-color: var(--color); background-color: var(--color); }
 	.CLASS figure.UI_checked span i { display: inline-block; }
 
@@ -17,7 +17,7 @@
 </style>
 
 <body>
-	{{ if !config.hidelabel }}<label>{{ if config.icon }}<i class="{{ config.icon }}mr5"></i>{{ fi }}<span>{{ config.name }}</span></label>{{ fi }}
+	{{ if !config.hidelabel }}<label>{{ if config.icon }}<i class="{{ config.icon }}mr5"></i>{{ fi }}<span>{{ config.name }}:</span></label>{{ fi }}
 
 	{{ foreach m in value }}
 		<figure data-id="{{ if m.id }}{{ m.id }}{{ else }}{{ m.name }}{{ fi }}"><span><i class="ti ti-check"></i></span><div>{{ m.name }}</div></figure>

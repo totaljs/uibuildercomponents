@@ -18,7 +18,7 @@
 			{{ end }}
 		</div>
 	</div>
-	<ui-component name="viewbox" config="parent:window;margin:120;scrollbarshadow:1;visibleX:0;visibleY:1" class="invisible">
+	<ui-component name="viewbox" config="parent:window;margin:{{ margin | empty(120) }};scrollbarshadow:1;visibleX:0;visibleY:1" class="invisible">
 		<div class="CLASS_components UI_components" data-index="0"></div>
 	</ui-component>
 </body>

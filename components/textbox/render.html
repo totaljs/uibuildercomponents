@@ -2,9 +2,9 @@
 	.CLASS label { font-size: 12px; margin-bottom: 5px; display: block; outline: 0; }
 	.CLASS label i { margin-right: 5px; }
 	.CLASS_error { display: none; color: red; font-weight: bold; margin-top: 8px; font-size: 11px; line-height: 13px; }
-
-	.CLASS_input { position: relative; height: 38px; line-height: 36px; border: 1px solid #D0D0D0; border-radius: var(--radius); background: #FFF; cursor: pointer; }
-	.CLASS_input input { border: 0; background: transparent; height: 36px; width: 100%; outline: 0; padding: 0 8px; font-size: 13px; }
+	.CLASS.issafari .CLASS_placeholder { line-height: 37px; }
+	.CLASS_input { position: relative; height: 38px; border: 1px solid #D0D0D0; border-radius: var(--radius); background: #FFF; cursor: pointer; }
+	.CLASS_input input { border: 0; background: transparent; height: 36px; line-height: 36px; width: 100%; outline: 0; padding: 0 8px; font-size: 13px; }
 	.CLASS_input .CLASS_ricon { float: right; border-left: 1px solid #E0E0E0; height: 36px; width: 34px; text-align: center; line-height: 36px; padding: 12px 0 0; }
 	.CLASS_input .CLASS_ricon i { display: block; cursor: pointer; }
 	.CLASS_number .CLASS_ricon { padding: 7px 0 0; }
@@ -12,13 +12,14 @@
 	.CLASS_number .CLASS_placeholder { text-align: center; padding-right: 40px; }
 	.CLASS_wrapper { margin-right: 40px; }
 
-	.CLASS_placeholder { position: absolute; font-size: 12px; pointer-events: none; color: gray; margin: 0; width: 100%; text-align: left; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-left: 8px; }
+	.CLASS_placeholder { position: absolute; font-size: 13px; pointer-events: none; line-height: 36px; color: gray; margin: 0; width: 100%; /* text-align: left; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; */ padding: 0 8px; height: 36px; }
 
 	.CLASS.UI_touched.UI_invalid .CLASS_input { border-color: red; }
 	.CLASS.UI_touched.UI_invalid .CLASS_error { display: block; }
 	.CLASS.UI_touched.UI_invalid .CLASS_help { display: none; }
 	.CLASS.UI_required label { font-weight: bold; }
 	.CLASS.UI_required label:before { content: '*'; color: red; margin-right: 5px; }
+
 </style>
 
 <script>
@@ -277,6 +278,10 @@
 
 		instance.on('ready', function() {
 			instance.check();
+			var issafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+			if (issafari)
+				element.aclass('issafari');
 		});
 
 	};

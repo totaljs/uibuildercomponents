@@ -10,6 +10,7 @@
 	exports.settings = 'auto';
 	exports.inputs = [{ id: 'input', name: 'Input' }];
 	exports.version = '1';
+	exports.follow = true;
 	exports.gap = true;
 
 	exports.make = function(instance, config, element) {
@@ -27,5 +28,5 @@
 </style>
 
 <readme>
-The component will resend input to other inputs.
+The component processes incoming data from the Total.js Flow. It can resend data to other inputs automatically.
 </readme>
