@@ -39,21 +39,28 @@
 			return rebind();
 		};
 
-		instance.on('value', function(value) {
+		var setvalue = function(value) {
 			isbinded = true;
+			instance.set('value', value, 'nobind');
+			instance.set('modified', true);
+			instance.set('touched', true);
+		};
+
+		instance.on('value', function(value, kind) {
+			if (!config.fixed && kind !== 'nobind')
+				setvalue(value);
 		});
 
 		instance.on('ready', function() {
 
 			if (config.fixed) {
-				instance.set('value', rebind());
-				isbinded = true;
+				setvalue(rebind());
 				return;
 			}
 
 			setTimeout(function() {
 				if (!isbinded) {
-					instance.set('value', rebind());
+					setvalue(rebind());
 					isbinded = true;
 				}
 			}, 2);
