@@ -99,6 +99,8 @@
 			if (!instance.state.invalid && instance.state.modified) {
 				button && button.prop('disabled', true);
 				var val = collectdata();
+				console.log(config.input, val);
+				config.input && instance.app.input(config.input, val);
 				fn(null, val);
 				setTimeout(refresh, delay);
 			}
