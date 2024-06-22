@@ -57,10 +57,12 @@
 				diff = cols.length - config.count;
 				if (diff) {
 					cols = cols.toArray();
-					for (var i = 0; i < diff; i++) {
-						var el = cols[cols.length - 1];
-						if (el.parentNode)
-							el.parentNode.removeChild(el);
+					var rem = cols.splice(config.count);
+					var last = cols.last();
+					for (var m of rem) {
+						while (m.children.length)
+							last.appendChild(m.children[0]);
+						m.parentNode.removeChild(m);
 					}
 				}
 				instance.app.clean();
