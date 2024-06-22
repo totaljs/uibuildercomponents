@@ -16,8 +16,7 @@
 		"author": "Total.js",
 		"icon": "ti ti-window",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/applayout/editor.html",
-		"readme": ""
+		"url": "https://cdn.componentator.com/uibuilder/applayout/editor.html"
 	},
 	{
 		"id": "barchart",
@@ -137,7 +136,7 @@
 		"icon": "ti ti-comment",
 		"version": "1",
 		"url": "https://cdn.componentator.com/uibuilder/comment/editor.html",
-		"readme": "Simple component for writing a comment."
+		"readme": "A simple component for writing comments."
 	},
 	{
 		"id": "container",
@@ -212,7 +211,7 @@
 	{
 		"id": "datagrid",
 		"group": "List",
-		"name": "Datagrid",
+		"name": "DataGrid",
 		"author": "Total.js",
 		"icon": "ti ti-table-alt",
 		"version": "1",
@@ -297,7 +296,7 @@
 		"icon": "ti ti-object-group",
 		"version": "1",
 		"url": "https://cdn.componentator.com/uibuilder/flowinput/editor.html",
-		"readme": "The component will resend input to other inputs."
+		"readme": "The component processes incoming data from the Total.js Flow. It can resend data to other inputs automatically."
 	},
 	{
 		"id": "flowoutput",
@@ -317,7 +316,7 @@
 		"icon": "ti ti-database-alt",
 		"version": "1",
 		"url": "https://cdn.componentator.com/uibuilder/form/editor.html",
-		"readme": "The form collects only components with defined paths."
+		"readme": "The components creates a form."
 	},
 	{
 		"id": "gap",
@@ -360,6 +359,16 @@
 		"readme": "This container will always be hidden in the render and it's targeted for data operations."
 	},
 	{
+		"id": "hiddenvalue",
+		"group": "Controls",
+		"name": "Hidden value",
+		"author": "Total.js",
+		"icon": "ti ti-variables",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/hiddenvalue/editor.html",
+		"readme": "The component sets a hidden value to the model."
+	},
+	{
 		"id": "hr",
 		"group": "Content",
 		"name": "Horizontal rule",
@@ -377,7 +386,7 @@
 		"icon": "ti ti-html5",
 		"version": "1",
 		"url": "https://cdn.componentator.com/uibuilder/html/editor.html",
-		"readme": "This component renders raw HTML."
+		"readme": "This component renders raw HTML content."
 	},
 	{
 		"id": "icon",
@@ -486,8 +495,7 @@
 		"author": "Total.js",
 		"icon": "ti ti-pin-alt",
 		"version": "1",
-		"url": "https://cdn.componentator.com/uibuilder/fbmarker/editor.html",
-		"readme": ""
+		"url": "https://cdn.componentator.com/uibuilder/fbmarker/editor.html"
 	},
 	{
 		"id": "panel",
@@ -617,7 +625,7 @@
 		"icon": "ti ti-underline",
 		"version": "1",
 		"url": "https://cdn.componentator.com/uibuilder/richtext/editor.html",
-		"readme": "Usage:ripple=\"false\"\n\t- Configure tis component by providing your API key, enabling plugins, and toggling autosave.\n\t\n- **API Key**: You can enter your API key, which is required for using the editor.\n- **Plugins**: You can select which TinyMCE plugins to enable for the editor.\n- **Autosave**: You can toggle autosave functionality."
+		"readme": "Usage: ripple=\"false\"\n\t- Configure tis component by providing your API key, enabling plugins, and toggling autosave.\n- **API Key**: You can enter your API key, which is required for using the editor.\n- **Plugins**: You can select which TinyMCE plugins to enable for the editor.\n- **Autosave**: You can toggle autosave functionality."
 	},
 	{
 		"id": "scope",
@@ -697,7 +705,7 @@
 		"icon": "ti ti-font",
 		"version": "1",
 		"url": "https://cdn.componentator.com/uibuilder/textbox/editor.html",
-		"readme": "A Textbox is an input element that allows to get input from the user. It allows the user either to edit or display the input values.\n__Types__:\n\t- `string`\n\t- `number`\n\t- `date`\n\t- `datetime`\n\t- `email`\n\t- `ZIP`\n\t- `phone number`\n\t- `password`"
+		"readme": "A Textbox is an input element that allows to get input from the user. It allows the user either to edit or display the input values.\n\n__Types__:\n\n- `string`\n- `number`\n- `date`\n- `datetime`\n- `email`\n- `ZIP`\n- `phone number`\n- `password`"
 	},
 	{
 		"id": "json",
