@@ -46,10 +46,10 @@
 			var btn = $(this);
 			var btn_id = btn.attrd('id');
 
-			element.find(cls2 + '_btn_{0}'.format(instance.id)).rclass('selected');
+			element.find(cls2 + '_btn_' + instance.id).rclass('selected');
 			btn.aclass('selected');
 
-			element.find(cls2 + '_content_{0}'.format(instance.id)).aclass('hidden');
+			element.find(cls2 + '_content_' + instance.id).aclass('hidden');
 			element.find(cls2 + '_content[data-id="{0}"]'.format(btn_id)).rclass('hidden');
 		});
 
