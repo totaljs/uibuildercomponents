@@ -1,21 +1,23 @@
 <style>
-	.CLASS_buttons { list-style: none; padding: 0; margin: 0px; }
-	.CLASS_btn { display: inline-block; margin-right: 8px; padding: 8px 16px; font-size: 14px; border-width: 1px; border-style: solid; border-color: #e0e0e0; border-bottom-color: #e0e0e0; background-color: #f8f8f8; border-radius: var(--radius) var(--radius) 0 0; cursor: pointer; }
-	.CLASS_btn.selected { border-bottom-color: #fff; background-color: #fff; font-weight: bold; }
-	.CLASS_containers { width: 100%; border: 1px solid #e0e0e0; margin-top: -1px; border-radius: 0 var(--radius) var(--radius) var(--radius); }
+	.CLASS_buttons { list-style: none; padding: 0; margin: 0px; margin-bottom: -17px; overflow-x: scroll; display: -webkit-box; display: -ms-flexbox; display: flex; }
+	.CLASS ::-webkit-scrollbar { width: 0; background: transparent; }
+	.CLASS_btn { display: inline-block; min-width: 70px; margin-right: 8px; padding: 8px 16px; font-size: 14px; border-width: 1px; border-style: solid; border-color: #e0e0e0; border-bottom-color: #e0e0e0; background-color: #f8f8f8; border-radius: var(--radius) var(--radius) 0 0; cursor: pointer; }
+	.CLASS_btn.selected { border-bottom-color: #fff; border-bottom: 0; font-weight: bold; background-color: #fff; z-index: 10; }
+	.CLASS_containers { width: 100%; position: relative; border: 1px solid #e0e0e0; margin-top: -1px; border-radius: 0 var(--radius) var(--radius) var(--radius); background-color: #fff; }
 	.CLASS_content { padding: var(--gap); background-color: #fff; }
+	.jc-windows .CLASS_buttons { margin-bottom: -18px; }
 </style>
 
 <body>
 	<div class="CLASS_tabs">
 		<ul class="CLASS_buttons">
 			{{ foreach m in value }}
-				<li class="CLASS_btn" data-id="{{ m.id }}" data-index="{{ $index }}">{{ if m.icon }}<i class="{{ m.icon }} mr5"></i>{{ fi }}{{ m.name }}</li>
+				<li class="CLASS_btn CLASS_btn_{{ id }}" data-id="{{ m.id }}" data-index="{{ $index }}">{{ if m.icon }}<i class="{{ m.icon }} mr5"></i>{{ fi }}{{ m.name }}</li>
 			{{ end }}
 		</ul>
 		<div class="CLASS_containers">
 			{{ foreach m in value }}
-				<div class="CLASS_content hidden" data-id="{{ m.id }}"><div class="UI_components" data-index="{{ $index }}"></div></div>
+				<div class="CLASS_content CLASS_content_{{ id }} hidden" data-id="{{ m.id }}"><div class="UI_components" data-index="{{ $index }}"></div></div>
 			{{ end }}
 		</div>
 	</div>
@@ -30,21 +32,24 @@
 
 		var render = function() {
 			var template = instance.maketemplate(instance.component.html);
-			var output = template({ value: config.items });
+			var output = template({ id: instance.id, value: config.items });
 			element.html(output);
 
 			element.find(cls2 + '_btn:first-child').aclass('selected');
 			element.find(cls2 + '_content:first-child').rclass('hidden');
 		};
 
-		element.on('click', '' + cls2 + '_btn', function() {
+		element.on('click', '' + cls2 + '_btn', function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			
 			var btn = $(this);
 			var btn_id = btn.attrd('id');
 
-			element.find(cls2 + '_btn').rclass('selected');
+			element.find(cls2 + '_btn_{0}'.format(instance.id)).rclass('selected');
 			btn.aclass('selected');
 
-			element.find(cls2 + '_content').aclass('hidden');
+			element.find(cls2 + '_content_{0}'.format(instance.id)).aclass('hidden');
 			element.find(cls2 + '_content[data-id="{0}"]'.format(btn_id)).rclass('hidden');
 		});
 

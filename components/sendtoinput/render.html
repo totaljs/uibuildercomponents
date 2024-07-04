@@ -15,9 +15,9 @@
 
 			if (config.write)
 				tmp = instance.write({}, config.write, tmp);
-
+			
 			// Sends data to the input
-			instance.app.input(config.input, tmp);
+			instance.app.input(config.input, tmp, NOOP);
 		});
 
 	};
