@@ -4,6 +4,8 @@
 
 	exports.make = function(instance, config, element) {
 
+		instance.state.bind = true;
+
 		var input = null;
 		var id = 'fileupload' + instance.id;
 
