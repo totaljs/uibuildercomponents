@@ -249,6 +249,16 @@
 		"readme": "__Dropdown data-source needs to contain__:\n\n```js\n[\n\t{ id: 1, name: 'Nothing' },\n\t{ id: 2, name: 'jComponent' },\n\t{ id: 3, name: 'Angular.js' },\n\t{ id: 4, name: 'React' }\n]\n```"
 	},
 	{
+		"id": "dynamicsource",
+		"group": "Data",
+		"name": "Dynamic source",
+		"author": "Total.js",
+		"icon": "ti ti-project-diagram",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/dynamicsource/editor.html",
+		"readme": "The component loads data and map them automatically."
+	},
+	{
 		"id": "enable",
 		"group": "Logical",
 		"name": "Enable editing",
@@ -748,6 +758,16 @@
 		"readme": "Series of buttons on a single line with headline."
 	},
 	{
+		"id": "variablecontainer",
+		"group": "Layouts",
+		"name": "Variable container",
+		"author": "Total.js",
+		"icon": "ti ti-arrows-h",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/variablecontainer/editor.html",
+		"readme": "A variable container offers a user-defined maximum width."
+	},
+	{
 		"id": "video",
 		"group": "Content",
 		"name": "Video",
@@ -756,5 +776,15 @@
 		"version": "1",
 		"url": "https://cdn.componentator.com/uibuilder/video/editor.html",
 		"readme": "This component plays a video from a link you set in settings."
+	},
+	{
+		"id": "wsreceiver",
+		"group": "Data",
+		"name": "WebSocket receiver",
+		"author": "Total.js",
+		"icon": "ti ti-spinner",
+		"version": "1",
+		"url": "https://cdn.componentator.com/uibuilder/wsreceiver/editor.html",
+		"readme": "The component creates a WebSocket connection, binds all incoming messages to the model, and sends changes over WebSocket."
 	}
 ]

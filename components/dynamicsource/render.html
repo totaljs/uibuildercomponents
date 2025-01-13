@@ -1,0 +1,45 @@
+<script>
+	exports.make = function(instance, config) {
+
+		// Internal flag
+		instance.state.notify = true;
+
+		if (config.items && config.items.length) {
+			instance.set('value', config.items);
+			return;
+		}
+
+		var fetchdata = function(value) {
+
+			if (config.path && !value) {
+				instance.set('value', []);
+				return;
+			}
+
+			var url = config.url.args({ value: value || '' });
+
+			AJAX('GET ' + url, function(response, err) {
+
+				if (err)
+					return;
+
+				var arr = [];
+
+				for (var m of response) {
+					var obj = {};
+					obj.id = m[config.id];
+					obj.name = m[config.text];
+					arr.push(obj);
+				}
+
+				instance.set('value', arr);
+			});
+		};
+
+		if (config.path)
+			instance.on('notify', fetchdata);
+		else
+			fetchdata();
+
+	};
+</script>

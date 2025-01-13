@@ -1,0 +1,37 @@
+<style>
+	.CLASS_settings .fields { border: 1px solid #E0E0E0; border-radius: var(--radius); }
+	.CLASS_settings .ui-listform-item .item { padding: 7px 10px; }
+	.CLASS_settings .ui-listform-form { border-radius: 0; border: 0; border-bottom: 1px solid #e0e0e0; }
+	.CLASS_settings .ui-listform-form-container { padding: 0; }
+	.CLASS_settings .listing .item { line-height: 34px; font-size: 12px; background-color: #F8F8F8; border-radius: var(--radius); margin-bottom: 2px; padding: 0 10px; cursor: pointer; }
+	.CLASS_settings .listing .item:hover { background-color: #E8E8E8; }
+</style>
+
+<script>
+
+	exports.id = 'dynamicsource';
+	exports.name = 'Dynamic source';
+	exports.group = 'Data';
+	exports.author = 'Total.js';
+	exports.icon = 'ti ti-project-diagram';
+	exports.render = 'auto';
+	exports.settings = 'auto';
+	exports.version = '1';
+	exports.config = { id: 'id', text: 'name', name: 'Custom datasource', url: 'https://hostname.com/cities/{value}', items: [] };
+	exports.follow = true;
+
+	exports.make = function(instance, config, element, cls) {
+		element.aclass('UI_special m');
+
+		instance.on('configure', function() {
+			element.html('<i class="{0}"></i><label>Data source<span>{name}</span></label>'.format(instance.component.icon).args(config, 'escape'));
+		});
+
+		instance.emit('configure');
+	};
+
+</script>
+
+<readme>
+The component loads data and map them automatically.
+</readme>

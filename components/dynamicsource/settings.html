@@ -1,0 +1,55 @@
+<div class="padding">
+
+	<ui-bind path="?.items" config="hide:value && value.length > 0" class="block">
+
+		<div class="m">
+			<ui-component name="input" path="?.url" config="required:1">@(Data source URL address)</ui-component>
+			<div class="help">@(The URL address can contain a dynamic value in the form <code>{value}</code>. The value will be read according to the path defined above.) @(<b>IMPORTANT</b> the URL address must return Array of objects.)</div>
+		</div>
+
+		<div class="caption m">
+			<label>@(Fields mapping)</label>
+		</div>
+
+		<div class="grid-4">
+			<div class="m">
+				<ui-component name="input" path="?.id" config="monospace:1;align:1">@(Identifier)</ui-component>
+			</div>
+			<div class="m">
+				<ui-component name="input" path="?.text" config="monospace:1;align:1">@(Name/Label)</ui-component>
+			</div>
+		</div>
+		<hr />
+	</ui-bind>
+
+	<ui-component name="listform" path="?.items" config="autofocus:1;empty:@(... or create a custom data source)" class="m">
+
+		<script type="text/html">
+			<div class="item monospace"><div class="controls nmr"><button name="remove" class="red"><i class="ti ti-trash"></i></button></div><b>{{ name }}</b></div>
+		</script>
+
+		<script type="text/html">
+			<div class="padding">
+				<div class="row">
+					<div class="col-sm-6">
+						<ui-component name="input" path="?.name" config="required:1" default="''" class="m">@(Name)</ui-component>
+					</div>
+					<div class="col-sm-6">
+						<ui-component name="input" path="?.id" config="required:1" default="''" class="m">@(Value)</ui-component>
+					</div>
+				</div>
+
+				<ui-component name="validate" path="?" config="validonly:true" class="toolbar">
+					<button name="submit" disabled><i class="ti ti-file-code"></i>@(Save)</button>
+					<button name="remove">@(Remove)</button>
+					<button name="cancel">@(Cancel)</button>
+				</ui-component>
+			</div>
+		</script>
+
+		<script type="text/html">
+			<div style="margin-top:15px"><button class="btn small" name="create" style="width:120px"><i class="ti ti-plus-circle green"></i>@(Create)</button></div>
+		</script>
+	</ui-component>
+
+</div>
