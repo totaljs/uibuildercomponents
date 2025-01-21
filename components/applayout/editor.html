@@ -40,7 +40,7 @@
 	exports.settings = 'auto';
 	exports.hidden = true;
 	exports.version = '1';
-	exports.config = { margin: 120 };
+	exports.config = { margin: 120, buttons: [] };
 	exports.outputs = [];
 
 	exports.make = function(instance, config, element, cls) {
@@ -51,8 +51,10 @@
 
 			instance.outputs = [];
 
-			for (let m of config.buttons)
-				instance.outputs.push({ id: m.id, name: m.name });
+			if (config.buttons && config.buttons.length) {
+				for (let m of config.buttons)
+					instance.outputs.push({ id: m.id, name: m.name });
+			}
 
 			element.html(output);
 		};

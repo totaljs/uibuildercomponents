@@ -37,8 +37,11 @@
 			element.html(output);
 
 			instance.outputs = [];
-			for (let m of config.buttons)
-				instance.outputs.push({ id: m.id, name: m.name });
+
+			if (config.buttons && config.buttons.length) {
+				for (let m of config.buttons)
+					instance.outputs.push({ id: m.id, name: m.name });
+			}
 		};
 
 		element.on('click', '.toolbar > button', function(e) {
