@@ -41,13 +41,22 @@
 	exports.hidden = true;
 	exports.version = '1';
 	exports.config = { margin: 120 };
-	exports.outputs = [{ id: 'button', name: 'On button' }];
+	exports.outputs = [];
 
 	exports.make = function(instance, config, element, cls) {
 
 		var render = function() {
 			var template = instance.maketemplate(instance.component.html);
 			var output = template({ value: config.buttons, name: config.name.encode(), backnav: config.backnav ? true : false });
+
+			instance.outputs = [];
+
+			if (config.backnav)
+				instance.outputs.push({ id: 'back', name: 'Back button' });
+
+			for (let m of config.buttons)
+				instance.outputs.push({ id: m.id, name: m.name });
+
 			element.html(output);
 		};
 
@@ -68,9 +77,8 @@
 
 			if (tmp) {
 				var content = element.find('> .UI_components')[0];
-				while (tmp.children.length) {
+				while (tmp.children.length)
 					content.appendChild(tmp.children[0]);
-				}
 			}
 		});
 
