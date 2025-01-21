@@ -51,9 +51,6 @@
 
 			instance.outputs = [];
 
-			if (config.backnav)
-				instance.outputs.push({ id: 'back', name: 'Back button' });
-
 			for (let m of config.buttons)
 				instance.outputs.push({ id: m.id, name: m.name });
 

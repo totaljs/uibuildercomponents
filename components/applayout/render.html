@@ -26,7 +26,7 @@
 <script>
 
 	exports.id = 'applayout';
-	exports.outputs = [{ id: 'button', name: 'On button' }];
+	exports.outputs = [];
 	exports.make = function(instance, config, element, cls) {
 
 		var cls2 = '.' + cls;
@@ -35,14 +35,16 @@
 			var template = instance.maketemplate(instance.component.html);
 			var output = template({ value: config.buttons, name: config.name.encode(), backnav: config.backnav ? true : false });
 			element.html(output);
+
+			instance.outputs = [];
+			for (let m of config.buttons)
+				instance.outputs.push({ id: m.id, name: m.name });
 		};
 
 		element.on('click', '.toolbar > button', function(e) {
 			var el = $(this);
 			var id = el.attrd('id');
-			var obj = {};
-			obj.BUTTON = id;
-			instance.output('button', obj);
+			instance.output(id, instance.get() || {});
 		});
 
 		element.on('click', '.CLASS_backbtn', function(e) {
